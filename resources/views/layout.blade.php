@@ -7,7 +7,7 @@
   <script src='/js/script.js'></script>
 </head>
 <body>
-
+  
   @yield('content')
 
 </body>
