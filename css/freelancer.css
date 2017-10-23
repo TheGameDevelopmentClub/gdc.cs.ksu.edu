@@ -42,7 +42,7 @@ hr.gamepad-primary {
   padding: 0;
   text-align: center;
   border: none;
-  border-top: solid 5px; }
+  border-top: solid 3px; }
 
 hr.gamepad-light:after,
 hr.gamepad-primary:after {
