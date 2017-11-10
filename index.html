@@ -57,7 +57,7 @@
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
       <div class="container text-center">
-        <h2 class="text-center">Games In Development</h2>
+        <h2 class="mobile-header text-center">Games In Development</h2>
         <hr class="gamepad-primary">
         <div class="row">
           <div class="col-sm-12 portfolio-item">
@@ -71,11 +71,13 @@
     </section>
     <section class="success" id="events">
       <div class="container text-center">
-        <h2 class="text-center">Events</h2>
+        <h2 class="mobile-header text-center">Events</h2>
         <hr class="gamepad-light">
         <div class="row">
-          <div class="col-lg ml-auto">
-            <!-- <iframe src="https://calendar.google.com/calendar/embed?src=gjkfjdotg8jtodmhcjraklc15s%40group.calendar.google.com&ctz=America/Chicago" id="calendar" frameborder="0" scrolling="no"></iframe> -->
+          <div id="calendar"
+            <div class="col-lg ml-auto calendar-container">
+              <iframe src="https://calendar.google.com/calendar/embed?src=gjkfjdotg8jtodmhcjraklc15s%40group.calendar.google.com&ctz=America/Chicago" style="border: solid 5px #000000;border-radius:5px;" frameborder="0" scrolling="no"></iframe>
+            </div>
           </div>
         </div>
       </div>
@@ -83,7 +85,7 @@
     <!-- About Section -->
     <section class="success" id="about">
       <div class="container">
-        <h2 class="text-center">About</h2>
+        <h2 class=" mobile-header text-center">About</h2>
         <hr class="gamepad-light">
         <div class="row">
           <div class="col-lg ml-auto">
@@ -110,51 +112,51 @@
               </ul>
               <h3>Who?</h3>
               <div class="row">
-                <div class="col-lg-6 col-sm-6 text-center mb-4">
-                  <img class ="rounded-circle img-flui d-block mx-auto" src="img/profile.png">
-                  <h3>Lauren Lynch<br>
+                <div class="col-md-6 col-sm-6 col-6 text-center mb-4">
+                  <img class ="profile-container rounded-circle img-flui d-block mx-auto" src="img/profile.png">
+                  <h3 class="profile-text">Lauren Lynch<br>
                     <small>President</small>
                   </h3>
                 </div>
-                <div class="col-lg-6 col-sm-6 text-center mb-4">
-                  <img class ="rounded-circle img-flui d-block mx-auto" src="img/profile.png">
-                  <h3>Nathan Bean<br>
+                <div class="col-md-6 col-sm-6 col-6 text-center mb-4">
+                  <img class ="profile-container rounded-circle img-flui d-block mx-auto" src="img/profile.png">
+                  <h3 class ="profile-text">Nathan Bean<br>
                     <small>Advisor</small>
                   </h3>
                 </div>
-                <div class="col-lg-4 col-sm-6 text-center mb-4">
-                  <img class="rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
-                  <h3>Carson Holt<br>
+                <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
+                  <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
+                  <h3 class="profile-text">Carson Holt<br>
                     <small>Vice President</small>
                   </h3>
                 </div>
-                <div class="col-lg-4 col-sm-6 text-center mb-4">
-                  <img class="rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
-                  <h3>Steven Zwahl<br>
+                <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
+                  <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
+                  <h3 class="profile-text">Steven Zwahl<br>
                     <small>Treasurer</small>
                   </h3>
                 </div>
-                <div class="col-lg-4 col-sm-6 text-center mb-4">
-                  <img class="rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
-                  <h3>Nathan McClain<br>
+                <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
+                  <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
+                  <h3 class="profile-text">Nathan McClain<br>
                     <small>Event Manager</small>
                   </h3>
                 </div>
-                <div class="col-lg-4 col-sm-6 text-center mb-4">
-                  <img class="rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
-                  <h3>Jesse Molenda<br>
+                <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
+                  <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
+                  <h3 class="profile-text">Jesse Molenda<br>
                     <small>Industry Liaison</small>
                   </h3>
                 </div>
-                <div class="col-lg-4 col-sm-6 text-center mb-4">
-                  <img class="rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
-                  <h3>Dayton Taylor<br>
+                <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
+                  <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
+                  <h3 class="profile-text">Dayton Taylor<br>
                     <small>Website Manager</small>
                   </h3>
                 </div>
-                <div class="col-lg-4 col-sm-6 text-center mb-4">
-                  <img class="rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
-                  <h3>Kyle Ingram<br>
+                <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
+                  <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="img/profile.png">
+                  <h3 class="profile-text">Kyle Ingram<br>
                     <small>Social Media Manager</small>
                   </h3>
                 </div>
@@ -195,12 +197,6 @@
         </div>
       </div>
     </footer>
-    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-    <div class="scroll-top d-lg-none">
-      <a class="btn btn-primary js-scroll-trigger" href="#page-top">
-        <i class="fa fa-chevron-up"></i>
-      </a>
-    </div>
     <!-- Portfolio Modals -->
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
