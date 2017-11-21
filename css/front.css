@@ -122,6 +122,17 @@ hr.gamepad-light:after {
   color: white;
   background: #0e78ba;
 }
+.btn-success {
+  font-weight: 700;
+  color: white;
+  border-color: #0e78ba;
+  background-color: #0e78ba;
+}
+.btn-success:hover {
+  color: white;
+  border-color: #13a5ff;
+  background-color: #13a5ff;
+}
 
 @media(max-width: 770px) {
   .profile-container {
