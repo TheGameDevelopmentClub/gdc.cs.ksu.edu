@@ -226,10 +226,10 @@ hr.gamepad-light:after {
     max-height: 200px;
   }
   .alert-box {
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    padding: 7px 7px 7px 7px;
-    font-size: 12px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 15px 15px 15px 15px;
+    font-size: 16px;
   }
   .alert-box-close {
     padding-right: 10px;
