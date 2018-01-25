@@ -15,8 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
-    <link href="css/freelancer.css" rel="stylesheet">
-    <link href="css/front.css" rel="stylesheet">
+    <link href="css/freelancer.css?v=1.0" rel="stylesheet">
+    <link href="css/main.css?v=1.0" rel="stylesheet">
   </head>
   <body id="page-top">
     <!-- Navigation -->
@@ -61,15 +61,22 @@
         <h2 class="mobile-header text-center">Games</h2>
         <hr class="gamepad-primary">
         <div class="row">
-          <div class="col-sm-12 portfolio-item">
+          <div class="col portfolio-item">
             <a class="portfolio-link portfolio-tile" href="#portfolioModal1" data-toggle="modal">
               <img class="portfolio-img img-fluid" src="img/portfolio/Khnum'sEmnity.png">
               <div class="overlay"><b>Khnum's Emnity</b></div>
             </a>
           </div>
+          <div class="col portfolio-item">
+            <a class="portfolio-link portfolio-tile" href="#portfolioModal2" data-toggle="modal">
+              <img class="portfolio-img img-fluid" src="img/portfolio/FPS Prototype/FPS Prototype1.png">
+              <div class="overlay"><b>FPS Prototype</b></div>
+            </a>
+          </div>
         </div>
       </div>
     </section>
+    <!-- Officers -->
     <section class="success" id="about">
       <div class="container">
         <h2 class=" mobile-header text-center">About</h2>
@@ -177,10 +184,57 @@
                 <div class="modal-body">
                   <h2>Khnum's Amnity</h2>
                   <hr class="gamepad-primary">
-                  <img class="img-fluid img-centered" src="img/portfolio/Khnum'sEmnity.png">
-                  <p>This is a first person game developed by Steven Zwahl, Tylar Rundquist, and Jacob Armstrong for the 3rd Annual K-state game jam.</p>
+                  <div class="row">
+                    <div class="col">
+                      <img class="img-fluid img-centered" src="img/portfolio/Khnum'sEmnity.png">
+                    </div>
+                  </div>
+                  <p>
+                    This is a first person game developed by Steven Zwahl, Tylar Rundquist, and Jacob Armstrong for the 3rd Annual K-state game jam.
+                  </p>
                   <form action="https://crimsonseven.itch.io/khnums-emnity" target="_blank">
-                  <input class="btn btn-success" type="submit" value="Download">
+                  <input class="btn btn-success" type="submit" value="More Info">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                  <h2>FPS Prototype</h2>
+                  <hr class="gamepad-primary">
+                  <div class="row">
+                    <div class="col">
+                      <img class="img-fluid img-centered" src="img/portfolio/FPS Prototype/FPS Prototype1.png">
+                    </div>
+                    <div class="col">
+                      <img class="img-fluid img-centered" src="img/portfolio/FPS Prototype/FPS Prototype2.png">
+                    </div>
+                    <div class="col">
+                      <img class="img-fluid img-centered" src="img/portfolio/FPS Prototype/FPS Prototype3.png">
+                    </div>
+                    <div class="col">
+                      <img class="img-fluid img-centered" src="img/portfolio/FPS Prototype/FPS Prototype4.png">
+                    </div>
+                  </div>
+                  <p>
+                    Pre-alpha prototype for an upcoming FPS game. The intent of this prototype was to create and refine the movement and shooting mechanics - the bread and butter of FPS gamefeel.
+                  </p>
+                  <form action="https://crimsonseven.itch.io/pre-alpha-game" target="_blank">
+                  <input class="btn btn-success" type="submit" value="More Info">
                   </form>
                 </div>
               </div>
