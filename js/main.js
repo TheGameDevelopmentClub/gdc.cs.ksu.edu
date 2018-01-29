@@ -56,3 +56,40 @@ function UpdateSmallAlert(cb) {
   alertBox.css('top', bottom);
   if(cb) cb();
 }
+
+// Countdown Timer Attachment
+const MS_IN_SEC = 1000;
+const MS_IN_MIN = 60 * MS_IN_SEC;
+const MS_IN_HOUR = 60 * MS_IN_MIN;
+const MS_IN_DAY = 24 * MS_IN_HOUR;
+
+function createCountDown(elementId, startTime) {
+  var clock = document.createElement('div');
+
+  function setTime() {
+    var time = startTime - Date.now();
+    var days = Math.floor(time / MS_IN_DAY);
+    time -= days * MS_IN_DAY;
+    var hours = Math.floor(time / MS_IN_HOUR);
+    time -= hours * MS_IN_HOUR;
+    var minutes = Math.floor(time / MS_IN_MIN);
+    time -= minutes * MS_IN_MIN;
+    var seconds = Math.floor(time / MS_IN_SEC);
+    var msg = '';
+    if (days != 1) msg += `${days} days, `;
+    else msg += `${days} day, `;
+    if (hours != 1) msg += `${hours} hours, `;
+    else msg += `${hours} hour, `;
+    if (minutes != 1) msg += `${minutes} minutes, `;
+    else msg += `${minutes} minute, `;
+    if (seconds != 1) msg += `${seconds} seconds`;
+    else msg += `${seconds} second`;
+    clock.innerHTML = msg;
+  }
+
+  setInterval(setTime, 1000);
+  document.getElementById(elementId).appendChild(clock);
+}
+
+createCountDown('alert-countdown', Date.parse('February 9, 2018 6:00 PM'));
+// createCountDown('event-countdown', Date.parse(''));
