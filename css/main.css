@@ -27,8 +27,8 @@ body {
 
 #alert-countdown {
   text-align: center;
-  border: 2px solid black;
-  border-radius: 10px;
+  color: #18BC9C;
+  font-weight: bold;
   padding: 2px 5px 2px 5px;
 }
 
