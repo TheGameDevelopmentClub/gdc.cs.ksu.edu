@@ -1,0 +1,60 @@
+body {
+  background-image: url('../media/gamejam/gamejam(blur).png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+  background-position: center;;
+  background-color: #5a2b81;
+}
+
+#body-overlay {
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 30px black;
+}
+
+.body-overlay-content {
+  padding: 20px 20px 20px 20px;
+}
+
+.event-title {
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.timer-description {
+  font-size: 30px;
+}
+
+#event-countdown {
+  font-size: 170px;
+}
+
+#theme-label {
+  font-size: 50px;
+  padding-bottom: 30px;
+}
+
+#schedule-container {
+  font-size: 25px;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.schedule-day {
+  font-weight: bold;
+}
+
+.container-border {
+  border: solid 1px black;
+}
