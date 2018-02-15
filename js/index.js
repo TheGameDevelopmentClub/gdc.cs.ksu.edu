@@ -3,11 +3,7 @@ var UpdateAlertLoc;
 const AlertBox = $('#alert');
 
 $(document).ready(() => {
-  UpdateAlertLocFunc();
-  setTimeout(UpdateAlertLoc(() => {
-    AlertBox.delay(1000).slideDown();
-  }), 100);
-  createCountDown('alert-countdown', Date.parse('February 9, 2018 6:00 PM'));
+  // activateAlertBox();
 });
 
 $('#alert1-close').click(() => {
@@ -59,3 +55,11 @@ $('.ease-scroll').click(function(){
     }, 500);
     return false;
 });
+
+function activateAlertBox() {
+  UpdateAlertLocFunc();
+  setTimeout(UpdateAlertLoc(() => {
+    AlertBox.delay(1000).slideDown();
+  }), 100);
+  createCountDown('alert-countdown', Date.parse('February 9, 2018 6:00 PM'));
+}
