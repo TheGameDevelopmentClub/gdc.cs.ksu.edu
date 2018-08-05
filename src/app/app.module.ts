@@ -7,6 +7,7 @@ import { PageHeaderComponent } from './common/components/page-header/page-header
 import { PageFooterComponent } from './common/components/page-footer/page-footer.component';
 import { PortfolioModalComponent } from './common/components/portfolio-modal/portfolio-modal.component';
 import { AlertDialogComponent } from './common/components/alert-dialog/alert-dialog.component';
+import { ScrollOnClickDirective } from './common/directives/scroll-on-click/scroll-on-click.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { AlertDialogComponent } from './common/components/alert-dialog/alert-dia
     PageHeaderComponent,
     PageFooterComponent,
     PortfolioModalComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    ScrollOnClickDirective
   ],
   imports: [
     BrowserModule,
