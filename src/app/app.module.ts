@@ -6,13 +6,15 @@ import { AppRoutingModule } from './/app-routing.module';
 import { PageHeaderComponent } from './common/components/page-header/page-header.component';
 import { PageFooterComponent } from './common/components/page-footer/page-footer.component';
 import { PortfolioModalComponent } from './common/components/portfolio-modal/portfolio-modal.component';
+import { AlertDialogComponent } from './common/components/alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageHeaderComponent,
     PageFooterComponent,
-    PortfolioModalComponent
+    PortfolioModalComponent,
+    AlertDialogComponent
   ],
   imports: [
     BrowserModule,
