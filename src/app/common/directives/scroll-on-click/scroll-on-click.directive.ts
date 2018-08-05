@@ -8,6 +8,7 @@ export class ScrollOnClickDirective {
   private _elementId: string;
   private _element: HTMLElement;
   private _elementTop: number;
+  private _navBarBottom: number;
 
   constructor(private el: ElementRef) { }
 
@@ -16,7 +17,9 @@ export class ScrollOnClickDirective {
       this._elementId = id;
       this._element = document.getElementById(this._elementId);
       if (this._element) {
-        this._elementTop = this._element.getBoundingClientRect().top;
+        const navBarElement = document.getElementById('mainNav');
+        this._navBarBottom = (navBarElement) ? navBarElement.getBoundingClientRect().bottom : 0;
+        this._elementTop = this._element.getBoundingClientRect().top - this._navBarBottom;
       }
     });
   }
