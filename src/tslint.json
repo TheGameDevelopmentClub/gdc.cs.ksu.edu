@@ -4,13 +4,13 @@
         "directive-selector": [
             true,
             "attribute",
-            "ksu-gdc",
-            "camelCase"
+            "",
+            "kebab-case"
         ],
         "component-selector": [
             true,
             "element",
-            "ksu-gdc",
+            "",
             "kebab-case"
         ]
     }
