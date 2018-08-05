@@ -15,7 +15,9 @@ export class ScrollOnClickDirective {
     window.setTimeout(() => {
       this._elementId = id;
       this._element = document.getElementById(this._elementId);
-      this._elementTop = this._element.getBoundingClientRect().top;
+      if (this._element) {
+        this._elementTop = this._element.getBoundingClientRect().top;
+      }
     });
   }
 
