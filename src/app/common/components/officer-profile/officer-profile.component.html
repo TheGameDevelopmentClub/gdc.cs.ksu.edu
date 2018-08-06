@@ -1,5 +1,5 @@
-<img class="profile-container rounded-circle img-fluid d-block mx-auto" src="assets/images/officers/{{name}}.png">
-<h3 class="profile-text">{{name}}
+<img class="profile-container rounded-circle img-fluid d-block mx-auto" src="{{getImgRef()}}" onerror="this.src='assets/images/profile.png'">
+<h3 class="profile-text">{{officer.name}}
   <br>
   <small>{{position}}</small>
 </h3>
