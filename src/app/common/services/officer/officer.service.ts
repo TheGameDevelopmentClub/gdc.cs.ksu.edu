@@ -4,6 +4,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class OfficerService {
+  officers = new Map([
+    ['president', { name: 'Lauren Lynch' }],
+    ['advisor', { name: 'Nathan Bean' }],
+    ['vice president', { name: 'Carson Holt' }],
+    ['treasurer', { name: 'Steven Zwahl' }],
+    ['event manager', { name: 'Nathan McClain' }],
+    ['industry liaison', { name: 'Jesse Molenda' }],
+    ['website manager', { name: 'Dayton Taylor' }],
+    ['social media manager', { name: 'Kyle Ingram' }]
+  ]);
 
   constructor() { }
+
+  getOfficerByPosition(position: string) {
+    return this.officers.get(position);
+  }
 }
