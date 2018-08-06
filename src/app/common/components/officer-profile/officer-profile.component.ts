@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { OfficerService } from 'src/app/common/services/officer/officer.service';
 
 @Component({
   selector: 'ksu-gdc-officer-profile',
@@ -6,12 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./officer-profile.component.scss']
 })
 export class OfficerProfileComponent implements OnInit {
-  name: string;
   position: string;
+  officer;
 
-  constructor() { }
+  constructor(
+    private officerService: OfficerService
+  ) { }
 
-  ngOnInit() {
+  @Input('position') set setOfficerPosition(position: string) {
+    this.position = position;
   }
 
+  ngOnInit() {
+    this.officerService.getOfficerByPosition(this.position)
+      .then((officer) => {
+        this.officer = officer;
+      });
+  }
+
+  getImgRef(): string {
+    let name = this.officer.name;
+    name = name.toLowerCase().replace(new RegExp(' '), '-') + '.png';
+    return 'assets/images/officers/' + name;
+  }
 }
