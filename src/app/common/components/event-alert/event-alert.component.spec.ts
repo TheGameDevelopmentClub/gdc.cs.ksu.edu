@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlertDialogComponent } from './alert-dialog.component';
+import { EventAlertComponent } from './event-alert.component';
 
-describe('AlertDialogComponent', () => {
-  let component: AlertDialogComponent;
-  let fixture: ComponentFixture<AlertDialogComponent>;
+describe('EventAlertComponent', () => {
+  let component: EventAlertComponent;
+  let fixture: ComponentFixture<EventAlertComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertDialogComponent ]
+      declarations: [ EventAlertComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlertDialogComponent);
+    fixture = TestBed.createComponent(EventAlertComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
