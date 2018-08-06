@@ -32,6 +32,10 @@ export class CountdownTimerComponent implements OnInit {
     }
   }
 
+  /*
+  Examples of Valid Date Strings:
+    'February 11, 2018 3:00 PM'
+  */
   @Input('target-date') set setTargetDate(targetDateString: string) {
     this.targetDate = new Date(targetDateString);
   }
