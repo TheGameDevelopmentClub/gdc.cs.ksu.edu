@@ -17,7 +17,14 @@ export class OfficerService {
 
   constructor() { }
 
-  getOfficerByPosition(position: string) {
-    return this.officers.get(position);
+  getOfficerByPosition(position: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      const officer = this.officers.get(position.toLowerCase());
+      if (officer) {
+        resolve(officer);
+      } else {
+        reject('No officer found for the \'' + position + '\' position');
+      }
+    });
   }
 }
