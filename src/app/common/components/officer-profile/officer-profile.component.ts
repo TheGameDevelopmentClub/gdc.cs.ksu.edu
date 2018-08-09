@@ -25,10 +25,4 @@ export class OfficerProfileComponent implements OnInit {
         this.officer = officer;
       });
   }
-
-  getImgRef(): string {
-    let name = this.officer.name;
-    name = name.toLowerCase().replace(new RegExp(' '), '-') + '.png';
-    return 'assets/images/officers/' + name;
-  }
 }
