@@ -1,5 +1,7 @@
-<img class="profile-container rounded-circle img-fluid d-block mx-auto" src="{{officer?.imageUrl}}">
-<h3 class="profile-text">{{officer?.name}}
-  <br>
-  <small>{{position}}</small>
-</h3>
+<div>
+  <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="{{officer?.imageUrl}}" (click)="openOfficerModal()">
+  <h3 class="profile-text">{{officer?.name}}
+    <br>
+    <small>{{position}}</small>
+  </h3>
+</div>
