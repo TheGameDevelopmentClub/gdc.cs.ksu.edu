@@ -12,6 +12,9 @@ import { PortfolioItemComponent } from './common/components/portfolio-item/portf
 import { OfficerProfileComponent } from './common/components/officer-profile/officer-profile.component';
 import { OfficerProfileModalComponent } from './common/components/officer-profile-modal/officer-profile-modal.component';
 import { CountdownTimerComponent } from './common/components/countdown-timer/countdown-timer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialog } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { CountdownTimerComponent } from './common/components/countdown-timer/cou
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    // NoopAnimationsModule,
+    MatDialog
   ],
   providers: [],
   bootstrap: [AppComponent]
