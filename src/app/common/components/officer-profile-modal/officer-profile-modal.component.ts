@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+
+import { Officer } from '../../models';
 
 @Component({
   selector: 'ksu-gdc-officer-profile-modal',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./officer-profile-modal.component.scss']
 })
 export class OfficerProfileModalComponent implements OnInit {
+  officer: Officer;
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<OfficerProfileModalComponent>,
+    @Inject(MAT_DIALOG_DATA) private dialogData
+  ) { }
 
   ngOnInit() {
+    this.officer = this.dialogData.officer;
   }
 
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 import { OfficerService } from 'src/app/common/services/officer/officer.service';
+import { Officer } from '../../models';
+import { OfficerProfileModalComponent } from '../officer-profile-modal/officer-profile-modal.component';
 
 @Component({
   selector: 'ksu-gdc-officer-profile',
@@ -9,10 +12,11 @@ import { OfficerService } from 'src/app/common/services/officer/officer.service'
 })
 export class OfficerProfileComponent implements OnInit {
   position: string;
-  officer;
+  officer: Officer;
 
   constructor(
-    private officerService: OfficerService
+    private officerService: OfficerService,
+    private dialog: MatDialog
   ) { }
 
   @Input('position') set setOfficerPosition(position: string) {
@@ -24,5 +28,14 @@ export class OfficerProfileComponent implements OnInit {
       .then((officer) => {
         this.officer = officer;
       });
+  }
+
+  openOfficerModal() {
+    this.dialog.open(OfficerProfileModalComponent, {
+      width: '500px',
+      data: {
+        officer: this.officer
+      }
+    });
   }
 }

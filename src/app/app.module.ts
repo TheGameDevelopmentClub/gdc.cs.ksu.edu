@@ -14,7 +14,7 @@ import { OfficerProfileModalComponent } from './common/components/officer-profil
 import { CountdownTimerComponent } from './common/components/countdown-timer/countdown-timer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialog } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,10 @@ import { MatDialog } from '@angular/material';
     AppRoutingModule,
     BrowserAnimationsModule,
     // NoopAnimationsModule,
-    MatDialog
+    MatDialogModule
+  ],
+  entryComponents: [
+    OfficerProfileModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
