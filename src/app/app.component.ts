@@ -16,10 +16,6 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getPortfolioItems();
-  }
-
-  getPortfolioItems() {
     this.portfolioService.getAllItems()
       .then((items) => this.items = items);
   }
