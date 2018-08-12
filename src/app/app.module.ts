@@ -14,6 +14,7 @@ import {
   PageFooterComponent,
   EventAlertComponent,
   PortfolioItemComponent,
+  PortfolioItemModalComponent,
   OfficerProfileComponent,
   OfficerProfileModalComponent,
   CountdownTimerComponent
@@ -32,6 +33,7 @@ import {
     EventAlertComponent,
     ScrollOnClickDirective,
     PortfolioItemComponent,
+    PortfolioItemModalComponent,
     OfficerProfileComponent,
     OfficerProfileModalComponent,
     CountdownTimerComponent
@@ -44,6 +46,7 @@ import {
     MatDialogModule
   ],
   entryComponents: [
+    PortfolioItemModalComponent,
     OfficerProfileModalComponent
   ],
   providers: [],
