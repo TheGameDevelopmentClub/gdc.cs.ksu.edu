@@ -15,8 +15,8 @@ export class OfficerProfileComponent implements OnInit {
   officer: Officer;
 
   constructor(
-    private officerService: OfficerService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private officerService: OfficerService
   ) { }
 
   @Input('position') set setOfficerPosition(position: string) {
@@ -30,7 +30,7 @@ export class OfficerProfileComponent implements OnInit {
       });
   }
 
-  openOfficerModal() {
+  openOfficerInfoModal() {
     this.dialog.open(OfficerProfileModalComponent, {
       width: '500px',
       data: {
