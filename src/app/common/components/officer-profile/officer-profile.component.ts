@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 
 import { OfficerService } from 'src/app/common/services';
 import { Officer } from 'src/app/common/models';
-import { OfficerProfileModalComponent } from 'src/app/common/components';
+import { OfficerProfileModalComponent } from 'src/app/common/components/officer-profile-modal/officer-profile-modal.component';
 
 @Component({
   selector: 'ksu-gdc-officer-profile',
