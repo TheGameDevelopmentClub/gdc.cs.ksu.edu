@@ -12,7 +12,6 @@ import { AppComponent } from 'src/app/app.component';
 import {
   PageHeaderComponent,
   PageFooterComponent,
-  PortfolioModalComponent,
   EventAlertComponent,
   PortfolioItemComponent,
   OfficerProfileComponent,
@@ -30,7 +29,6 @@ import {
     AppComponent,
     PageHeaderComponent,
     PageFooterComponent,
-    PortfolioModalComponent,
     EventAlertComponent,
     ScrollOnClickDirective,
     PortfolioItemComponent,

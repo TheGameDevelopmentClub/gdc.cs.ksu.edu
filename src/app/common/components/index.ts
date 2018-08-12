@@ -5,4 +5,3 @@ export * from './officer-profile-modal/officer-profile-modal.component';
 export * from './page-footer/page-footer.component';
 export * from './page-header/page-header.component';
 export * from './portfolio-item/portfolio-item.component';
-export * from './portfolio-modal/portfolio-modal.component';
