@@ -19,7 +19,7 @@ export class PortfolioItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  openOfficerModal() {
+  openItemInfoModal() {
     this.dialog.open(PortfolioItemModalComponent, {
       width: '500px',
       data: {
