@@ -16,7 +16,9 @@
     <h2 class="mobile-header text-center">Featured Games</h2>
     <hr class="gamepad-primary">
     <div class="row">
-
+      <div class="col portfolio-item" *ngFor="let item of items">
+        <ksu-gdc-portfolio-item [item]="item"></ksu-gdc-portfolio-item>
+      </div>
     </div>
   </div>
 </section>
@@ -38,19 +40,19 @@
             <ksu-gdc-officer-profile [position]="'Vice President'"></ksu-gdc-officer-profile>
           </div>
           <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
-              <ksu-gdc-officer-profile [position]="'Treasurer'"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile [position]="'Treasurer'"></ksu-gdc-officer-profile>
           </div>
           <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
-              <ksu-gdc-officer-profile [position]="'Event Manager'"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile [position]="'Event Manager'"></ksu-gdc-officer-profile>
           </div>
           <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
-              <ksu-gdc-officer-profile [position]="'Industry Liaison'"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile [position]="'Industry Liaison'"></ksu-gdc-officer-profile>
           </div>
           <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
-              <ksu-gdc-officer-profile [position]="'Website Manager'"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile [position]="'Website Manager'"></ksu-gdc-officer-profile>
           </div>
           <div class="col-md-4 col-sm-4 col-6 text-center mb-4">
-              <ksu-gdc-officer-profile [position]="'Social Media Manager'"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile [position]="'Social Media Manager'"></ksu-gdc-officer-profile>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { PortfolioItem } from 'src/app/common/models';
@@ -15,6 +15,10 @@ export class PortfolioItemComponent implements OnInit {
   constructor(
     private dialog: MatDialog
   ) { }
+
+  @Input('item') set setPortfolioItem(item: PortfolioItem) {
+    this.item = item;
+  }
 
   ngOnInit() {
   }
