@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { OfficerService } from 'src/app/common/services';
-import { OfficerProfileModalComponent } from '../officer-profile-modal/officer-profile-modal.component';
-import { Officer } from '../../models';
+import { Officer } from 'src/app/common/models';
+import { OfficerProfileModalComponent } from 'src/app/common/components';
 
 @Component({
   selector: 'ksu-gdc-officer-profile',
