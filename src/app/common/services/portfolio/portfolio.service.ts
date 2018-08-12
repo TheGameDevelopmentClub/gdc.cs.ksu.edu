@@ -8,7 +8,7 @@ import { PortfolioItem } from '../../models/portfolio-item';
 export class PortfolioService {
   ITEMS = [
     { creator: 'testguy1', title: 'testtitle1', description: 'testdescription1' },
-    { creator: 'testguy2', title: 'testtitle2', description: 'testdescription2' },
+    { title: 'testtitle2', description: 'testdescription2' },
   ];
 
   constructor() { }
