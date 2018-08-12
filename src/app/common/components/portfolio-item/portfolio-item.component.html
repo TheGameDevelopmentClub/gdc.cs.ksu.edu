@@ -1,8 +1,8 @@
-<a class="portfolio-link portfolio-tile" (click)="openItemInfoModal()">
-  <img class="portfolio-img img-fluid" src={{item?.imageUrls[0]}}>
+<div class="portfolio-link portfolio-tile">
+  <img class="portfolio-img img-fluid" src={{item?.imageUrls[0]}} (click)="openItemInfoModal()">
   <div class="overlay">
     <div class="overlay-text">
       <b>{{item?.title}}</b>
     </div>
   </div>
-</a>
+</div>
