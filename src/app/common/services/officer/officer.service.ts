@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Officer } from '../../models';
 
 @Injectable({
@@ -20,11 +21,6 @@ export class OfficerService {
 
   getAllOfficers(): Promise<Officer[]> {
     return new Promise((resolve, reject) => {
-      const officers: Officer[] = [];
-      this.OFFICERS.forEach((officer, position) => {
-        officers.push(new Officer(position, officer));
-      });
-      resolve(officers);
     });
   }
 
@@ -32,7 +28,9 @@ export class OfficerService {
     return new Promise<any>((resolve, reject) => {
       const officer = this.OFFICERS.get(position.toLowerCase());
       if (officer) {
-        resolve(new Officer(position, officer));
+        Officer.create(position, officer)
+          .then((newOfficer) => resolve(newOfficer))
+          .catch((error) => reject(error));
       } else {
         reject('No officer found for the \'' + position + '\' position');
       }
