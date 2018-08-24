@@ -19,15 +19,11 @@ export class OfficerProfileComponent implements OnInit {
     private officerService: OfficerService
   ) { }
 
-  @Input('position') set setOfficerPosition(position: string) {
-    this.position = position;
+  @Input('officer') set setOfficer(officer: Officer) {
+    this.officer = officer;
   }
 
   ngOnInit() {
-    this.officerService.getOfficerByPosition(this.position)
-      .then((officer) => {
-        this.officer = officer;
-      });
   }
 
   openOfficerInfoModal() {

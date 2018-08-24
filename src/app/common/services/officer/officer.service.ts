@@ -1,39 +1,32 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { Officer } from '../../models';
+import { environment } from 'src/environments/environment';
+
+import { Officer } from 'src/app/common/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfficerService {
-  OFFICERS = new Map([
-    ['president', { name: 'Lauren Lynch', imageUrl: 'assets/images/officers/lauren-lynch.png' }],
-    ['advisor', { name: 'Nathan Bean', imageUrl: 'assets/images/officers/nathan-bean.png' }],
-    ['vice president', { name: 'Carson Holt', imageUrl: 'assets/images/officers/carson-holt.png' }],
-    ['treasurer', { name: 'Steven Zwahl' }],
-    ['event manager', { name: 'Nathan McClain', imageUrl: 'assets/images/officers/nathan-mcclain.png' }],
-    ['industry liaison', { name: 'Jesse Molenda', imageUrl: 'assets/images/officers/jesse-molenda.png' }],
-    ['website manager', { name: 'Dayton Taylor', imageUrl: 'assets/images/officers/dayton-taylor.png' }],
-    ['social media manager', { name: 'Kyle Ingram', imageUrl: 'assets/images/officers/kyle-ingram.png' }]
-  ]);
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   getAllOfficers(): Promise<Officer[]> {
     return new Promise((resolve, reject) => {
+      this.http.get<Officer[]>(environment.API_URL + '/officers').subscribe(officers => {
+        resolve(officers);
+      }, error => reject(error));
     });
   }
 
-  getOfficerByPosition(position: string): Promise<Officer> {
+  getOfficersByPosition(position: string): Promise<Officer[]> {
     return new Promise<any>((resolve, reject) => {
-      const officer = this.OFFICERS.get(position.toLowerCase());
-      if (officer) {
-        Officer.create(position, officer)
-          .then((newOfficer) => resolve(newOfficer))
-          .catch((error) => reject(error));
-      } else {
-        reject('No officer found for the \'' + position + '\' position');
-      }
+      this.http.get<Officer[]>(environment.API_URL + '/officers?position=' + position).subscribe(officers => {
+        resolve(officers);
+      }, error => reject(error));
     });
   }
 }

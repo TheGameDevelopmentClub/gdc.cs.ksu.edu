@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 // *Components*
 import { AppComponent } from 'src/app/app.component';
@@ -40,6 +41,7 @@ import {
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     // NoopAnimationsModule,
