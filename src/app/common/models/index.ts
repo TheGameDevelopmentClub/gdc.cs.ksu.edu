@@ -1,2 +1,3 @@
+export * from './game';
 export * from './officer';
-export * from './portfolio-item';
+export * from './user';
