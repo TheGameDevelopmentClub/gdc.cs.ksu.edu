@@ -16,8 +16,8 @@
     <h2 class="mobile-header text-center">Featured Games</h2>
     <hr class="gamepad-primary">
     <div class="row">
-      <div class="col portfolio-item" *ngFor="let item of items">
-        <ksu-gdc-portfolio-item [item]="item"></ksu-gdc-portfolio-item>
+      <div class="col portfolio-item" *ngFor="let game of games">
+        <ksu-gdc-portfolio-item [game]="game"></ksu-gdc-portfolio-item>
       </div>
     </div>
   </div>
