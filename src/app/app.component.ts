@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PortfolioService, OfficerService } from 'src/app/common/services';
-import { PortfolioItem, Officer } from 'src/app/common/models';
+import { Game, Officer } from 'src/app/common/models';
 
 @Component({
   selector: 'ksu-gdc-root',
@@ -9,7 +9,7 @@ import { PortfolioItem, Officer } from 'src/app/common/models';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  items: PortfolioItem[];
+  games: Game[];
   officers: Map<string, Officer[]> = new Map<string, Officer[]>();
 
   constructor(
@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.portfolioService.getAllItems()
-      .then((items) => this.items = items);
+    this.portfolioService.getNumberOfGames(6)
+      .then((games) => this.games = games);
     this.officerService.getAllOfficers()
       .then((officers) => this.setOfficersMap(officers));
   }
