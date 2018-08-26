@@ -41,11 +41,8 @@ export class AppComponent implements OnInit {
     position = position.toLowerCase();
     const officerList = this.officers.get(position);
     if (officerList) {
-      if (listIndex < officerList.length) {
-        const officer = officerList[listIndex];
-        this.officers.set(position, officerList);
-        return officer;
-      }
+      const officer = officerList[listIndex];
+      return officer;
     }
   }
 }
