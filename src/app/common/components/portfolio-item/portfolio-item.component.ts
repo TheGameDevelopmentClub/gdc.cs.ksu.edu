@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { PortfolioItem } from 'src/app/common/models';
+import { Game } from 'src/app/common/models';
 import { PortfolioItemModalComponent } from 'src/app/common/components/portfolio-item-modal/portfolio-item-modal.component';
 
 @Component({
@@ -10,14 +10,14 @@ import { PortfolioItemModalComponent } from 'src/app/common/components/portfolio
   styleUrls: ['./portfolio-item.component.scss']
 })
 export class PortfolioItemComponent implements OnInit {
-  item: PortfolioItem;
+  game: Game;
 
   constructor(
     private dialog: MatDialog
   ) { }
 
-  @Input('item') set setPortfolioItem(item: PortfolioItem) {
-    this.item = item;
+  @Input('game') set setPortfolioItem(game: Game) {
+    this.game = game;
   }
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class PortfolioItemComponent implements OnInit {
     this.dialog.open(PortfolioItemModalComponent, {
       width: '500px',
       data: {
-        item: this.item
+        item: this.game
       }
     });
   }
