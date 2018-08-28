@@ -10,25 +10,28 @@ import { PortfolioItemModalComponent } from 'src/app/common/components/portfolio
   styleUrls: ['./portfolio-item.component.scss']
 })
 export class PortfolioItemComponent implements OnInit {
-  game: Game;
+  item: Game;
 
   constructor(
     private dialog: MatDialog
   ) { }
 
   @Input('game') set setPortfolioItem(game: Game) {
-    this.game = game;
+    this.item = game;
   }
 
   ngOnInit() {
   }
 
   openItemInfoModal() {
-    this.dialog.open(PortfolioItemModalComponent, {
-      width: '500px',
-      data: {
-        item: this.game
-      }
-    });
+    if (window.innerWidth < 992) {
+      window.open(this.item.url, '_blank');
+    } else {
+      this.dialog.open(PortfolioItemModalComponent, {
+        data: {
+          item: this.item
+        }
+      });
+    }
   }
 }

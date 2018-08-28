@@ -9,7 +9,7 @@ import { Game } from 'src/app/common/models';
   styleUrls: ['./portfolio-item-modal.component.scss']
 })
 export class PortfolioItemModalComponent implements OnInit {
-  game: Game;
+  item: Game;
 
   constructor(
     public dialogRef: MatDialogRef<PortfolioItemModalComponent>,
@@ -17,7 +17,10 @@ export class PortfolioItemModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.game = this.dialogData.game;
+    this.item = this.dialogData.item;
   }
 
+  closeModal() {
+    this.dialogRef.close();
+  }
 }
