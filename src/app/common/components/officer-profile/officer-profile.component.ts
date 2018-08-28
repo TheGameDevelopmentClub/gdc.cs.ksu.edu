@@ -27,11 +27,11 @@ export class OfficerProfileComponent implements OnInit {
   }
 
   openOfficerInfoModal() {
-    this.dialog.open(OfficerProfileModalComponent, {
-      width: '500px',
-      data: {
-        officer: this.officer
-      }
-    });
+    // this.dialog.open(OfficerProfileModalComponent, {
+    //   width: '500px',
+    //   data: {
+    //     officer: this.officer
+    //   }
+    // });
   }
 }
