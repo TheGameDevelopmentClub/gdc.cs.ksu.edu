@@ -39,9 +39,6 @@ export class HomeComponent implements OnInit {
 
   getOfficer(position: string, listNumber: number): Officer {
     position = position.toLowerCase();
-    if (!listNumber) {
-      listNumber = 1;
-    }
     listNumber--;
     const officerList = this.officers.get(position);
     if (officerList) {
