@@ -69,12 +69,22 @@ section.success {
   outline: 0;
 }
 
-@media (min-width:992px) {
+#mainNav .navbar-nav .nav-item .nav-link {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media (min-width: 992px) {
   #mainNav .navbar-brand {
     font-size: 1.7em;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     transition: all .3s;
+  }
+
+  #mainNav .navbar-nav .nav-item {
+    padding-left: 7px;
+    padding-right: 7px;
   }
 
   #mainNav .navbar-nav>li.nav-item>a.nav-link.active {
@@ -91,12 +101,7 @@ section.success {
     outline: 0;
   }
 
-  #mainNav.navbar-shrink {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  #mainNav.navbar-shrink .navbar-brand {
+  #mainNav.navbar-brand {
     font-size: 1.5em;
   }
 }
