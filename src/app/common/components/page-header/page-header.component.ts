@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterState, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'ksu-gdc-page-header',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-header.component.scss']
 })
 export class PageHeaderComponent implements OnInit {
+  url: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }

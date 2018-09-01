@@ -1,0 +1,96 @@
+@import "../../styles";
+
+body {
+  min-width: 450px;
+}
+
+.name {
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase
+}
+
+.logo-container {
+  max-width: 400px;
+  max-height: 400px;
+}
+
+header.masthead {
+  padding-top: 80px;
+  padding-bottom: 70px;
+  text-align: center;
+  color: white;
+  background: #0e78ba;
+}
+
+header.masthead img {
+  display: block;
+  margin: 0 auto 20px
+}
+
+header.masthead .intro-text .name {
+  font-size: 3em;
+  display: block
+}
+
+header.masthead .intro-text .description {
+  font-size: 1em;
+  font-weight: 300
+}
+
+section.success {
+  color: white;
+  background: #0e78ba;
+}
+
+section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.portfolio-item {
+  right: 0;
+  margin: 0 0 15px
+}
+
+@media(max-width: 770px) {
+  .logo-container {
+    max-width: 300px;
+    max-height: 300px;
+  }
+}
+
+@media(max-width: 600px) {
+  .mobile-header {
+    font-size: 30px;
+  }
+
+  .logo-container {
+    max-width: 250px;
+    max-height: 250px;
+  }
+}
+
+@media (min-width: 768px) {
+  header.masthead {
+    padding-top: 100px;
+  }
+
+  header.masthead .intro-text .name {
+    font-size: 4.75em
+  }
+
+  header.masthead .intro-text .description {
+    font-size: 1.5em
+  }
+
+  .portfolio-item {
+    margin: 0 0 30px
+  }
+}
+
+@media (max-width: 434px) {
+  header.masthead {
+    padding-top: 115px;
+  }
+}

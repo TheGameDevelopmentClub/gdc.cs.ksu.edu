@@ -26,12 +26,36 @@ export class OfficerProfileComponent implements OnInit {
   ngOnInit() {
   }
 
-  openOfficerInfoModal() {
-    // this.dialog.open(OfficerProfileModalComponent, {
-    //   width: '500px',
-    //   data: {
-    //     officer: this.officer
-    //   }
-    // });
+  getPosition(): string {
+    if (this.officer) {
+      return this.officer.position;
+    } else {
+      return '';
+    }
+  }
+
+  getFullName(): string {
+    if (this.officer && this.officer.user) {
+      return this.officer.user.firstName + ' ' + this.officer.user.lastName;
+    } else {
+      return '';
+    }
+  }
+
+  getImageUrl(): string {
+    if (this.officer && this.officer.user) {
+      return this.officer.user.imageUrl;
+    }
+  }
+
+  openOfficerInfoModal(): void {
+    this.dialog.open(OfficerProfileModalComponent, {
+      width: '60%',
+      height: '50%',
+      data: {
+        officer: this.officer
+      },
+      autoFocus: false
+    });
   }
 }
