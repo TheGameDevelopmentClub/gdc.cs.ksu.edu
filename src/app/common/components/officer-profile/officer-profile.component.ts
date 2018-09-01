@@ -49,13 +49,13 @@ export class OfficerProfileComponent implements OnInit {
   }
 
   openOfficerInfoModal(): void {
-    this.dialog.open(OfficerProfileModalComponent, {
-      width: '60%',
-      height: '50%',
-      data: {
-        officer: this.officer
-      },
-      autoFocus: false
-    });
+    // this.dialog.open(OfficerProfileModalComponent, {
+    //   width: '60%',
+    //   height: '50%',
+    //   data: {
+    //     officer: this.officer
+    //   },
+    //   autoFocus: false
+    // });
   }
 }
