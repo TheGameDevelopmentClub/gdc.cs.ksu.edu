@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // *Components*
 import { AppComponent } from 'src/app/app.component';
@@ -26,9 +25,10 @@ import {
 import {
   ScrollOnClickDirective
 } from 'src/app/common/directives';
-import { GamesComponent } from './games/games.component';
-import { HomeComponent } from './home/home.component';
-import { EventsComponent } from './events/events.component';
+import { GamesComponent } from 'src/app/public/games/games.component';
+import { HomeComponent } from 'src/app/public/home/home.component';
+import { EventsComponent } from 'src/app/public/events/events.component';
+import { ProfileComponent } from 'src/app/secure/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { EventsComponent } from './events/events.component';
     CountdownTimerComponent,
     GamesComponent,
     HomeComponent,
-    EventsComponent
+    EventsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +53,7 @@ import { EventsComponent } from './events/events.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     // NoopAnimationsModule,
-    MatDialogModule,
-    FontAwesomeModule
+    MatDialogModule
   ],
   entryComponents: [
     PortfolioItemModalComponent,
