@@ -2,6 +2,10 @@
 
 $nav-active-color: $ksu-gdc-blue;
 
+.nav-container {
+  padding-bottom: 54px;
+}
+
 #mainNav,
 header.masthead .intro-text .name {
   font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -75,6 +79,10 @@ section.success {
 }
 
 @media (min-width: 992px) {
+  .nav-container {
+    padding-bottom: 66px;
+  }
+
   #mainNav .navbar-brand {
     font-size: 1.7em;
     -webkit-transition: all .3s;

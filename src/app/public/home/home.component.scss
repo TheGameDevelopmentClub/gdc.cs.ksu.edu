@@ -16,8 +16,8 @@ body {
 }
 
 header.masthead {
-  padding-top: 80px;
-  padding-bottom: 70px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   text-align: center;
   color: white;
   background: #0e78ba;
@@ -72,10 +72,6 @@ section {
 }
 
 @media (min-width: 768px) {
-  header.masthead {
-    padding-top: 100px;
-  }
-
   header.masthead .intro-text .name {
     font-size: 4.75em
   }
@@ -86,11 +82,5 @@ section {
 
   .portfolio-item {
     margin: 0 0 30px
-  }
-}
-
-@media (max-width: 434px) {
-  header.masthead {
-    padding-top: 115px;
   }
 }
