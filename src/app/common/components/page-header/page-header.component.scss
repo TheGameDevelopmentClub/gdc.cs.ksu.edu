@@ -10,12 +10,16 @@ header.masthead .intro-text .name {
 }
 
 .nav-link-active {
-  color: $nav-active-color !important;
+  background: $nav-active-color;
+  border-radius: 5px;
+}
+.nav-link-active:hover {
+  color: #fff !important;
+  cursor: default;
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link:hover {
   color: $nav-active-color;
-  outline: 0;
 }
 
 #mainNav .navbar-brand.active,
