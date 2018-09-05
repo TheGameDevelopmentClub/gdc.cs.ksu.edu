@@ -13,7 +13,6 @@ import { AppComponent } from 'src/app/app.component';
 import {
   PageHeaderComponent,
   PageFooterComponent,
-  EventAlertComponent,
   PortfolioItemComponent,
   PortfolioItemModalComponent,
   OfficerProfileComponent,
@@ -35,7 +34,6 @@ import { ProfileComponent } from 'src/app/secure/profile/profile.component';
     AppComponent,
     PageHeaderComponent,
     PageFooterComponent,
-    EventAlertComponent,
     ScrollOnClickDirective,
     PortfolioItemComponent,
     PortfolioItemModalComponent,
