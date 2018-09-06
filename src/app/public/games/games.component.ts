@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Game } from 'src/app/common/models';
-import { PortfolioService } from 'src/app/common/services';
+import { PortfolioService } from 'src/app/common/services/portfolio/portfolio.service';
+import { Game } from 'src/app/common/models/game';
 
 @Component({
   selector: 'ksu-gdc-games',
