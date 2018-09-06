@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './common/guards/auth.guard';
 
-// *Public Routes*
+// *Public Components*
 import { HomeComponent } from 'src/app/public/home/home.component';
 import { GamesComponent } from 'src/app/public/games/games.component';
 import { EventsComponent } from 'src/app/public/events/events.component';
 
-// *Secure Routes*
+// *Secure Components*
 import { ProfileComponent } from 'src/app/secure/profile/profile.component';
 import { ManagementComponent } from 'src/app/secure/management/management.component';
 
