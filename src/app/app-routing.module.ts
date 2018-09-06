@@ -10,12 +10,18 @@ import { EventsComponent } from 'src/app/public/events/events.component';
 
 // *Secure Routes*
 import { ProfileComponent } from 'src/app/secure/profile/profile.component';
+import { ManagementComponent } from 'src/app/secure/management/management.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'games', component: GamesComponent },
   { path: 'events', component: EventsComponent },
-  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent},
+  { path: 'management', canActivate: [AuthGuard],
+    children: [
+      { path: '', component: ManagementComponent, pathMatch: 'full' },
+      { path: 'profile', component: ProfileComponent }
+    ]
+  },
   { path: '**', redirectTo: '/' }
 ];
 

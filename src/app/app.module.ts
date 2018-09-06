@@ -8,26 +8,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
-// *Components*
+// *Common Components*
 import { AppComponent } from 'src/app/app.component';
-import {
-  PageHeaderComponent,
-  PageFooterComponent,
-  PortfolioItemComponent,
-  PortfolioItemModalComponent,
-  OfficerProfileComponent,
-  OfficerProfileModalComponent,
-  CountdownTimerComponent
-} from 'src/app/common/components';
+import { PageHeaderComponent } from 'src/app/common/components/page-header/page-header.component';
+import { PageFooterComponent } from 'src/app/common/components/page-footer/page-footer.component';
+import { PortfolioItemComponent } from 'src/app/common/components/portfolio-item/portfolio-item.component';
+import { PortfolioItemModalComponent } from 'src/app/common/components/portfolio-item-modal/portfolio-item-modal.component';
+import { OfficerProfileComponent } from 'src/app/common/components/officer-profile/officer-profile.component';
+import { OfficerProfileModalComponent } from 'src/app/common/components/officer-profile-modal/officer-profile-modal.component';
+import { CountdownTimerComponent } from 'src/app/common/components/countdown-timer/countdown-timer.component';
+
+// *Public Page Components*
+import { GamesComponent } from 'src/app/public/games/games.component';
+import { HomeComponent } from 'src/app/public/home/home.component';
+import { EventsComponent } from 'src/app/public/events/events.component';
+
+// *Secure Page Components*
+import { ProfileComponent } from 'src/app/secure/profile/profile.component';
+import { ManagementComponent } from 'src/app/secure/management/management.component';
 
 // *Directives*
 import {
   ScrollOnClickDirective
 } from 'src/app/common/directives';
-import { GamesComponent } from 'src/app/public/games/games.component';
-import { HomeComponent } from 'src/app/public/home/home.component';
-import { EventsComponent } from 'src/app/public/events/events.component';
-import { ProfileComponent } from 'src/app/secure/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import { ProfileComponent } from 'src/app/secure/profile/profile.component';
     GamesComponent,
     HomeComponent,
     EventsComponent,
-    ProfileComponent
+    ProfileComponent,
+    ManagementComponent
   ],
   imports: [
     BrowserModule,
