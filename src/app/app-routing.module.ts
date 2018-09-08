@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './common/guards/auth.guard';
+import { AuthGuard } from 'src/app/common/guards/auth.guard';
 
 // *Public Components*
 import { HomeComponent } from 'src/app/public/home/home.component';
@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: 'events', component: EventsComponent },
   { path: 'management', canActivate: [AuthGuard],
     children: [
-      { path: '', component: ManagementComponent },
+      { path: '', component: ManagementComponent, pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent }
     ]
   },

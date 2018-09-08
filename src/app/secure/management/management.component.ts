@@ -11,6 +11,7 @@ import { User } from 'src/app/common/models/user';
 })
 export class ManagementComponent implements OnInit {
   isValidated: boolean;
+  isAdmin: boolean;
   user: User;
 
   constructor(
@@ -24,6 +25,7 @@ export class ManagementComponent implements OnInit {
       .then(user => {
         this.user = user;
         this.isValidated = true;
+        this.isAdmin = true;
       })
       .catch(error => {
         this.authService.loginWithCAS(this.router.url);
