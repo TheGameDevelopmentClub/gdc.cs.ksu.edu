@@ -13,8 +13,7 @@ export class AuthService {
   ) { }
 
   loginWithCAS(url: string): void {
-    const service = environment.APP_URL + url;
-    console.log(service);
+    const service = (environment.APP_URL + url).split('?')[0];
     window.location.href = `${environment.API_URL}/auth/cas/login?service=${service}`;
   }
 
@@ -27,7 +26,7 @@ export class AuthService {
   }
 
   logoutWithCAS(url: string): void {
-    const service = environment.APP_URL + url;
+    const service = (environment.APP_URL + url).split('?')[0];
     window.location.href = `${environment.API_URL}/auth/cas/logout?service=${service}`;
   }
 }

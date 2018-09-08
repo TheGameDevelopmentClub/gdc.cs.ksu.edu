@@ -22,10 +22,11 @@ export class ManagementComponent implements OnInit {
   ngOnInit() {
     this.authService.validateCASTicket(this.router.url, this.route.snapshot.queryParams['ticket'])
       .then(user => {
+        this.user = user;
         this.isValidated = true;
       })
       .catch(error => {
-        this.router.navigate(['/']);
+        this.authService.loginWithCAS(this.router.url);
       });
   }
 }
