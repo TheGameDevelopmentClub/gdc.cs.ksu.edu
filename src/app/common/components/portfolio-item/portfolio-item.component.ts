@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { Game } from 'src/app/common/models/game';
 import { PortfolioItemModalComponent } from 'src/app/common/components/portfolio-item-modal/portfolio-item-modal.component';
+import { Game } from 'src/app/common/models/game';
 
 @Component({
   selector: 'ksu-gdc-portfolio-item',

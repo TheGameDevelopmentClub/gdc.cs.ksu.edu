@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // *Common Components*
 import { AppComponent } from 'src/app/app.component';
+import { LoadingOverlayComponent } from 'src/app/common/components/loading-overlay/loading-overlay.component';
 import { PageHeaderComponent } from 'src/app/common/components/page-header/page-header.component';
 import { PageFooterComponent } from 'src/app/common/components/page-footer/page-footer.component';
 import { PortfolioItemComponent } from 'src/app/common/components/portfolio-item/portfolio-item.component';
@@ -47,7 +48,8 @@ import {
     HomeComponent,
     EventsComponent,
     ProfileComponent,
-    ManagementComponent
+    ManagementComponent,
+    LoadingOverlayComponent
   ],
   imports: [
     BrowserModule,

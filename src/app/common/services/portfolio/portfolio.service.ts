@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-
 import { Game } from 'src/app/common/models/game';
 
 @Injectable({
@@ -28,7 +27,7 @@ export class PortfolioService {
         .then(games => {
           const gameList = [];
           let randIndex;
-          for (let i = 0; i < amount; i++) {
+          for (let i = 0; games.length > 0 && i < amount; i++) {
             randIndex = Math.floor(Math.random() * games.length);
             gameList.push(games[randIndex]);
             games.splice(randIndex, 1);

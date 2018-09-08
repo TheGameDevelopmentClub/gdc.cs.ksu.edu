@@ -9,7 +9,6 @@ import { Officer } from 'src/app/common/models/officer';
   providedIn: 'root'
 })
 export class OfficerService {
-
   constructor(
     private http: HttpClient
   ) { }
