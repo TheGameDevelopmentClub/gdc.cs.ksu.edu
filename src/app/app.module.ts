@@ -7,6 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+// *Directives*
+import { ScrollOnClickDirective } from 'src/app/common/directives/scroll-on-click/scroll-on-click.directive';
+
+// *Pipes*
+import { SanitizeInputPipe } from 'src/app/common/pipes/sanitize-input/sanitize-input.pipe';
 
 // *Common Components*
 import { AppComponent } from 'src/app/app.component';
@@ -28,17 +35,12 @@ import { EventsComponent } from 'src/app/public/events/events.component';
 import { ProfileComponent } from 'src/app/secure/profile/profile.component';
 import { ManagementComponent } from 'src/app/secure/management/management.component';
 
-// *Directives*
-import {
-  ScrollOnClickDirective
-} from 'src/app/common/directives';
-
 @NgModule({
   declarations: [
     AppComponent,
+    ScrollOnClickDirective,
     PageHeaderComponent,
     PageFooterComponent,
-    ScrollOnClickDirective,
     PortfolioItemComponent,
     PortfolioItemModalComponent,
     OfficerProfileComponent,
@@ -49,7 +51,8 @@ import {
     EventsComponent,
     ProfileComponent,
     ManagementComponent,
-    LoadingOverlayComponent
+    LoadingOverlayComponent,
+    SanitizeInputPipe
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import {
     AppRoutingModule,
     BrowserAnimationsModule,
     // NoopAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   entryComponents: [
     PortfolioItemModalComponent,
