@@ -7,7 +7,9 @@ const regex = new RegExp('<.*>', 'g');
 })
 export class SanitizeInputPipe implements PipeTransform {
   transform(value: string): string {
-    value = value.replace(regex, '');
+    if (typeof value === 'string') {
+      value = value.replace(regex, '');
+    }
     return value;
   }
 }
