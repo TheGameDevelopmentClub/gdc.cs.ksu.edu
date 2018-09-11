@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
 
   isValidated: boolean;
   user: User;
+  profileImage: File;
 
   constructor(
     private router: Router,
@@ -39,13 +40,11 @@ export class ProfileComponent implements OnInit {
     this.errorMessage = message;
     this.error = true;
   }
-
   hideError(): void {
     this.error = false;
   }
 
-  log(event) {
-    console.log(event);
+  uploadProfileImage(image: File) {
   }
 
   updateUser(): void {

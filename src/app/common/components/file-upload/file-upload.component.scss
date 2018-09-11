@@ -1,0 +1,19 @@
+label .btn {
+  cursor: pointer;
+}
+
+.form-group label {
+  display: inline-block;
+  margin: auto;
+}
+
+#image-input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+#file-name {
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
