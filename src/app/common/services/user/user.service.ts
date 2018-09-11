@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { User } from '../../models/user';
+import { User } from 'src/app/common/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,15 @@ export class UserService {
   updateUser(user: User): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       this.http.put<boolean>(environment.API_URL + '/users/' + user.id, user)
+        .subscribe(
+          success => resolve(success),
+          error => reject(error));
+    });
+  }
+
+  updateProfileImage(id: number, image: File): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.post<boolean>(environment.API_URL + '/users/' + id + '/profile-image', image)
         .subscribe(
           success => resolve(success),
           error => reject(error));
