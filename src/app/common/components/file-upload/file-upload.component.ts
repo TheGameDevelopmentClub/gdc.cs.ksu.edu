@@ -5,7 +5,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss']
 })
-export class ImageUploadComponent implements OnInit {
+export class FileUploadComponent implements OnInit {
   @Output() upload: EventEmitter<File> = new EventEmitter<File>();
   @Output() fileChange: EventEmitter<File> = new EventEmitter<File>();
 
@@ -15,16 +15,19 @@ export class ImageUploadComponent implements OnInit {
   @Input('btn-text') set setBtnTitle(text: string) {
     this.btnText = text;
   }
+  @Input('file-type') set setFileType(type: string) {
+    this.fileType = type;
+  }
 
   btnText: string;
   showUpload: boolean;
+  fileType: string;
 
   file: File;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.showUpload);
     if (typeof this.showUpload === 'undefined') {
       this.showUpload = true;
     }

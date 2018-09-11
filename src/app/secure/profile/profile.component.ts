@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from 'src/app/common/services/auth/auth.service';
 import { UserService } from 'src/app/common/services/user/user.service';
+import { InfoMessagesComponent } from 'src/app/common/components/info-messages/info-messages.component';
 import { User } from 'src/app/common/models/user';
 
 @Component({
@@ -11,8 +12,7 @@ import { User } from 'src/app/common/models/user';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  error: boolean;
-  errorMessage: string;
+  @ViewChild(InfoMessagesComponent) infoMessages: InfoMessagesComponent;
 
   isValidated: boolean;
   user: User;
@@ -36,22 +36,18 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  showError(message: string): void {
-    this.errorMessage = message;
-    this.error = true;
-  }
-  hideError(): void {
-    this.error = false;
-  }
-
   uploadProfileImage(image: File) {
+    this.userService.updateProfileImage(this.user.id, image)
+      .then(() => this.infoMessages.showSuccess('Profile image uploaded.'))
+      .catch(error => this.infoMessages.showError('There was a problem updating your profile picture.'));
   }
 
   updateUser(): void {
+    if (this.profileImage) {
+      this.uploadProfileImage(this.profileImage);
+    }
     this.userService.updateUser(this.user)
-      .then(() => {
-        this.hideError();
-      })
-      .catch(error => this.showError('There was a problem updating your settings. Please try again later.'));
+      .then(() => this.infoMessages.showSuccess('Settings updated.'))
+      .catch(error => this.infoMessages.showError('There was a problem updating your settings.'));
   }
 }

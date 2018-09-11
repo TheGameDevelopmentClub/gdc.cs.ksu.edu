@@ -1,7 +1,7 @@
 <div>
   <div class="form-group">
-    <label class="btn btn-success" for="image-input">{{btnText}}</label>
-    <input type="file" name="image-input" id="image-input" accept="image/jpg" (change)="setFile($event)" />
+    <button class="btn btn-success" (click)="fileInput.click()">{{btnText}}</button>
+    <input [hidden]="true" type="file" #fileInput accept="{{fileType}}" (change)="setFile($event)" />
     <span id="file-name">{{file?.name | sanitizeInput}}</span>
   </div>
   <button *ngIf="showUpload" class="btn btn-success" id="image-upload" [disabled]="!file" (click)="uploadFile()">Upload</button>
