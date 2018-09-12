@@ -38,16 +38,13 @@ export class ProfileComponent implements OnInit {
 
   uploadProfileImage(image: File) {
     this.userService.updateProfileImage(this.user.id, image)
-      .then(() => this.infoMessages.showSuccess('Profile image uploaded.'))
+      .then(() => this.infoMessages.showSuccess('Your profile image has been updated.'))
       .catch(error => this.infoMessages.showError('There was a problem updating your profile picture.'));
   }
 
-  updateUser(): void {
-    if (this.profileImage) {
-      this.uploadProfileImage(this.profileImage);
-    }
+  updateUserInfo(): void {
     this.userService.updateUser(this.user)
-      .then(() => this.infoMessages.showSuccess('Settings updated.'))
-      .catch(error => this.infoMessages.showError('There was a problem updating your settings.'));
+      .then(() => this.infoMessages.showSuccess('Your info has been updated.'))
+      .catch(error => this.infoMessages.showError('There was a problem updating your info.'));
   }
 }

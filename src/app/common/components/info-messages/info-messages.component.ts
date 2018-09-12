@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-messages.component.scss']
 })
 export class InfoMessagesComponent implements OnInit {
+  showMessages: boolean;
+
+  messageVisibility: Map<string, Function> = new Map([
+    ['error', (bool) => this.error = bool],
+    ['success', (bool) => this.success = bool]
+  ]);
   error: boolean;
   errorMessage: string;
   success: boolean;
@@ -16,14 +22,23 @@ export class InfoMessagesComponent implements OnInit {
   ngOnInit() {
   }
 
+  setMessageVisibility(messageType: string): void {
+    this.showMessages = true;
+    this.messageVisibility.forEach((set, type) => {
+      if (type === messageType) {
+        set(true);
+      } else {
+        set(false);
+      }
+    });
+  }
+
   showError(message: string): void {
     this.errorMessage = message;
-    this.success = false;
-    this.error = true;
+    this.setMessageVisibility('error');
   }
   showSuccess(message: string): void {
     this.successMessage = message;
-    this.error = false;
-    this.success = true;
+    this.setMessageVisibility('success');
   }
 }

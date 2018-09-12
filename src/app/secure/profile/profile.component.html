@@ -3,9 +3,10 @@
     <br>
     <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="{{user.imageUrl}}" onerror="this.src='assets/images/profile.png'">
     <h1 class="text-center">{{user.username}}</h1>
-    <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" [show-upload]="false" (fileChange)="profileImage=$event"></ksu-gdc-file-upload>
     <ksu-gdc-info-messages></ksu-gdc-info-messages>
-    <form (ngSubmit)="updateUser()" #infoForm="ngForm">
+    <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" (upload)="uploadProfileImage($event)"></ksu-gdc-file-upload>
+    <br>
+    <form (ngSubmit)="updateUserInfo()" #infoForm="ngForm">
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input type="text" class="form-control" id="firstName" name="firstName" [ngModel]="user.firstName | sanitizeInput"
@@ -21,7 +22,7 @@
         <textarea type="text" class="form-control" id="description" name="description" [ngModel]="user.description | sanitizeInput"
           (ngModelChange)="user.description=$event"></textarea>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="(infoForm.pristine || !infoForm.form.valid) && !profileImage">Update</button>
+      <button type="submit" class="btn btn-success" [disabled]="infoForm.pristine || !infoForm.form.valid">Update</button>
     </form>
     <br>
   </div>
