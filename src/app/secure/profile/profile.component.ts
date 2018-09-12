@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 import { AuthService } from 'src/app/common/services/auth/auth.service';
 import { UserService } from 'src/app/common/services/user/user.service';
@@ -13,6 +14,7 @@ import { User } from 'src/app/common/models/user';
 })
 export class ProfileComponent implements OnInit {
   @ViewChild(InfoMessagesComponent) infoMessages: InfoMessagesComponent;
+  @ViewChild('infoForm') infoForm: NgForm;
 
   isValidated: boolean;
   user: User;
@@ -44,7 +46,17 @@ export class ProfileComponent implements OnInit {
 
   updateUserInfo(): void {
     this.userService.updateUser(this.user)
-      .then(() => this.infoMessages.showSuccess('Your info has been updated.'))
-      .catch(error => this.infoMessages.showError('There was a problem updating your info.'));
+      .then(() => {
+        this.infoForm.form.markAsPristine();
+        this.infoForm.form.markAsUntouched();
+        this.infoMessages.showSuccess('Your info has been updated.');
+      })
+      .catch(error => {
+        this.infoMessages.showError('There was a problem updating your info.');
+      });
+  }
+
+  logoutUser() {
+    this.authService.logoutWithCAS('');
   }
 }

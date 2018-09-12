@@ -1,5 +1,6 @@
 <div class="container">
   <div *ngIf="isValidated">
+    <button (click)="logoutUser()" class="btn logout">Logout</button>
     <br>
     <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="{{user.imageUrl}}" onerror="this.src='assets/images/profile.png'">
     <h1 class="text-center">{{user.username}}</h1>
