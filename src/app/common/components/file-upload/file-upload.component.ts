@@ -24,6 +24,7 @@ export class FileUploadComponent implements OnInit {
   fileType: string;
 
   file: File;
+  isProcessing: boolean;
 
   constructor() { }
 

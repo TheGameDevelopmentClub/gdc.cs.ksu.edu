@@ -41,9 +41,20 @@ export class UserService {
 
   updateProfileImage(id: number, image: File): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      this.http.post<boolean>(environment.API_URL + '/users/' + id + '/profile-image', image)
+      const data = new FormData();
+      data.append('image', image);
+      this.http.post<boolean>(environment.API_URL + '/users/' + id + '/profile-image', data)
         .subscribe(
           success => resolve(success),
+          error => reject(error));
+    });
+  }
+
+  getProfileImage(id: number): Promise<File> {
+    return new Promise<File>((resolve, reject) => {
+      this.http.get<File>(environment.API_URL + '/users/' + id + '/profile-image')
+        .subscribe(
+          image => resolve(image),
           error => reject(error));
     });
   }

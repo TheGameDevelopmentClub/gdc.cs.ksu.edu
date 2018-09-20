@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 
 // *Directives*
 import { ScrollOnClickDirective } from 'src/app/common/directives/scroll-on-click/scroll-on-click.directive';
+import { ImageLoaderDirective } from 'src/app/common/directives/image-loader/image-loader.directive';
 
 // *Pipes*
 import { SanitizeInputPipe } from 'src/app/common/pipes/sanitize-input/sanitize-input.pipe';
@@ -41,6 +42,8 @@ import { ManagementComponent } from 'src/app/secure/management/management.compon
   declarations: [
     AppComponent,
     ScrollOnClickDirective,
+    ImageLoaderDirective,
+    SanitizeInputPipe,
     PageHeaderComponent,
     PageFooterComponent,
     PortfolioItemComponent,
@@ -54,7 +57,6 @@ import { ManagementComponent } from 'src/app/secure/management/management.compon
     ProfileComponent,
     ManagementComponent,
     LoadingOverlayComponent,
-    SanitizeInputPipe,
     FileUploadComponent,
     InfoMessagesComponent
   ],

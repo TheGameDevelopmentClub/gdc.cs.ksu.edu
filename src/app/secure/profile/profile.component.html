@@ -2,11 +2,12 @@
   <div *ngIf="isValidated">
     <button (click)="logoutUser()" class="btn logout">Logout</button>
     <br>
-    <img class="profile-container rounded-circle img-fluid d-block mx-auto" src="{{user.imageUrl}}" onerror="this.src='assets/images/profile.png'">
+    <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{user.imageUrl}}"
+      alt-url="assets/images/profile.png">
     <h1 class="text-center">{{user.username}}</h1>
     <ksu-gdc-info-messages></ksu-gdc-info-messages>
-    <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" (upload)="uploadProfileImage($event)"></ksu-gdc-file-upload>
-    <br>
+    <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" [show-upload]="false"
+      (fileChange)="uploadProfileImage($event)"></ksu-gdc-file-upload>
     <form (ngSubmit)="updateUserInfo()" #infoForm="ngForm">
       <div class="form-group">
         <label for="firstName">First Name</label>
