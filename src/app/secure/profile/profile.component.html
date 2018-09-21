@@ -5,7 +5,7 @@
     <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{user.imageUrl}}"
       alt-url="assets/images/profile.png">
     <h1 class="text-center">{{user.username}}</h1>
-    <ksu-gdc-info-messages></ksu-gdc-info-messages>
+    <ksu-gdc-info-messages #profileUpdateMessages></ksu-gdc-info-messages>
     <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" [show-upload]="false"
       (fileChange)="uploadProfileImage($event)"></ksu-gdc-file-upload>
     <form (ngSubmit)="updateUserInfo()" #infoForm="ngForm">
@@ -26,6 +26,12 @@
       </div>
       <button type="submit" class="btn btn-success" [disabled]="infoForm.pristine || !infoForm.form.valid">Update</button>
     </form>
+    <br>
+    <div class="games-container">
+      <div *ngFor="let game of games">
+
+      </div>
+    </div>
     <br>
   </div>
 </div>

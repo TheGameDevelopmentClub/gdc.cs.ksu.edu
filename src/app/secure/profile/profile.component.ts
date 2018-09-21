@@ -5,9 +5,11 @@ import { NgForm } from '@angular/forms';
 import { ImageLoaderDirective } from 'src/app/common/directives/image-loader/image-loader.directive';
 import { AuthService } from 'src/app/common/services/auth/auth.service';
 import { UserService } from 'src/app/common/services/user/user.service';
+import { PortfolioService } from '../../common/services/portfolio/portfolio.service';
 import { FileUploadComponent } from 'src/app/common/components/file-upload/file-upload.component';
 import { InfoMessagesComponent } from 'src/app/common/components/info-messages/info-messages.component';
 import { User } from 'src/app/common/models/user';
+import { Game } from '../../common/models/game';
 
 @Component({
   selector: 'ksu-gdc-profile',
@@ -15,7 +17,8 @@ import { User } from 'src/app/common/models/user';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  @ViewChild(InfoMessagesComponent) infoMessages: InfoMessagesComponent;
+  @ViewChild('profileUpdateMessages') profileUpdateMessages: InfoMessagesComponent;
+  @ViewChild('gamesUpdateMessages') gamesUpdateMessages: InfoMessagesComponent;
   @ViewChild('infoForm') infoForm: NgForm;
   @ViewChild(FileUploadComponent) profileImageUploader: FileUploadComponent;
   @ViewChild(ImageLoaderDirective) profileImage: ImageLoaderDirective;
@@ -23,11 +26,14 @@ export class ProfileComponent implements OnInit {
   isValidated: boolean;
   user: User;
 
+  games: Game[];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private portfolioService: PortfolioService
   ) { }
 
   ngOnInit() {
@@ -35,6 +41,8 @@ export class ProfileComponent implements OnInit {
       .then(user => {
         this.user = user;
         this.isValidated = true;
+        this.portfolioService.getGamesByUserId(user.id)
+        .then(games => this.games = games);
       })
       .catch(error => {
         this.authService.loginWithCAS(this.router.url);
@@ -45,11 +53,11 @@ export class ProfileComponent implements OnInit {
     this.profileImageUploader.isProcessing = true;
     this.userService.updateProfileImage(this.user.id, image)
       .then(() => {
-        this.infoMessages.showSuccess('Your profile image has been updated.');
+        this.profileUpdateMessages.showSuccess('Your profile image has been updated.');
         this.profileImageUploader.isProcessing = false;
         this.profileImage.reload();
       })
-      .catch(error => this.infoMessages.showError('There was a problem updating your profile picture.'));
+      .catch(error => this.profileUpdateMessages.showError('There was a problem updating your profile picture.'));
   }
 
   updateUserInfo(): void {
@@ -57,10 +65,10 @@ export class ProfileComponent implements OnInit {
       .then(() => {
         this.infoForm.form.markAsPristine();
         this.infoForm.form.markAsUntouched();
-        this.infoMessages.showSuccess('Your info has been updated.');
+        this.profileUpdateMessages.showSuccess('Your info has been updated.');
       })
       .catch(error => {
-        this.infoMessages.showError('There was a problem updating your info.');
+        this.profileUpdateMessages.showError('There was a problem updating your info.');
       });
   }
 
