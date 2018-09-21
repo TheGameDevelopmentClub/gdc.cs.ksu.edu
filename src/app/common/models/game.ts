@@ -1,5 +1,5 @@
 export class Game {
-  public id: number;
+  public gameId: number;
   public title: string;
   public description: string;
   public url: string;
