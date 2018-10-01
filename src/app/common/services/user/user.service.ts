@@ -12,9 +12,9 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  getUserById(id: number): Promise<User> {
+  getUserById(userId: number): Promise<User> {
     return new Promise<User>((resolve, reject) => {
-      this.http.get<User>(environment.API_URL + '/users/' + id)
+      this.http.get<User>(environment.API_URL + '/users/' + userId)
         .subscribe(
           user => resolve(user),
           error => reject(error));
@@ -32,27 +32,27 @@ export class UserService {
 
   updateUser(user: User): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      this.http.put<boolean>(environment.API_URL + '/users/' + user.id, user)
+      this.http.put<boolean>(environment.API_URL + '/users/' + user.userId, user)
         .subscribe(
           success => resolve(success),
           error => reject(error));
     });
   }
 
-  updateProfileImage(id: number, image: File): Promise<boolean> {
+  updateProfileImage(userId: number, image: File): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       const data = new FormData();
       data.append('image', image);
-      this.http.post<boolean>(environment.API_URL + '/users/' + id + '/profile-image', data)
+      this.http.post<boolean>(environment.API_URL + '/users/' + userId + '/profile-image', data)
         .subscribe(
           success => resolve(success),
           error => reject(error));
     });
   }
 
-  getProfileImage(id: number): Promise<File> {
+  getProfileImage(userId: number): Promise<File> {
     return new Promise<File>((resolve, reject) => {
-      this.http.get<File>(environment.API_URL + '/users/' + id + '/profile-image')
+      this.http.get<File>(environment.API_URL + '/users/' + userId + '/profile-image')
         .subscribe(
           image => resolve(image),
           error => reject(error));
