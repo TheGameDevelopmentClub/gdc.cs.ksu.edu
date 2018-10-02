@@ -5,19 +5,19 @@ import { NgForm } from '@angular/forms';
 import { ImageLoaderDirective } from 'src/app/common/directives/image-loader/image-loader.directive';
 import { AuthService } from 'src/app/common/services/auth/auth.service';
 import { UserService } from 'src/app/common/services/user/user.service';
-import { PortfolioService } from '../../common/services/portfolio/portfolio.service';
+import { PortfolioService } from 'src/app/common/services/portfolio/portfolio.service';
 import { FileUploadComponent } from 'src/app/common/components/file-upload/file-upload.component';
 import { InfoMessagesComponent } from 'src/app/common/components/info-messages/info-messages.component';
 import { User } from 'src/app/common/models/user';
-import { Group } from '../../common/models/group';
-import { Game } from '../../common/models/game';
+import { Group } from 'src/app/common/models/group';
+import { Game } from 'src/app/common/models/game';
 
 @Component({
-  selector: 'ksu-gdc-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'ksu-gdc-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit {
   @ViewChild('profileUpdateMessages') profileUpdateMessages: InfoMessagesComponent;
   @ViewChild('gamesUpdateMessages') gamesUpdateMessages: InfoMessagesComponent;
   @ViewChild('infoForm') infoForm: NgForm;

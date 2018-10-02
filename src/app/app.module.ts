@@ -29,14 +29,14 @@ import { OfficerProfileModalComponent } from 'src/app/common/components/officer-
 import { CountdownTimerComponent } from 'src/app/common/components/countdown-timer/countdown-timer.component';
 import { FileUploadComponent } from 'src/app/common/components/file-upload/file-upload.component';
 
-// *Public Page Components*
-import { GamesComponent } from 'src/app/public/games/games.component';
-import { HomeComponent } from 'src/app/public/home/home.component';
-import { EventsComponent } from 'src/app/public/events/events.component';
+// *Page Components*
+import { GamesComponent } from 'src/app/games/games.component';
+import { HomeComponent } from 'src/app/home/home.component';
+import { EventsComponent } from 'src/app/events/events.component';
 
-// *Secure Page Components*
-import { ProfileComponent } from 'src/app/secure/profile/profile.component';
-import { ManagementComponent } from 'src/app/secure/management/management.component';
+import { ManagementComponent } from 'src/app/management/management.component';
+import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
+import { GroupProfileComponent } from './group-profile/group-profile.component';
 
 @NgModule({
   declarations: [
@@ -54,11 +54,12 @@ import { ManagementComponent } from 'src/app/secure/management/management.compon
     GamesComponent,
     HomeComponent,
     EventsComponent,
-    ProfileComponent,
+    UserProfileComponent,
     ManagementComponent,
     LoadingOverlayComponent,
     FileUploadComponent,
-    InfoMessagesComponent
+    InfoMessagesComponent,
+    GroupProfileComponent
   ],
   imports: [
     BrowserModule,
