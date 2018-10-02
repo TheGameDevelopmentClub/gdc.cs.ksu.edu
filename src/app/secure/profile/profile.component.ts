@@ -9,6 +9,7 @@ import { PortfolioService } from '../../common/services/portfolio/portfolio.serv
 import { FileUploadComponent } from 'src/app/common/components/file-upload/file-upload.component';
 import { InfoMessagesComponent } from 'src/app/common/components/info-messages/info-messages.component';
 import { User } from 'src/app/common/models/user';
+import { Group } from '../../common/models/group';
 import { Game } from '../../common/models/game';
 
 @Component({
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
   isValidated: boolean;
   user: User;
 
+  groups: Group[];
   games: Game[];
 
   constructor(
@@ -41,17 +43,19 @@ export class ProfileComponent implements OnInit {
       .then(user => {
         this.user = user;
         this.isValidated = true;
-        this.portfolioService.getGamesByUserId(user.id)
-        .then(games => this.games = games);
+        this.userService.getGames(user.userId)
+          .then(games => this.games = games);
+        this.userService.getGroups(user.userId)
+          .then(groups => this.groups = groups);
       })
       .catch(error => {
         this.authService.loginWithCAS(this.router.url);
       });
   }
 
-  uploadProfileImage(image: File) {
+  uploadProfileImage(image: File): void {
     this.profileImageUploader.isProcessing = true;
-    this.userService.updateProfileImage(this.user.id, image)
+    this.userService.updateProfileImage(this.user.userId, image)
       .then(() => {
         this.profileUpdateMessages.showSuccess('Your profile image has been updated.');
         this.profileImageUploader.isProcessing = false;
@@ -72,7 +76,15 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  logoutUser() {
+  logoutUser(): void {
     this.authService.logoutWithCAS('');
+  }
+
+  openGroupsModal(): void {
+
+  }
+
+  openGamesModal(): void {
+
   }
 }
