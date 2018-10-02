@@ -37,6 +37,7 @@ import { EventsComponent } from 'src/app/events/events.component';
 import { ManagementComponent } from 'src/app/management/management.component';
 import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
 import { GroupProfileComponent } from './group-profile/group-profile.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { GroupProfileComponent } from './group-profile/group-profile.component';
     LoadingOverlayComponent,
     FileUploadComponent,
     InfoMessagesComponent,
-    GroupProfileComponent
+    GroupProfileComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

@@ -10,19 +10,20 @@ import { EventsComponent } from 'src/app/events/events.component';
 import { ManagementComponent } from 'src/app/management/management.component';
 import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
 import { GroupProfileComponent } from 'src/app/group-profile/group-profile.component';
+import { ErrorComponent } from './error/error.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'games', component: GamesComponent },
   { path: 'events', component: EventsComponent },
-  { path: 'users/:id', component: UserProfileComponent },
-  { path: 'groups/:id', component: GroupProfileComponent },
+  { path: 'users/:userId', component: UserProfileComponent },
+  { path: 'groups/:groupId', component: GroupProfileComponent },
   { path: 'management', canActivate: [AuthGuard],
     children: [
       { path: '', component: ManagementComponent, pathMatch: 'full' }
     ]
   },
-  { path: '**', redirectTo: '/' }
+  { path: '**', component: ErrorComponent }
 ];
 
 @NgModule({
