@@ -21,14 +21,6 @@ export class PortfolioService {
     });
   }
 
-  getGamesByUserId(userId: number): Promise<Game[]> {
-    return new Promise<Game[]>((resolve, reject) => {
-      this.http.get<Game[]>(environment.API_URL + '/portfolio/games?userId=' + userId).subscribe(games => {
-        resolve(games);
-      }, error => reject(error));
-    });
-  }
-
   getNumberOfGames(amount: number): Promise<Game[]> {
     return new Promise<Game[]>((resolve, reject) => {
       this.getAllGames()

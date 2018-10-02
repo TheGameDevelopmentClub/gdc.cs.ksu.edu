@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/common/models/user';
+import { Group } from '../../models/group';
+import { Game } from '../../models/game';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +57,24 @@ export class UserService {
       this.http.get<File>(environment.API_URL + '/users/' + userId + '/profile-image')
         .subscribe(
           image => resolve(image),
+          error => reject(error));
+    });
+  }
+
+  getGroups(userId: number): Promise<Group[]> {
+    return new Promise<Group[]>((resolve, reject) => {
+      this.http.get<Group[]>(environment.API_URL + '/users/' + userId + '/groups')
+        .subscribe(
+          groups => resolve(groups),
+          error => reject(error));
+    });
+  }
+
+  getGames(userId: number): Promise<Game[]> {
+    return new Promise<Game[]>((resolve, reject) => {
+      this.http.get<Game[]>(environment.API_URL + '/users/' + userId + '/portfolio/games')
+        .subscribe(
+          games => resolve(games),
           error => reject(error));
     });
   }
