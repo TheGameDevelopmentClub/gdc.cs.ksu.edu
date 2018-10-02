@@ -6,8 +6,7 @@
       alt-url="assets/images/profile.png">
     <h1 class="text-center">{{user.username}}</h1>
     <ksu-gdc-info-messages #profileUpdateMessages></ksu-gdc-info-messages>
-    <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" [show-upload]="false"
-      (fileChange)="uploadProfileImage($event)"></ksu-gdc-file-upload>
+    <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" [show-upload]="false" (fileChange)="uploadProfileImage($event)"></ksu-gdc-file-upload>
     <form (ngSubmit)="updateUserInfo()" #infoForm="ngForm">
       <div class="form-group">
         <label for="firstName">First Name</label>
@@ -27,9 +26,22 @@
       <button type="submit" class="btn btn-success" [disabled]="infoForm.pristine || !infoForm.form.valid">Update</button>
     </form>
     <br>
+    <div class="groups-container">
+      <div>
+        <h3>Groups</h3>
+        <button class="btn btn-success" (click)="openGamesModal()">Manage</button>
+      </div>
+      <div *ngFor="let group of groups">
+        <div>{{group.name}}</div>
+      </div>
+    </div>
     <div class="games-container">
+      <div>
+        <h3>Games</h3>
+        <button class="btn btn-success" (click)="openGamesModal()">Manage</button>
+      </div>
       <div *ngFor="let game of games">
-
+        <div>{{game.title}}</div>
       </div>
     </div>
     <br>
