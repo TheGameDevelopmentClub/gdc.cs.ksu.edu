@@ -16,6 +16,22 @@ import { ImageLoaderDirective } from 'src/app/common/directives/image-loader/ima
 // *Pipes*
 import { SanitizeInputPipe } from 'src/app/common/pipes/sanitize-input/sanitize-input.pipe';
 
+// *Public Page Components*
+import { ErrorComponent } from './error/error.component';
+import { HomeComponent } from 'src/app/home/home.component';
+import { EventsComponent } from 'src/app/events/events.component';
+import { EventProfileComponent } from './event-profile/event-profile.component';
+import { UsersComponent } from './users/users.component';
+import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
+import { GroupsComponent } from './groups/groups.component';
+import { GroupProfileComponent } from './group-profile/group-profile.component';
+import { GamesComponent } from 'src/app/games/games.component';
+import { GameProfileComponent } from './game-profile/game-profile.component';
+
+// *Secure Page Components*
+import { ManagementComponent } from 'src/app/management/management.component';
+import { UserProfileManagementComponent } from './user-profile-management/user-profile-management.component';
+
 // *Common Components*
 import { AppComponent } from 'src/app/app.component';
 import { LoadingOverlayComponent } from 'src/app/common/components/loading-overlay/loading-overlay.component';
@@ -28,18 +44,7 @@ import { OfficerProfileComponent } from 'src/app/common/components/officer-profi
 import { OfficerProfileModalComponent } from 'src/app/common/components/officer-profile-modal/officer-profile-modal.component';
 import { CountdownTimerComponent } from 'src/app/common/components/countdown-timer/countdown-timer.component';
 import { FileUploadComponent } from 'src/app/common/components/file-upload/file-upload.component';
-
-// *Public Page Components*
-import { ErrorComponent } from './error/error.component';
-import { HomeComponent } from 'src/app/home/home.component';
-import { EventsComponent } from 'src/app/events/events.component';
-import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
-import { GamesComponent } from 'src/app/games/games.component';
-import { GroupProfileComponent } from './group-profile/group-profile.component';
-
-// *Secure Page Components*
-import { ManagementComponent } from 'src/app/management/management.component';
-import { UserProfileManagementComponent } from './user-profile-management/user-profile-management.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +69,12 @@ import { UserProfileManagementComponent } from './user-profile-management/user-p
     InfoMessagesComponent,
     GroupProfileComponent,
     ErrorComponent,
-    UserProfileManagementComponent
+    UserProfileManagementComponent,
+    GameProfileComponent,
+    EventProfileComponent,
+    UsersComponent,
+    GroupsComponent,
+    PortfolioComponent
   ],
   imports: [
     BrowserModule,

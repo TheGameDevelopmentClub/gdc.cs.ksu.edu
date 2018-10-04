@@ -3,26 +3,43 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from 'src/app/common/guards/auth.guard';
 
-import { HomeComponent } from 'src/app/home/home.component';
-import { GamesComponent } from 'src/app/games/games.component';
-import { EventsComponent } from 'src/app/events/events.component';
-
-import { ManagementComponent } from 'src/app/management/management.component';
-import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
-import { GroupProfileComponent } from 'src/app/group-profile/group-profile.component';
+// *Public Components*
 import { ErrorComponent } from './error/error.component';
+import { HomeComponent } from 'src/app/home/home.component';
+import { EventsComponent } from 'src/app/events/events.component';
+import { EventProfileComponent } from './event-profile/event-profile.component';
+import { UsersComponent } from './users/users.component';
+import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
+import { GroupsComponent } from './groups/groups.component';
+import { GroupProfileComponent } from 'src/app/group-profile/group-profile.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { GamesComponent } from 'src/app/games/games.component';
+import { GameProfileComponent } from './game-profile/game-profile.component';
+
+// *Secure Components*
+import { ManagementComponent } from 'src/app/management/management.component';
+import { UserProfileManagementComponent } from './user-profile-management/user-profile-management.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'games', component: GamesComponent },
-  { path: 'events', component: EventsComponent },
-  { path: 'users/:userId', component: UserProfileComponent },
-  { path: 'groups/:groupId', component: GroupProfileComponent },
-  { path: 'management', canActivate: [AuthGuard],
-    children: [
-      { path: '', component: ManagementComponent, pathMatch: 'full' }
-    ]
-  },
+  // { path: 'events', component: EventsComponent, children: [
+    // { path: ':eventId', component: EventProfileComponent }
+  // ]},
+  { path: 'members', component: UsersComponent, children: [
+    { path: ':userId', component: UserProfileComponent }
+  ]},
+  { path: 'groups', component: GroupsComponent, children: [
+    { path: ':groupId', component: GroupProfileComponent }
+  ]},
+  { path: 'portfolio', component: PortfolioComponent, children: [
+    { path: 'games', component: GamesComponent, children: [
+      { path: ':gameId', component: GameProfileComponent }
+    ]}
+  ]},
+  { path: 'manage', canActivate: [AuthGuard], children: [
+    { path: '', component: ManagementComponent, pathMatch: 'full' },
+    { path: 'member', component: UserProfileManagementComponent }
+  ]},
   { path: '**', component: ErrorComponent }
 ];
 
