@@ -37,15 +37,15 @@ export class ImageLoaderDirective implements AfterContentInit, OnDestroy {
   }
 
   private onLoad(): void {
-    this.removeOnLoadEvent();
+    // this.removeOnLoadEvent();
   }
 
   private onError(): void {
     if (this.element.getAttribute('src') !== this.alternateUrl) {
       this.renderer.setAttribute(this.element, 'src', this.alternateUrl);
       this.error.emit();
-    } else {
-      this.removeOnLoadEvent();
+    // } else {
+    //   this.removeOnLoadEvent();
     }
   }
 
