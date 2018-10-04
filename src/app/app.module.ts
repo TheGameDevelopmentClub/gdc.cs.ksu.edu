@@ -29,15 +29,17 @@ import { OfficerProfileModalComponent } from 'src/app/common/components/officer-
 import { CountdownTimerComponent } from 'src/app/common/components/countdown-timer/countdown-timer.component';
 import { FileUploadComponent } from 'src/app/common/components/file-upload/file-upload.component';
 
-// *Page Components*
-import { GamesComponent } from 'src/app/games/games.component';
+// *Public Page Components*
+import { ErrorComponent } from './error/error.component';
 import { HomeComponent } from 'src/app/home/home.component';
 import { EventsComponent } from 'src/app/events/events.component';
-
-import { ManagementComponent } from 'src/app/management/management.component';
 import { UserProfileComponent } from 'src/app/user-profile/user-profile.component';
+import { GamesComponent } from 'src/app/games/games.component';
 import { GroupProfileComponent } from './group-profile/group-profile.component';
-import { ErrorComponent } from './error/error.component';
+
+// *Secure Page Components*
+import { ManagementComponent } from 'src/app/management/management.component';
+import { UserProfileManagementComponent } from './user-profile-management/user-profile-management.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { ErrorComponent } from './error/error.component';
     FileUploadComponent,
     InfoMessagesComponent,
     GroupProfileComponent,
-    ErrorComponent
+    ErrorComponent,
+    UserProfileManagementComponent
   ],
   imports: [
     BrowserModule,
