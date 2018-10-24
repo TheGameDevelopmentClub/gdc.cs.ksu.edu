@@ -16,8 +16,8 @@ export class PortfolioItemComponent implements OnInit {
     private dialog: MatDialog
   ) { }
 
-  @Input('game') set setPortfolioItem(game: Game) {
-    this.item = game;
+  @Input('item') set setPortfolioItem(item: Game) {
+    this.item = item;
   }
 
   ngOnInit() {

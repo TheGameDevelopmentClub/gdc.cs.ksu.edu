@@ -23,23 +23,33 @@ import { UserProfileManagementComponent } from './user-profile-management/user-p
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   // { path: 'events', component: EventsComponent, children: [
-    // { path: ':eventId', component: EventProfileComponent }
+  // { path: ':eventId', component: EventProfileComponent }
   // ]},
-  { path: 'members', component: UsersComponent, children: [
-    { path: ':userId', component: UserProfileComponent }
-  ]},
-  { path: 'groups', component: GroupsComponent, children: [
-    { path: ':groupId', component: GroupProfileComponent }
-  ]},
-  { path: 'portfolio', component: PortfolioComponent, children: [
-    { path: 'games', component: GamesComponent, children: [
-      { path: ':gameId', component: GameProfileComponent }
-    ]}
-  ]},
-  { path: 'manage', canActivate: [AuthGuard], children: [
-    { path: '', component: ManagementComponent, pathMatch: 'full' },
-    { path: 'member', component: UserProfileManagementComponent }
-  ]},
+  {
+    path: 'members', children: [
+      { path: ':userId', component: UserProfileComponent }
+    ]
+  },
+  {
+    path: 'groups', children: [
+      { path: ':groupId', component: GroupProfileComponent }
+    ]
+  },
+  {
+    path: 'portfolio', component: PortfolioComponent, children: [
+      {
+        path: 'games', children: [
+          { path: ':gameId', component: GameProfileComponent }
+        ]
+      }
+    ]
+  },
+  {
+    path: 'manage', canActivate: [AuthGuard], children: [
+      { path: '', component: ManagementComponent, pathMatch: 'full' },
+      { path: 'member', component: UserProfileManagementComponent }
+    ]
+  },
   { path: '**', component: ErrorComponent }
 ];
 

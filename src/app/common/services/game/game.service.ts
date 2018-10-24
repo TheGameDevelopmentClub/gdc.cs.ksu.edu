@@ -7,7 +7,7 @@ import { Game } from 'src/app/common/models/game';
 @Injectable({
   providedIn: 'root'
 })
-export class PortfolioService {
+export class GameService {
 
   constructor(
     private http: HttpClient

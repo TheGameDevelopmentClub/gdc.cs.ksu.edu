@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { OfficerService } from 'src/app/common/services/officer/officer.service';
-import { PortfolioService } from 'src/app/common/services/portfolio/portfolio.service';
+import { GameService } from 'src/app/common/services/game/game.service';
 import { Officer } from 'src/app/common/models/officer';
 import { Game } from 'src/app/common/models/game';
 
@@ -11,17 +12,18 @@ import { Game } from 'src/app/common/models/game';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  games: Game[];
+  items: Game[];
   officers: Map<string, Officer[]> = new Map<string, Officer[]>();
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private officerService: OfficerService,
-    private portfolioService: PortfolioService
+    private gameService: GameService
   ) { }
 
   ngOnInit() {
-    this.portfolioService.getNumberOfGames(6)
-      .then((games) => this.games = games);
+    this.showFeaturedGames();
     this.officerService.getAllOfficers()
       .then((officers) => this.setOfficersMap(officers));
   }
@@ -47,5 +49,14 @@ export class HomeComponent implements OnInit {
       const officer = officerList[listNumber];
       return officer;
     }
+  }
+
+  showFeaturedGames(): void {
+    this.gameService.getNumberOfGames(6)
+      .then((games) => this.items = games);
+  }
+
+  showFeaturedArt(): void {
+    this.items = null;
   }
 }

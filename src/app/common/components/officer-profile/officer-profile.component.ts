@@ -15,10 +15,11 @@ export class OfficerProfileComponent implements OnInit {
   officer: Officer;
 
   constructor(
-    private dialog: MatDialog,
-    private officerService: OfficerService
   ) { }
 
+  @Input('position') set setPosition(position: string) {
+    this.position = position;
+  }
   @Input('officer') set setOfficer(officer: Officer) {
     this.officer = officer;
   }
@@ -30,7 +31,7 @@ export class OfficerProfileComponent implements OnInit {
     if (this.officer) {
       return this.officer.position;
     } else {
-      return '';
+      return this.position;
     }
   }
 
@@ -38,7 +39,7 @@ export class OfficerProfileComponent implements OnInit {
     if (this.officer && this.officer.user) {
       return this.officer.user.firstName + ' ' + this.officer.user.lastName;
     } else {
-      return '';
+      return '[Unassigned]';
     }
   }
 

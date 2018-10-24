@@ -15,11 +15,11 @@
 
 <section id="portfolio">
   <div class="container text-center">
-    <h2 class="mobile-header text-center">Featured Games</h2>
-    <hr class="hr-primary">
-    <div class="row">
-      <div class="col" *ngFor="let game of games">
-        <ksu-gdc-portfolio-item [game]="game"></ksu-gdc-portfolio-item>
+    <h2 class="mobile-header text-center">Featured</h2>
+    <hr *ngIf="items" class="hr-primary">
+    <div *ngIf="items" class="row">
+      <div class="col" *ngFor="let item of items">
+        <ksu-gdc-portfolio-item [item]="item"></ksu-gdc-portfolio-item>
       </div>
     </div>
   </div>
@@ -27,43 +27,43 @@
 
 <section class="success" id="about">
   <div class="container">
-    <h2 class="mobile-header text-center">Who Are We?</h2>
+    <h2 class="mobile-header text-center">Meet the Team</h2>
     <hr class="hr-light">
     <div class="row">
       <div class="col-lg ml-auto">
         <div class="row">
           <div class="col-lg-4 col-sm-6 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('President', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="President" [officer]="getOfficer('President', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-4 col-sm-6 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Vice President', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Vice President" [officer]="getOfficer('Vice President', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-4 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Treasurer', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Treasurer" [officer]="getOfficer('Treasurer', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Secretary', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Secretary" [officer]="getOfficer('Secretary', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Website Manager', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Website Manager" [officer]="getOfficer('Website Manager', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Social Media Manager', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Social Media Manager" [officer]="getOfficer('Social Media Manager', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Industry Liaison', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Industry Liaison" [officer]="getOfficer('Industry Liaison', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Industry Liaison', 2)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Industry Liaison" [officer]="getOfficer('Industry Liaison', 2)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Event Coordinator', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Event Coordinator" [officer]="getOfficer('Event Coordinator', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Recruitment and Retention Officer', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Recruitment and Retention Officer" [officer]="getOfficer('Recruitment and Retention Officer', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-12 text-center mb-4">
-            <ksu-gdc-officer-profile [officer]="getOfficer('Advisor', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Advisor" [officer]="getOfficer('Advisor', 1)"></ksu-gdc-officer-profile>
           </div>
         </div>
       </div>
