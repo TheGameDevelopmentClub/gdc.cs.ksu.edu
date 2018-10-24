@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PortfolioService } from 'src/app/common/services/portfolio/portfolio.service';
+import { GameService } from 'src/app/common/services/game/game.service';
 import { Game } from 'src/app/common/models/game';
 
 @Component({
@@ -12,11 +12,11 @@ export class GamesComponent implements OnInit {
   games: Game[];
 
   constructor(
-    private portfolioService: PortfolioService
+    private gameService: GameService
   ) { }
 
   ngOnInit() {
-    this.portfolioService.getAllGames()
+    this.gameService.getAllGames()
       .then((games) => this.games = games);
   }
 

@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { ImageLoaderDirective } from 'src/app/common/directives/image-loader/image-loader.directive';
 import { AuthService } from 'src/app/common/services/auth/auth.service';
 import { UserService } from 'src/app/common/services/user/user.service';
-import { PortfolioService } from 'src/app/common/services/portfolio/portfolio.service';
+import { GameService } from 'src/app/common/services/game/game.service';
 import { FileUploadComponent } from 'src/app/common/components/file-upload/file-upload.component';
 import { InfoMessagesComponent } from 'src/app/common/components/info-messages/info-messages.component';
 import { User } from 'src/app/common/models/user';
@@ -35,7 +35,7 @@ export class UserProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private userService: UserService,
-    private portfolioService: PortfolioService
+    private gameService: GameService
   ) { }
 
   ngOnInit() {
