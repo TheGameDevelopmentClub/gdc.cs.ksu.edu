@@ -25,7 +25,7 @@ export class PortfolioItemComponent implements OnInit {
 
   openItemInfoModal() {
     if (window.innerWidth < 992 || window.innerHeight < 350) {
-      window.open(this.item.url, '_blank');
+      window.open(this.item.itemUrl, '_blank');
     } else {
       this.dialog.open(PortfolioItemModalComponent, {
         width: '70%',
