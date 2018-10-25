@@ -1,5 +1,3 @@
-import { Group } from 'src/app/common/models/group';
-
 export class User {
   public userId: number;
   public username: string;
