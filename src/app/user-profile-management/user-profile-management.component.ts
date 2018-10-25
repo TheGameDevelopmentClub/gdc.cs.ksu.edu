@@ -2,16 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { ImageLoaderDirective } from 'src/app/common/directives/image-loader/image-loader.directive';
-import { AuthService } from 'src/app/common/services/auth/auth.service';
-import { UserService } from 'src/app/common/services/user/user.service';
-import { GameService } from 'src/app/common/services/game/game.service';
-import { FileUploadComponent } from 'src/app/common/components/file-upload/file-upload.component';
-import { InfoMessagesComponent } from 'src/app/common/components/info-messages/info-messages.component';
-import { User } from 'src/app/common/models/user';
-import { Group } from 'src/app/common/models/group';
-import { Game } from 'src/app/common/models/game';
-import { Portfolio } from '../common/models/portfolio';
+import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
+import { AuthService } from 'src/app/_common/services/auth/auth.service';
+import { UserService } from 'src/app/_common/services/user/user.service';
+import { GameService } from 'src/app/_common/services/game/game.service';
+import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
+import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
+import { User } from 'src/app/_common/models/user';
+import { Group } from 'src/app/_common/models/group';
+import { Game } from 'src/app/_common/models/game';
+import { Portfolio } from 'src/app/_common/models/portfolio';
 
 @Component({
   selector: 'ksu-gdc-user-profile-management',

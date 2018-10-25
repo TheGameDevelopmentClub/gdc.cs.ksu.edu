@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { UserService } from 'src/app/common/services/user/user.service';
-import { User } from 'src/app/common/models/user';
-import { Group } from 'src/app/common/models/group';
-import { Portfolio } from '../common/models/portfolio';
+import { UserService } from 'src/app/_common/services/user/user.service';
+import { User } from 'src/app/_common/models/user';
+import { Group } from 'src/app/_common/models/group';
+import { Portfolio } from 'src/app/_common/models/portfolio';
 
 @Component({
   selector: 'ksu-gdc-user-profile',
@@ -36,7 +36,6 @@ export class UserProfileComponent implements OnInit {
       .catch(error => {
         this.user = null;
         this.userNotFound = true;
-        console.error(error);
       });
   }
 }

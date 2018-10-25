@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
-import { OfficerService } from 'src/app/common/services/officer/officer.service';
-import { GameService } from 'src/app/common/services/game/game.service';
-import { Officer } from 'src/app/common/models/officer';
-import { Game } from 'src/app/common/models/game';
+import { OfficerService } from 'src/app/_common/services/officer/officer.service';
+import { GameService } from 'src/app/_common/services/game/game.service';
+import { Officer } from 'src/app/_common/models/officer';
+import { Game } from 'src/app/_common/models/game';
 
 @Component({
   selector: 'ksu-gdc-home',

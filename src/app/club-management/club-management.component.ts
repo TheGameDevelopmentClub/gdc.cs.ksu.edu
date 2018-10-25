@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AuthService } from 'src/app/common/services/auth/auth.service';
-import { User } from 'src/app/common/models/user';
+import { UtilityService } from 'src/app/_common/services/utility/utility.service';
+import { AuthService } from 'src/app/_common/services/auth/auth.service';
+import { User } from 'src/app/_common/models/user';
 
 @Component({
   selector: 'ksu-gdc-club-management',
@@ -17,12 +18,14 @@ export class ClubManagementComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private utilityService: UtilityService,
     private authService: AuthService
   ) { }
 
   ngOnInit() {
     this.authService.validateCASTicket(this.router.url, this.route.snapshot.queryParams['ticket'])
       .then(user => {
+        this.utilityService.deleteQueryParams(this.router, this.route, ['ticket']);
         this.user = user;
         this.isValidated = true;
         this.isAdmin = true;

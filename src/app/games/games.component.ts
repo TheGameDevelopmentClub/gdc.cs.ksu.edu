@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GameService } from 'src/app/common/services/game/game.service';
-import { Game } from 'src/app/common/models/game';
+import { GameService } from 'src/app/_common/services/game/game.service';
+import { Game } from 'src/app/_common/models/game';
 
 @Component({
   selector: 'ksu-gdc-games',

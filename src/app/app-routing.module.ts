@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from 'src/app/common/guards/auth.guard';
+import { AuthGuard } from 'src/app/_common/guards/auth.guard';
 
 // *Public Components*
 import { ErrorComponent } from './error/error.component';
@@ -38,7 +38,8 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: 'portfolio', component: PortfolioComponent, children: [
+    path: 'portfolio', children: [
+      { path: '', component: PortfolioComponent, pathMatch: 'full' },
       {
         path: 'games', children: [
           { path: '', component: ErrorComponent, pathMatch: 'full' },
