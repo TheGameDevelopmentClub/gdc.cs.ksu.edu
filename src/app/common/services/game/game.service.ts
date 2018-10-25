@@ -15,9 +15,10 @@ export class GameService {
 
   getAllGames(): Promise<Game[]> {
     return new Promise<Game[]>((resolve, reject) => {
-      this.http.get<Game[]>(environment.API_URL + '/portfolio/games').subscribe(games => {
-        resolve(games);
-      }, error => reject(error));
+      this.http.get<Game[]>(environment.API_URL + '/portfolio/games')
+      .subscribe(
+        games => resolve(games.map((game) => new Game(game))),
+        error => reject(error));
     });
   }
 
@@ -29,7 +30,7 @@ export class GameService {
           let randIndex;
           for (let i = 0; games.length > 0 && i < amount; i++) {
             randIndex = Math.floor(Math.random() * games.length);
-            gameList.push(games[randIndex]);
+            gameList.push(new Game(games[randIndex]));
             games.splice(randIndex, 1);
           }
           resolve(gameList);

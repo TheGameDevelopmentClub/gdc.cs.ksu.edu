@@ -18,7 +18,7 @@ export class GroupService {
     return new Promise<Group>((resolve, reject) => {
       this.http.get<Group>(environment.API_URL + '/groups/' + groupId)
         .subscribe(
-          group => resolve(group),
+          group => resolve(new Group(group)),
           error => reject(error));
     });
   }
@@ -27,7 +27,7 @@ export class GroupService {
     return new Promise<Game[]>((resolve, reject) => {
       this.http.get<Game[]>(environment.API_URL + '/groups/' + groupId + '/portfolio/games')
         .subscribe(
-          games => resolve(games),
+          games => resolve(games.map((game) => new Game(game))),
           error => reject(error));
     });
   }

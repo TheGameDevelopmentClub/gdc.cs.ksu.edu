@@ -21,7 +21,9 @@ export class AuthService {
     return new Promise<User>((resolve, reject) => {
       const service = (environment.APP_URL + url).split('?')[0];
       this.http.get<User>(`${environment.API_URL}/auth/cas/validate?service=${service}&ticket=${ticket}`)
-        .subscribe(user => resolve(user), error => reject(error));
+        .subscribe(
+          user => resolve(new User(user)),
+          error => reject(error));
     });
   }
 

@@ -15,17 +15,19 @@ export class OfficerService {
 
   getAllOfficers(): Promise<Officer[]> {
     return new Promise((resolve, reject) => {
-      this.http.get<Officer[]>(environment.API_URL + '/officers').subscribe(officers => {
-        resolve(officers);
-      }, error => reject(error));
+      this.http.get<Officer[]>(environment.API_URL + '/officers')
+      .subscribe(
+        officers => resolve(officers.map((officer) => new Officer(officer))),
+        error => reject(error));
     });
   }
 
   getOfficersByPosition(position: string): Promise<Officer[]> {
     return new Promise<any>((resolve, reject) => {
-      this.http.get<Officer[]>(environment.API_URL + '/officers?position=' + position).subscribe(officers => {
-        resolve(officers);
-      }, error => reject(error));
+      this.http.get<Officer[]>(environment.API_URL + '/officers?position=' + position)
+      .subscribe(
+        officers => resolve(officers.map((officer) => new Officer(officer))),
+        error => reject(error));
     });
   }
 }

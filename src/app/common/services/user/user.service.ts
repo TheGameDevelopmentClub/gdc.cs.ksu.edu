@@ -18,7 +18,7 @@ export class UserService {
     return new Promise<User>((resolve, reject) => {
       this.http.get<User>(environment.API_URL + '/users/' + userId)
         .subscribe(
-          user => resolve(user),
+          user => resolve(new User(user)),
           error => reject(error));
     });
   }
@@ -27,7 +27,7 @@ export class UserService {
     return new Promise<User>((resolve, reject) => {
       this.http.get<User>(environment.API_URL + '/users/?username=' + username)
         .subscribe(
-          user => resolve(user),
+          user => resolve(new User(user)),
           error => reject(error));
     });
   }
@@ -65,7 +65,7 @@ export class UserService {
     return new Promise<Group[]>((resolve, reject) => {
       this.http.get<Group[]>(environment.API_URL + '/users/' + userId + '/groups')
         .subscribe(
-          groups => resolve(groups),
+          groups => resolve(groups.map((group) => new Group(group))),
           error => reject(error));
     });
   }
@@ -74,7 +74,7 @@ export class UserService {
     return new Promise<Game[]>((resolve, reject) => {
       this.http.get<Game[]>(environment.API_URL + '/users/' + userId + '/portfolio/games')
         .subscribe(
-          games => resolve(games),
+          games => resolve(games.map((game) => new Game(game))),
           error => reject(error));
     });
   }
