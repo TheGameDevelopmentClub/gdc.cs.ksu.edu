@@ -15,7 +15,6 @@ export class User {
     this.firstName = user['firstName'];
     this.lastName = user['lastName'];
     this.imageUrl = user['imageUrl'] || `${environment.API_URL}/users/${this.userId}/profile-image`;
-    this.imageUrl = user['imageUrl'];
     this.email = user['email'];
   }
 }
