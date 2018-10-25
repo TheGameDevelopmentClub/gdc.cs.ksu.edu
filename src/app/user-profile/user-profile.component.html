@@ -1,21 +1,21 @@
-<div class="container">
+<div *ngIf="user" class="container">
   <br>
   <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{user?.imageUrl}}" alt-url="assets/images/profile.png">
   <h1 class="text-center">{{user?.username}}</h1>
   <div class="form-group">
     <label for="firstName">First Name</label>
     <input type="text" class="form-control" id="firstName" name="firstName" [ngModel]="user?.firstName | sanitizeInput"
-      [readonly]="!isValidated" (ngModelChange)="user.firstName=$event" />
+      readonly (ngModelChange)="user.firstName=$event" />
   </div>
   <div class="form-group">
     <label for="lastName">Last Name</label>
     <input type="text" class="form-control" id="lastName" name="lastName" [ngModel]="user?.lastName | sanitizeInput"
-      [readonly]="!isValidated" (ngModelChange)="user.lastName=$event" />
+      readonly (ngModelChange)="user.lastName=$event" />
   </div>
   <div class="form-group">
     <label for="description">Description</label>
     <textarea type="text" class="form-control" id="description" name="description" [ngModel]="user?.description | sanitizeInput"
-      [readonly]="!isValidated" (ngModelChange)="user.description=$event"></textarea>
+      readonly (ngModelChange)="user.description=$event"></textarea>
   </div>
   <br>
   <div class="groups-container">
@@ -37,3 +37,4 @@
   </div>
   <br>
 </div>
+<ksu-gdc-error *ngIf="userNotFound"></ksu-gdc-error>
