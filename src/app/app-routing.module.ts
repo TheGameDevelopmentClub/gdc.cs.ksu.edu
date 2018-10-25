@@ -17,7 +17,7 @@ import { GamesComponent } from 'src/app/games/games.component';
 import { GameProfileComponent } from './game-profile/game-profile.component';
 
 // *Secure Components*
-import { ManagementComponent } from 'src/app/management/management.component';
+import { ClubManagementComponent } from 'src/app/club-management/club-management.component';
 import { UserProfileManagementComponent } from './user-profile-management/user-profile-management.component';
 
 const appRoutes: Routes = [
@@ -49,7 +49,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'manage', canActivate: [AuthGuard], children: [
-      { path: '', component: ErrorComponent, pathMatch: 'full' },
+      { path: '', component: ClubManagementComponent, pathMatch: 'full' },
       { path: 'member', component: UserProfileManagementComponent }
     ]
   },

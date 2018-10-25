@@ -5,11 +5,11 @@ import { AuthService } from 'src/app/common/services/auth/auth.service';
 import { User } from 'src/app/common/models/user';
 
 @Component({
-  selector: 'ksu-gdc-management',
-  templateUrl: './management.component.html',
-  styleUrls: ['./management.component.scss']
+  selector: 'ksu-gdc-club-management',
+  templateUrl: './club-management.component.html',
+  styleUrls: ['./club-management.component.scss']
 })
-export class ManagementComponent implements OnInit {
+export class ClubManagementComponent implements OnInit {
   isValidated: boolean;
   isAdmin: boolean;
   user: User;

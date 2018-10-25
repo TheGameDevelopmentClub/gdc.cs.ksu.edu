@@ -29,7 +29,7 @@ import { GamesComponent } from 'src/app/games/games.component';
 import { GameProfileComponent } from './game-profile/game-profile.component';
 
 // *Secure Page Components*
-import { ManagementComponent } from 'src/app/management/management.component';
+import { ClubManagementComponent } from 'src/app/club-management/club-management.component';
 import { UserProfileManagementComponent } from './user-profile-management/user-profile-management.component';
 
 // *Common Components*
@@ -63,7 +63,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     HomeComponent,
     EventsComponent,
     UserProfileComponent,
-    ManagementComponent,
+    ClubManagementComponent,
     LoadingOverlayComponent,
     FileUploadComponent,
     InfoMessagesComponent,
