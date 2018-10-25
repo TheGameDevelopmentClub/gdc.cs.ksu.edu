@@ -27,11 +27,13 @@ const appRoutes: Routes = [
   // ]},
   {
     path: 'members', children: [
+      { path: '', component: ErrorComponent, pathMatch: 'full' },
       { path: ':userId', component: UserProfileComponent }
     ]
   },
   {
     path: 'groups', children: [
+      { path: '', component: ErrorComponent, pathMatch: 'full' },
       { path: ':groupId', component: GroupProfileComponent }
     ]
   },
@@ -39,6 +41,7 @@ const appRoutes: Routes = [
     path: 'portfolio', component: PortfolioComponent, children: [
       {
         path: 'games', children: [
+          { path: '', component: ErrorComponent, pathMatch: 'full' },
           { path: ':gameId', component: GameProfileComponent }
         ]
       }
@@ -46,7 +49,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'manage', canActivate: [AuthGuard], children: [
-      { path: '', component: ManagementComponent, pathMatch: 'full' },
+      { path: '', component: ErrorComponent, pathMatch: 'full' },
       { path: 'member', component: UserProfileManagementComponent }
     ]
   },
