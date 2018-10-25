@@ -1,3 +1,5 @@
+import { environment } from 'src/environments/environment';
+
 export class Group {
   public groupId: number;
   public name: string;
@@ -8,6 +10,6 @@ export class Group {
     this.groupId = group['groupId'];
     this.name = group['name'];
     this.description = group['description'];
-    this.imageUrl = group['imageUrl'];
+    this.imageUrl = group['imageUrl'] || `${environment.API_URL}/groups/${this.groupId}/profile-image`;
   }
 }
