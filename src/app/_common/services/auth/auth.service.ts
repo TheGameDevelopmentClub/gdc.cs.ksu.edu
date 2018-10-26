@@ -2,15 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { User, AuthUser } from 'src/app/_common/models/user';
+import { StorageService } from 'src/app/_common/services/storage/storage.service';
+import { AuthUser } from 'src/app/_common/models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private storageService: StorageService
   ) { }
+
+  isLoggedIn(): boolean {
+    return true;
+  }
 
   loginWithCAS(url: string): void {
     const service = (environment.APP_URL + url).split('?')[0];
