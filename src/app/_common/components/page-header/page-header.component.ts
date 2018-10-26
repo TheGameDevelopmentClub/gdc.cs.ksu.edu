@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { Router } from '@angular/router';
+
+import { AuthService } from 'src/app/_common/services/auth/auth.service';
 
 @Component({
   selector: 'ksu-gdc-page-header',
@@ -7,8 +9,19 @@ import { trigger, transition, style, animate } from '@angular/animations';
   styleUrls: ['./page-header.component.scss']
 })
 export class PageHeaderComponent implements OnInit {
-  constructor() {}
+  authPath: string;
+  isLoggedIn: boolean;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn();
+  }
+
+  logout(): void {
+    this.authService.logoutWithCAS(this.router.url);
   }
 }
