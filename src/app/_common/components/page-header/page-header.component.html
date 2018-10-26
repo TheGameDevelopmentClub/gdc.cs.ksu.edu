@@ -14,11 +14,11 @@
             <a class="nav-link" target="_blank" href="https://calendar.google.com/calendar/embed?src=gjkfjdotg8jtodmhcjraklc15s%40group.calendar.google.com&ctz=America/Chicago">Events</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/portfolio" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">Portfolio</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" routerLink="/manage" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: false}">Manage</a>
           </li>
+          <!-- <li *ngIf="isLoggedIn" class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li> -->
         </ul>
       </div>
     </div>
