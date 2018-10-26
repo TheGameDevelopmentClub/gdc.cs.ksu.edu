@@ -39,7 +39,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'portfolio', children: [
-      { path: '', component: PortfolioComponent, pathMatch: 'full' },
+      { path: '', component: ErrorComponent, pathMatch: 'full' },
       {
         path: 'games', children: [
           { path: '', component: ErrorComponent, pathMatch: 'full' },
