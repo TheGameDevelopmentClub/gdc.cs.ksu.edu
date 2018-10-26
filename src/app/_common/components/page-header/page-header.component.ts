@@ -22,6 +22,6 @@ export class PageHeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.logoutWithCAS(this.router.url);
+    this.authService.logoutWithCAS('');
   }
 }
