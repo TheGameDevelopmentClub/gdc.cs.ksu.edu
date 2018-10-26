@@ -4,13 +4,12 @@ import { NgForm } from '@angular/forms';
 
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
+import { UtilityService } from 'src/app/_common/services/utility/utility.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
-import { GameService } from 'src/app/_common/services/game/game.service';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { User } from 'src/app/_common/models/user';
 import { Group } from 'src/app/_common/models/group';
-import { Game } from 'src/app/_common/models/game';
 import { Portfolio } from 'src/app/_common/models/portfolio';
 
 @Component({
@@ -35,13 +34,14 @@ export class UserProfileManagementComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private userService: UserService,
-    private gameService: GameService
+    private utilityService: UtilityService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.authService.validateCASTicket(this.router.url, this.route.snapshot.queryParams['ticket'])
       .then(user => {
+        this.utilityService.deleteQueryParams(this.router, this.route, ['ticket']);
         this.user = user;
         this.isValidated = true;
         this.userService.getGames(user.userId)
@@ -79,13 +79,5 @@ export class UserProfileManagementComponent implements OnInit {
 
   logoutUser(): void {
     this.authService.logoutWithCAS('');
-  }
-
-  openGroupsModal(): void {
-
-  }
-
-  openGamesModal(): void {
-
   }
 }
