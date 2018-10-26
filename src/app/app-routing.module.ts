@@ -50,8 +50,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'manage', canActivate: [AuthGuard], children: [
-      { path: '', component: ClubManagementComponent, pathMatch: 'full' },
-      { path: 'member', component: UserProfileManagementComponent }
+      { path: '', component: ErrorComponent, pathMatch: 'full' },
+      { path: 'me', component: UserProfileManagementComponent }
     ]
   },
   { path: '**', component: ErrorComponent }
