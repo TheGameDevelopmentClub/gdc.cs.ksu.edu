@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { UtilityService } from 'src/app/_common/services/utility/utility.service';
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
-import { User } from 'src/app/_common/models/user';
+import { User, AuthUser } from 'src/app/_common/models/user';
 
 @Component({
   selector: 'ksu-gdc-club-management',
@@ -12,8 +12,8 @@ import { User } from 'src/app/_common/models/user';
 })
 export class ClubManagementComponent implements OnInit {
   isValidated: boolean;
-  isAdmin: boolean;
-  user: User;
+  canManageClub: boolean;
+  user: AuthUser;
 
   constructor(
     private router: Router,
@@ -28,7 +28,10 @@ export class ClubManagementComponent implements OnInit {
         this.utilityService.deleteQueryParams(this.router, this.route, ['ticket']);
         this.user = user;
         this.isValidated = true;
-        this.isAdmin = true;
+        this.canManageClub = user.isOfficer;
+        if (!this.canManageClub) {
+          this.router.navigate(['/manage/member']);
+        }
       })
       .catch(error => {
         this.authService.loginWithCAS(this.router.url);

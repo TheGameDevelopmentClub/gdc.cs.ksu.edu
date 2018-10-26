@@ -8,7 +8,6 @@ export class User {
   public description: string;
   public imageUrl: string;
   public email: string;
-  public isOfficer: boolean;
 
   constructor(user: any) {
     this.userId = user['userId'];
@@ -17,6 +16,14 @@ export class User {
     this.lastName = user['lastName'];
     this.imageUrl = user['imageUrl'] || `${environment.API_URL}/users/${this.userId}/profile-image`;
     this.email = user['email'];
+  }
+}
+
+export class AuthUser extends User {
+  public isOfficer: boolean;
+
+  constructor(user: any) {
+    super(user);
     this.isOfficer = user['isOfficer'];
   }
 }

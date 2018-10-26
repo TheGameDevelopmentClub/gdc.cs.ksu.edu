@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/_common/models/user';
+import { User, AuthUser } from 'src/app/_common/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +17,12 @@ export class AuthService {
     window.location.href = `${environment.API_URL}/auth/cas/login?service=${service}`;
   }
 
-  validateCASTicket(url: string, ticket: string): Promise<User> {
-    return new Promise<User>((resolve, reject) => {
+  validateCASTicket(url: string, ticket: string): Promise<AuthUser> {
+    return new Promise<AuthUser>((resolve, reject) => {
       const service = (environment.APP_URL + url).split('?')[0];
-      this.http.get<User>(`${environment.API_URL}/auth/cas/validate?service=${service}&ticket=${ticket}`)
+      this.http.get<AuthUser>(`${environment.API_URL}/auth/cas/validate?service=${service}&ticket=${ticket}`)
         .subscribe(
-          user => resolve(new User(user)),
+          user => resolve(new AuthUser(user)),
           error => reject(error));
     });
   }
