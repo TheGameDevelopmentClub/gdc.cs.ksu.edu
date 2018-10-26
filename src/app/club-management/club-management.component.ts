@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { UtilityService } from 'src/app/_common/services/utility/utility.service';
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
-import { User, AuthUser } from 'src/app/_common/models/user';
+import { AuthUser } from 'src/app/_common/models/user';
 
 @Component({
   selector: 'ksu-gdc-club-management',
