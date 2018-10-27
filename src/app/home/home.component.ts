@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { OfficerService } from 'src/app/_common/services/officer/officer.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { Officer } from 'src/app/_common/models/officer';
-import { Game } from 'src/app/_common/models/game';
 
 @Component({
   selector: 'ksu-gdc-home',
@@ -12,18 +10,28 @@ import { Game } from 'src/app/_common/models/game';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  items: Game[];
   officers: Map<string, Officer[]> = new Map<string, Officer[]>();
 
+  categoryServices = {
+    games: this.gameService
+  };
+
+  featuredLists = new Map([
+    ['games', []]
+  ]);
+
+  featuredInfo = {
+    category: '',
+    pageNumber: 1,
+    pageSize: 6
+  };
+
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     private officerService: OfficerService,
     private gameService: GameService
   ) { }
 
   ngOnInit() {
-    this.showFeaturedGames();
     this.officerService.getAllOfficers()
       .then((officers) => this.setOfficersMap(officers));
   }
@@ -41,6 +49,32 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getCategoryPage() {
+    const category = this.featuredInfo.category;
+    const service = this.categoryServices[category];
+    service.getPaginationOfAll(this.featuredInfo.pageNumber, this.featuredInfo.pageSize)
+      .then((items) => {
+        this.resetFeaturedLists();
+        this.featuredLists.set(category, items);
+      });
+  }
+
+  resetFeaturedLists() {
+    this.featuredLists.forEach((value, key, map) => {
+      map.set(key, []);
+    });
+  }
+
+  setFeaturedCategory(category: string) {
+    this.featuredInfo.category = category;
+    this.getCategoryPage();
+  }
+
+  setFeaturedPageNumber(pageNumber: number) {
+    this.featuredInfo.pageNumber = pageNumber;
+    this.getCategoryPage();
+  }
+
   getOfficer(position: string, listNumber: number): Officer {
     position = position.toLowerCase();
     listNumber--;
@@ -49,14 +83,5 @@ export class HomeComponent implements OnInit {
       const officer = officerList[listNumber];
       return officer;
     }
-  }
-
-  showFeaturedGames(): void {
-    this.gameService.getNumberOfGames(6)
-      .then((games) => this.items = games);
-  }
-
-  showFeaturedArt(): void {
-    this.items = null;
   }
 }
