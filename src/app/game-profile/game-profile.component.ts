@@ -20,7 +20,7 @@ export class GameProfileComponent implements OnInit {
 
   ngOnInit() {
     const gameId = this.route.snapshot.params['gameId'];
-    this.gameService.getGameById(gameId)
+    this.gameService.getById(gameId)
       .then(game => {
         this.game = game;
       })
