@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
   loadFeaturedPage(pageNumber: number) {
     this.featuredItemsLoading = true;
     const service = this.categoryServices[this.featuredInfo.category];
-    service.getPaginationOfAll(pageNumber, this.featuredInfo.pageSize)
+    service.getPaginationOfFeatured(pageNumber, this.featuredInfo.pageSize)
       .then((items) => {
         this.resetFeaturedLists();
         this.featuredLists.set(this.featuredInfo.category, items.value);

@@ -35,6 +35,18 @@ export class GameService {
     });
   }
 
+  getPaginationOfFeatured(pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
+    return new Promise<PaginatedList<Game>>((resolve, reject) => {
+      this.http.get<PaginatedList<Game>>(`${environment.API_URL}/portfolio/games?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+        .subscribe(
+          pageGames => {
+            pageGames.value = pageGames.value.map((game) => new Game(game));
+            resolve(new PaginatedList<Game>(pageGames));
+          },
+          error => reject(error));
+    });
+  }
+
   getById(gameId: number): Promise<Game> {
     return new Promise<Game>((resolve, reject) => {
       this.http.get<Game>(environment.API_URL + '/portfolio/games/' + gameId)
