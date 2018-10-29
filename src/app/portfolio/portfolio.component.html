@@ -1,18 +1,18 @@
 <br>
 <section id="games">
-    <div class="container text-center">
-      <h2 class="mobile-header text-center">Games</h2>
-      <div>
-        <hr class="hr-primary">
-        <div class="row">
-          <div class="col" *ngIf="!categories.games.loading && categories.games.list.length == 0">0 games have been found</div>
-          <div class="col" *ngFor="let game of categories.games.list">
-            "{{game.title}}"
-          </div>
+  <div class="container text-center">
+    <h2 class="mobile-header text-center">Games</h2>
+    <div>
+      <hr class="hr-primary">
+      <div class="row">
+        <div class="col" *ngIf="!categories.games.loading && categories.games.list.length == 0">0 games have been found</div>
+        <div class="col" *ngFor="let game of categories.games.list">
+          <ksu-gdc-portfolio-item category="game" [item]="game"></ksu-gdc-portfolio-item>
         </div>
-        <ksu-gdc-pagination *ngIf="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount" [pageSize]="categories.games.pageSize"
-          (pageChange)="loadPage('games', $event)"></ksu-gdc-pagination>
       </div>
+      <ksu-gdc-pagination *ngIf="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount" [pageSize]="categories.games.pageSize"
+        (pageChange)="loadPage('games', $event)"></ksu-gdc-pagination>
     </div>
-  </section>
-  <br>
+  </div>
+</section>
+<br>

@@ -1,13 +1,11 @@
 import { environment } from 'src/environments/environment';
+import { PortfolioItem } from 'src/app/_common/models/portfolio';
 
-export class Game {
+export class Game extends PortfolioItem {
   public gameId: number;
-  public title: string;
-  public description: string;
-  public imageUrl: string;
-  public itemUrl: string;
 
   constructor(game: any) {
+    super();
     this.gameId = game['gameId'];
     this.title = game['title'];
     this.description = game['description'];

@@ -1,7 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Game } from 'src/app/_common/models/game';
+import { PortfolioItem } from 'src/app/_common/models/portfolio';
+
+const categories = {
+  game: {
+    path: 'games',
+    id: 'gameId'
+  }
+};
 
 @Component({
   selector: 'ksu-gdc-portfolio-item',
@@ -9,20 +16,20 @@ import { Game } from 'src/app/_common/models/game';
   styleUrls: ['./portfolio-item.component.scss']
 })
 export class PortfolioItemComponent implements OnInit {
-  item: Game;
+  @Input() category: string;
+  @Input() item: PortfolioItem;
+
+  info;
 
   constructor(
     private router: Router
   ) { }
 
-  @Input('item') set setPortfolioItem(item: Game) {
-    this.item = item;
-  }
-
   ngOnInit() {
+    this.info = categories[this.category];
   }
 
   openItemInfo() {
-    this.router.navigate(['/portfolio/games/' + this.item.gameId]);
+    this.router.navigate([`/portfolio/${this.info.path}/${this.item[this.info.id]}`]);
   }
 }
