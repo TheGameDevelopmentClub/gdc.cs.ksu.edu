@@ -45,6 +45,7 @@ import { OfficerProfileModalComponent } from 'src/app/_common/components/officer
 import { CountdownTimerComponent } from 'src/app/_common/components/countdown-timer/countdown-timer.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { PaginationComponent } from './_common/components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     EventProfileComponent,
     UsersComponent,
     GroupsComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

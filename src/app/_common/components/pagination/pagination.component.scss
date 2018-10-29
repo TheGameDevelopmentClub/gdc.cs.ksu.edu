@@ -1,0 +1,33 @@
+.bar-container {
+  padding-top: 20px;
+}
+
+.arrow {
+  display: inline-block;
+  font-size: 40px;
+  border: solid black 2px;
+  border-radius: 10px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    transition: .2s;
+  }
+}
+
+.arrow-disabled {
+  cursor: default;
+  pointer-events: none;
+  opacity: .50;
+}
+
+.left {
+  transform: translateX(-40px) rotate(90deg);
+  -webkit-transform: translateX(-40px) rotate(90deg);
+}
+
+.right {
+  transform: translateX(40px) rotate(-90deg);
+  -webkit-transform: translateX(40px) rotate(-90deg);
+}

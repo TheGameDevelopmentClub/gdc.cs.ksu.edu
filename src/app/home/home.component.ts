@@ -16,14 +16,15 @@ export class HomeComponent implements OnInit {
     games: this.gameService
   };
 
+  featuredItemsLoading: boolean;
+  featuredCategoryLoaded: boolean;
   featuredLists = new Map([
     ['games', []]
   ]);
-
   featuredInfo = {
     category: '',
-    pageNumber: 1,
-    pageSize: 6
+    pageSize: 5,
+    totalItemCount: 0
   };
 
   constructor(
@@ -49,38 +50,38 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getCategoryPage() {
-    const category = this.featuredInfo.category;
-    const service = this.categoryServices[category];
-    service.getPaginationOfAll(this.featuredInfo.pageNumber, this.featuredInfo.pageSize)
+  changeFeaturedCategory(category: string) {
+    this.featuredCategoryLoaded = false;
+    this.featuredInfo.category = category;
+    this.loadFeaturedPage(1);
+  }
+  changeFeaturedPage(pageNumber: number) {
+    this.loadFeaturedPage(pageNumber);
+  }
+  loadFeaturedPage(pageNumber: number) {
+    this.featuredItemsLoading = true;
+    const service = this.categoryServices[this.featuredInfo.category];
+    service.getPaginationOfAll(pageNumber, this.featuredInfo.pageSize)
       .then((items) => {
         this.resetFeaturedLists();
-        this.featuredLists.set(category, items);
+        this.featuredLists.set(this.featuredInfo.category, items.value);
+        this.featuredInfo.totalItemCount = items.originalCount;
+        this.featuredCategoryLoaded = true;
+        this.featuredItemsLoading = false;
       });
   }
 
-  resetFeaturedLists() {
+  private resetFeaturedLists() {
     this.featuredLists.forEach((value, key, map) => {
       map.set(key, []);
     });
   }
 
-  setFeaturedCategory(category: string) {
-    this.featuredInfo.category = category;
-    this.getCategoryPage();
-  }
-
-  setFeaturedPageNumber(pageNumber: number) {
-    this.featuredInfo.pageNumber = pageNumber;
-    this.getCategoryPage();
-  }
-
-  getOfficer(position: string, listNumber: number): Officer {
+  getOfficer(position: string, index: number): Officer {
     position = position.toLowerCase();
-    listNumber--;
     const officerList = this.officers.get(position);
     if (officerList) {
-      const officer = officerList[listNumber];
+      const officer = officerList[index];
       return officer;
     }
   }

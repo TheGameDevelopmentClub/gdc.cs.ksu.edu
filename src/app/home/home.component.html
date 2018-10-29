@@ -16,12 +16,18 @@
 <section id="featured">
   <div class="container text-center">
     <h2 class="mobile-header text-center">Featured</h2>
-    <button class="btn btn-success">Games</button>
-    <hr *ngIf="featuredInfo.category !== ''" class="hr-primary">
-    <div *ngIf="featuredInfo.category === 'games'" class="row">
-      <div class="col" *ngFor="let game of featuredLists.get('games')">
-        "{{game.title}}"
+    <button class="btn btn-success" [class.active]="featuredInfo.category === 'games'" (click)="changeFeaturedCategory('games')">Games</button>
+    <div *ngIf="featuredInfo.category !== ''">
+      <hr class="hr-primary">
+      <div *ngIf="featuredInfo.category === 'games'" class="row">
+        <div class="col" *ngIf="!featuredItemsLoading && featuredLists.get('games').length == 0">There are currently 0
+          games being featured</div>
+        <div class="col" *ngFor="let game of featuredLists.get('games')">
+          "{{game.title}}"
+        </div>
       </div>
+      <ksu-gdc-pagination *ngIf="featuredCategoryLoaded" [totalItemCount]="featuredInfo.totalItemCount" [pageSize]="featuredInfo.pageSize"
+        (pageChange)="changeFeaturedPage($event)"></ksu-gdc-pagination>
     </div>
   </div>
 </section>
@@ -34,37 +40,37 @@
       <div class="col-lg ml-auto">
         <div class="row">
           <div class="col-lg-4 col-sm-6 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile position="President" [officer]="getOfficer('President', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="President" [officer]="getOfficer('President', 0)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-4 col-sm-6 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile position="Vice President" [officer]="getOfficer('Vice President', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Vice President" [officer]="getOfficer('Vice President', 0)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-4 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile position="Treasurer" [officer]="getOfficer('Treasurer', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Treasurer" [officer]="getOfficer('Treasurer', 0)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile position="Secretary" [officer]="getOfficer('Secretary', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Secretary" [officer]="getOfficer('Secretary', 0)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile position="Website Manager" [officer]="getOfficer('Website Manager', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Website Manager" [officer]="getOfficer('Website Manager', 0)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile position="Social Media Manager" [officer]="getOfficer('Social Media Manager', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Social Media Manager" [officer]="getOfficer('Social Media Manager', 0)"></ksu-gdc-officer-profile>
+          </div>
+          <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
+            <ksu-gdc-officer-profile position="Industry Liaison" [officer]="getOfficer('Industry Liaison', 0)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
             <ksu-gdc-officer-profile position="Industry Liaison" [officer]="getOfficer('Industry Liaison', 1)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile position="Industry Liaison" [officer]="getOfficer('Industry Liaison', 2)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Event Coordinator" [officer]="getOfficer('Event Coordinator', 0)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile position="Event Coordinator" [officer]="getOfficer('Event Coordinator', 1)"></ksu-gdc-officer-profile>
-          </div>
-          <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
-            <ksu-gdc-officer-profile position="Recruitment and Retention Officer" [officer]="getOfficer('Recruitment and Retention Officer', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Recruitment and Retention Officer" [officer]="getOfficer('Recruitment and Retention Officer', 0)"></ksu-gdc-officer-profile>
           </div>
           <div class="col-lg-3 col-sm-4 col-12 text-center mb-4">
-            <ksu-gdc-officer-profile position="Advisor" [officer]="getOfficer('Advisor', 1)"></ksu-gdc-officer-profile>
+            <ksu-gdc-officer-profile position="Advisor" [officer]="getOfficer('Advisor', 0)"></ksu-gdc-officer-profile>
           </div>
         </div>
       </div>
