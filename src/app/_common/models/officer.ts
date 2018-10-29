@@ -8,6 +8,8 @@ export class Officer {
   constructor(officer: any) {
     this.officerId = officer['officerId'];
     this.position = officer['position'];
-    this.user = officer['user'];
+    if (officer['user']) {
+      this.user = new User(officer['user']);
+    }
   }
 }
