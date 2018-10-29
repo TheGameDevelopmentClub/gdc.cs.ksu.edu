@@ -13,7 +13,7 @@ export class PortfolioComponent implements OnInit {
       service: this.gameService,
       loading: false,
       loaded: false,
-      pageSize: 9,
+      pageSize: 3,
       totalItemCount: 0,
       list: []
     }
@@ -29,8 +29,7 @@ export class PortfolioComponent implements OnInit {
 
   loadPage(category: string, pageNumber: number) {
     this.categories[category].loading = true;
-    const service = this.categories[category].service;
-    service.getPaginationOfAll(pageNumber, this.categories[category].pageSize)
+    this.categories[category].service.getPaginationOfAll(pageNumber, this.categories[category].pageSize)
       .then((items) => {
         this.categories[category].list = items.value;
         this.categories[category].totalItemCount = items.originalCount;

@@ -1,4 +1,4 @@
-<div class="bar-container">
+<div *ngIf="itemsLoaded && totalItemCount != 0" class="bar-container">
   <span class="arrow left" [class.arrow-disabled]="!leftArrowVisible" (click)="movePrevPage()">&#11015;</span>
   <span>
 

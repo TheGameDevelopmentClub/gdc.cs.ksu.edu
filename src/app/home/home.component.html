@@ -20,14 +20,14 @@
     <div *ngIf="featuredInfo.category !== ''">
       <hr class="hr-primary">
       <div *ngIf="featuredInfo.category === 'games'" class="row">
-        <div class="col" *ngIf="!featuredItemsLoading && featuredLists.get('games').length == 0">There are currently 0
+        <div class="col" *ngIf="!featuredItemsLoading && featuredInfo.totalItemCount == 0">There are currently 0
           games being featured</div>
         <div class="col" *ngFor="let game of featuredLists.get('games')">
           <ksu-gdc-portfolio-item category="game" [item]="game"></ksu-gdc-portfolio-item>
         </div>
       </div>
-      <ksu-gdc-pagination *ngIf="featuredCategoryLoaded" [totalItemCount]="featuredInfo.totalItemCount" [pageSize]="featuredInfo.pageSize"
-        (pageChange)="changeFeaturedPage($event)"></ksu-gdc-pagination>
+      <ksu-gdc-pagination [itemsLoaded]="featuredCategoryLoaded" [totalItemCount]="featuredInfo.totalItemCount"
+        [pageSize]="featuredInfo.pageSize" (pageChange)="changeFeaturedPage($event)"></ksu-gdc-pagination>
     </div>
   </div>
 </section>

@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       .then((officers) => this.setOfficersMap(officers));
   }
 
-  private setOfficersMap(officers: Officer[]): void {
+  private setOfficersMap(officers: Officer[]) {
     officers.forEach((officer) => {
       const position = officer.position.toLowerCase();
       const officerList = this.officers.get(position);
@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
       .then((items) => {
         this.resetFeaturedLists();
         this.featuredLists.set(this.featuredInfo.category, items.value);
-        this.featuredInfo.totalItemCount = items.originalCount;
+        this.featuredInfo.totalItemCount = items.totalItemCount;
         this.featuredCategoryLoaded = true;
         this.featuredItemsLoading = false;
       });

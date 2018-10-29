@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from 'src/environments/environment';
+import { API_PATH } from 'src/app/_common/constants/paths';
 import { PaginatedList } from 'src/app/_common/models/paginated-list';
 import { Game } from 'src/app/_common/models/game';
-
-const baseUrl = environment.API_URL + '/portfolio/games';
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +14,18 @@ export class GameService {
     private http: HttpClient
   ) { }
 
-  getAll(): Promise<Game[]> {
-    return new Promise<Game[]>((resolve, reject) => {
-      this.http.get<Game[]>(`${baseUrl}`)
+  getById(gameId: number): Promise<Game> {
+    return new Promise<Game>((resolve, reject) => {
+      this.http.get<Game>(`${API_PATH.gamesBaseUrl}/${gameId}`)
         .subscribe(
-          games => resolve(games.map((game) => new Game(game))),
+          game => resolve(new Game(game)),
           error => reject(error));
     });
   }
 
   getPaginationOfAll(pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
     return new Promise<PaginatedList<Game>>((resolve, reject) => {
-      this.http.get<PaginatedList<Game>>(`${baseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      this.http.get<PaginatedList<Game>>(`${API_PATH.gamesBaseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
         .subscribe(
           pageGames => {
             pageGames.value = pageGames.value.map((game) => new Game(game));
@@ -38,8 +36,13 @@ export class GameService {
   }
 
   getPaginationOfFeatured(pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
+    return this.getPaginationOfAll(pageNumber, pageSize);
+  }
+
+  getPaginationOfAllByUserId(userId: number, pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
     return new Promise<PaginatedList<Game>>((resolve, reject) => {
-      this.http.get<PaginatedList<Game>>(`${baseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      this.http.get<PaginatedList<Game>>(`${API_PATH.usersBaseUrl}/${userId}/portfolio/games?pageNumber=${pageNumber}
+      &pageSize=${pageSize}`)
         .subscribe(
           pageGames => {
             pageGames.value = pageGames.value.map((game) => new Game(game));
@@ -49,11 +52,15 @@ export class GameService {
     });
   }
 
-  getById(gameId: number): Promise<Game> {
-    return new Promise<Game>((resolve, reject) => {
-      this.http.get<Game>(`${baseUrl}/${gameId}`)
+  getPaginationOfAllByGroupId(groupId: number, pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
+    return new Promise<PaginatedList<Game>>((resolve, reject) => {
+      this.http.get<PaginatedList<Game>>(`${API_PATH.groupsBaseUrl}/${groupId}/portfolio/games?pageNumber=${pageNumber}
+      &pageSize=${pageSize}`)
         .subscribe(
-          game => resolve(new Game(game)),
+          pageGames => {
+            pageGames.value = pageGames.value.map((game) => new Game(game));
+            resolve(new PaginatedList<Game>(pageGames));
+          },
           error => reject(error));
     });
   }

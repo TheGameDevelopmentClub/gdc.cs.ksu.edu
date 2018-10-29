@@ -28,8 +28,8 @@ export class GroupProfileComponent implements OnInit {
     this.groupService.getById(groupId)
       .then(group => {
         this.group = group;
-        this.groupService.getAllGames(groupId)
-          .then(games => this.portfolio.games = games);
+        // this.groupService.getPaginationOfAll(groupId)
+        //   .then(games => this.portfolio.games = games);
       })
       .catch(error => {
         this.group = null;

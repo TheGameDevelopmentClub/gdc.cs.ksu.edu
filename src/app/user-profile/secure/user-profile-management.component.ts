@@ -2,20 +2,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
+import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
+import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
 import { UtilityService } from 'src/app/_common/services/utility/utility.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
-import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
-import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
+import { GroupService } from 'src/app/_common/services/group/group.service';
+import { GameService } from 'src/app/_common/services/game/game.service';
 import { User } from 'src/app/_common/models/user';
-import { Group } from 'src/app/_common/models/group';
-import { Portfolio } from 'src/app/_common/models/portfolio';
 
 @Component({
   selector: 'ksu-gdc-user-profile-management',
   templateUrl: './user-profile-management.component.html',
-  styleUrls: ['./user-profile-management.component.scss']
+  styleUrls: ['../user-profile.component.scss']
 })
 export class UserProfileManagementComponent implements OnInit {
   @ViewChild('profileUpdateMessages') profileUpdateMessages: InfoMessagesComponent;
@@ -27,15 +27,33 @@ export class UserProfileManagementComponent implements OnInit {
   isValidated: boolean;
   user: User;
 
-  groups: Group[];
-  portfolio: Portfolio = new Portfolio();
+  categories = {
+    groups: {
+      service: this.groupService,
+      loading: false,
+      loaded: false,
+      pageSize: 6,
+      totalItemCount: 0,
+      list: []
+    },
+    games: {
+      service: this.gameService,
+      loading: false,
+      loaded: false,
+      pageSize: 6,
+      totalItemCount: 0,
+      list: []
+    }
+  };
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
     private utilityService: UtilityService,
-    private userService: UserService
+    private userService: UserService,
+    private groupService: GroupService,
+    private gameService: GameService
   ) { }
 
   ngOnInit() {
@@ -44,19 +62,28 @@ export class UserProfileManagementComponent implements OnInit {
         this.utilityService.deleteQueryParams(this.router, this.route, ['ticket']);
         this.user = user;
         this.isValidated = true;
-        this.userService.getGames(user.userId)
-          .then(games => this.portfolio.games = games);
-        this.userService.getGroups(user.userId)
-          .then(groups => this.groups = groups);
+        this.loadPage('groups', 1);
+        this.loadPage('games', 1);
       })
       .catch(error => {
         this.authService.loginWithCAS(this.router.url);
       });
   }
 
-  uploadProfileImage(image: File): void {
+  loadPage(category: string, pageNumber: number) {
+    this.categories[category].loading = true;
+    this.categories[category].service.getPaginationOfAllByUserId(this.user.userId, pageNumber, this.categories[category].pageSize)
+      .then((items) => {
+        this.categories[category].list = items.value;
+        this.categories[category].totalItemCount = items.originalCount;
+        this.categories[category].loaded = true;
+        this.categories[category].loading = false;
+      });
+  }
+
+  uploadProfileImage(image: File) {
     this.profileImageUploader.isProcessing = true;
-    this.userService.updateProfileImage(this.user.userId, image)
+    this.userService.updateImage(this.user.userId, image)
       .then(() => {
         this.profileUpdateMessages.showSuccess('Your profile image has been updated.');
         this.profileImageUploader.isProcessing = false;
@@ -65,7 +92,7 @@ export class UserProfileManagementComponent implements OnInit {
       .catch(error => this.profileUpdateMessages.showError('There was a problem updating your profile picture.'));
   }
 
-  updateUserInfo(): void {
+  updateUserInfo() {
     this.userService.update(this.user)
       .then(() => {
         this.infoForm.form.markAsPristine();
@@ -77,7 +104,7 @@ export class UserProfileManagementComponent implements OnInit {
       });
   }
 
-  logoutUser(): void {
+  logoutUser() {
     this.authService.logoutWithCAS('');
   }
 }
