@@ -4,12 +4,6 @@ body {
   min-width: 450px;
 }
 
-.name {
-  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase
-}
-
 .logo-container {
   max-width: 400px;
   max-height: 400px;
@@ -46,6 +40,12 @@ section.success {
 section {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+
+.featured-btn {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 @media(max-width: 770px) {

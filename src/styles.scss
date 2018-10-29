@@ -32,7 +32,8 @@ hr.hr-primary {
   padding: 0;
   text-align: center;
   border: none;
-  border-top: solid 3px
+  border-top: solid 3px;
+  transform: translateY(2px);
 }
 
 hr.hr-light:after,

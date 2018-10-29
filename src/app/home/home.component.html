@@ -2,7 +2,7 @@
   <div class="container">
     <img class="img-fluid rounded-circle logo-container" src="assets/images/gdclogo.png">
     <div class="intro-text">
-      <span class="name">K-State GDC</span>
+      <h1 class="name">K-State GDC</h1>
       <span class="description">
         K-State’s Game Development Club is the club to be in at K-State. We get together every week
         to develop every kind of game imaginable. We welcome all majors and skill levels to join us as we discuss
@@ -16,7 +16,7 @@
 <section id="featured">
   <div class="container text-center">
     <h2 class="mobile-header text-center">Featured</h2>
-    <button class="btn btn-success" [class.active]="featuredInfo.category === 'games'" (click)="changeFeaturedCategory('games')">Games</button>
+    <button class="btn btn-success featured-btn" [class.active]="featuredInfo.category === 'games'" (click)="changeFeaturedCategory('games')">Games</button>
     <div *ngIf="featuredInfo.category !== ''">
       <hr class="hr-primary">
       <div *ngIf="featuredInfo.category === 'games'" class="row">
