@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-
 import { Officer } from 'src/app/_common/models/officer';
+
+const baseUrl = environment.API_URL + '/officers';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +14,27 @@ export class OfficerService {
     private http: HttpClient
   ) { }
 
-  getAllOfficers(): Promise<Officer[]> {
+  getAll(): Promise<Officer[]> {
     return new Promise((resolve, reject) => {
-      this.http.get<Officer[]>(environment.API_URL + '/officers')
+      this.http.get<Officer[]>(`${baseUrl}`)
       .subscribe(
         officers => resolve(officers.map((officer) => new Officer(officer))),
         error => reject(error));
     });
   }
 
-  getOfficersByPosition(position: string): Promise<Officer[]> {
+  getById(officerId: number): Promise<Officer> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Officer[]>(`${baseUrl}/${officerId}`)
+      .subscribe(
+        officer => resolve(new Officer(officer)),
+        error => reject(error));
+    });
+  }
+
+  getByPosition(position: string): Promise<Officer[]> {
     return new Promise<any>((resolve, reject) => {
-      this.http.get<Officer[]>(environment.API_URL + '/officers?position=' + position)
+      this.http.get<Officer[]>(`${baseUrl}?position=${position}`)
       .subscribe(
         officers => resolve(officers.map((officer) => new Officer(officer))),
         error => reject(error));

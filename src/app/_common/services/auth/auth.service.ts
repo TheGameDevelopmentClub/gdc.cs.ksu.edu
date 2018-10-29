@@ -5,6 +5,9 @@ import { environment } from 'src/environments/environment';
 import { StorageService } from 'src/app/_common/services/storage/storage.service';
 import { AuthUser } from 'src/app/_common/models/user';
 
+const baseUrl = environment.API_URL + '/auth';
+const baseCASUrl = baseUrl + '/cas';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,13 +23,13 @@ export class AuthService {
 
   loginWithCAS(url: string): void {
     const service = (environment.APP_URL + url).split('?')[0];
-    window.location.href = `${environment.API_URL}/auth/cas/login?service=${service}`;
+    window.location.href = `${baseCASUrl}/login?service=${service}`;
   }
 
   validateCASTicket(url: string, ticket: string): Promise<AuthUser> {
     return new Promise<AuthUser>((resolve, reject) => {
       const service = (environment.APP_URL + url).split('?')[0];
-      this.http.get<AuthUser>(`${environment.API_URL}/auth/cas/validate?service=${service}&ticket=${ticket}`)
+      this.http.get<AuthUser>(`${baseCASUrl}/validate?service=${service}&ticket=${ticket}`)
         .subscribe(
           user => resolve(new AuthUser(user)),
           error => reject(error));
@@ -35,6 +38,6 @@ export class AuthService {
 
   logoutWithCAS(url: string): void {
     const service = (environment.APP_URL + url).split('?')[0];
-    window.location.href = `${environment.API_URL}/auth/cas/logout?service=${service}`;
+    window.location.href = `${baseCASUrl}/logout?service=${service}`;
   }
 }

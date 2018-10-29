@@ -66,7 +66,7 @@ export class UserProfileManagementComponent implements OnInit {
   }
 
   updateUserInfo(): void {
-    this.userService.updateUser(this.user)
+    this.userService.update(this.user)
       .then(() => {
         this.infoForm.form.markAsPristine();
         this.infoForm.form.markAsUntouched();

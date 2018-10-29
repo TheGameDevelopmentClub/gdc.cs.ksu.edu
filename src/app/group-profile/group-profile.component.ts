@@ -25,10 +25,10 @@ export class GroupProfileComponent implements OnInit {
 
   ngOnInit() {
     const groupId = this.route.snapshot.params['groupId'];
-    this.groupService.getGroupById(groupId)
+    this.groupService.getById(groupId)
       .then(group => {
         this.group = group;
-        this.groupService.getGames(groupId)
+        this.groupService.getAllGames(groupId)
           .then(games => this.portfolio.games = games);
       })
       .catch(error => {

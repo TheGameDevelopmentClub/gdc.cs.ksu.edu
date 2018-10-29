@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     const userId = this.route.snapshot.params['userId'];
-    this.userService.getUserById(userId)
+    this.userService.getById(userId)
       .then(user => {
         this.user = user;
         this.userService.getGames(userId)

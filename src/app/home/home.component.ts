@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.officerService.getAllOfficers()
+    this.officerService.getAll()
       .then((officers) => this.setOfficersMap(officers));
   }
 
