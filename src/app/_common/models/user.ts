@@ -14,6 +14,7 @@ export class User {
     this.username = user['username'];
     this.firstName = user['firstName'];
     this.lastName = user['lastName'];
+    this.description = user['description'];
     this.imageUrl = user['imageUrl'] || `${environment.API_URL}/users/${this.userId}/profile-image`;
     this.email = user['email'];
   }
