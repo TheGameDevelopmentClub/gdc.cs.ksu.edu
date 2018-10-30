@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { OfficerProfileModalComponent } from 'src/app/_common/components/officer-profile-modal/officer-profile-modal.component';
 import { OfficerService } from 'src/app/_common/services/officer/officer.service';
 import { Officer } from 'src/app/_common/models/officer';
 
