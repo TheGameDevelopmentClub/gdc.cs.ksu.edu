@@ -13,7 +13,7 @@ export class PortfolioComponent implements OnInit {
       service: this.gameService,
       loading: false,
       loaded: false,
-      pageSize: 3,
+      pageSize: 6,
       totalItemCount: 0,
       list: []
     }

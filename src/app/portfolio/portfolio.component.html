@@ -10,7 +10,7 @@
           <ksu-gdc-portfolio-item category="game" [item]="game"></ksu-gdc-portfolio-item>
         </div>
       </div>
-      <ksu-gdc-pagination *ngIf="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount" [pageSize]="categories.games.pageSize"
+      <ksu-gdc-pagination [itemsLoaded]="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount" [pageSize]="categories.games.pageSize"
         (pageChange)="loadPage('games', $event)"></ksu-gdc-pagination>
     </div>
   </div>

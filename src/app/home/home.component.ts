@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   ]);
   featuredInfo = {
     category: '',
-    pageSize: 6,
+    pageSize: 3,
     totalItemCount: 0
   };
 
