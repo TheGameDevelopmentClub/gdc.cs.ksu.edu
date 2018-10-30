@@ -7,7 +7,7 @@ import { GameService } from 'src/app/_common/services/game/game.service';
 @Component({
   selector: 'ksu-gdc-game-profile',
   templateUrl: './game-profile.component.html',
-  styleUrls: ['./game-profile.component.scss']
+  styleUrls: ['../game-profile.component.scss']
 })
 export class GameProfileComponent implements OnInit {
   gameNotFound: boolean;
