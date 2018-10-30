@@ -10,7 +10,7 @@ import { Officer } from 'src/app/_common/models/officer';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  officers: Map<string, Officer[]> = new Map<string, Officer[]>();
+  officers = new Map<string, Officer[]>();
 
   categoryServices = {
     games: this.gameService
@@ -50,6 +50,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getOfficer(position: string, index: number): Officer {
+    position = position.toLowerCase();
+    const officerList = this.officers.get(position);
+    if (officerList) {
+      const officer = officerList[index];
+      return officer;
+    }
+  }
+
   changeFeaturedCategory(category: string) {
     this.featuredCategoryLoaded = false;
     this.featuredInfo.category = category;
@@ -75,14 +84,5 @@ export class HomeComponent implements OnInit {
     this.featuredLists.forEach((value, key, map) => {
       map.set(key, []);
     });
-  }
-
-  getOfficer(position: string, index: number): Officer {
-    position = position.toLowerCase();
-    const officerList = this.officers.get(position);
-    if (officerList) {
-      const officer = officerList[index];
-      return officer;
-    }
   }
 }

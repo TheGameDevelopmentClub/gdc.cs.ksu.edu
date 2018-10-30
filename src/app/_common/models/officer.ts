@@ -12,4 +12,11 @@ export class Officer {
       this.user = new User(officer['user']);
     }
   }
+
+  getFullName(): string {
+    if (this.user) {
+      return this.user.firstName + ' ' + this.user.lastName;
+    }
+    return '';
+  }
 }

@@ -33,11 +33,11 @@ import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/
 import { PageHeaderComponent } from 'src/app/_common/components/page-header/page-header.component';
 import { PageFooterComponent } from 'src/app/_common/components/page-footer/page-footer.component';
 import { PortfolioItemComponent } from 'src/app/_common/components/portfolio-item/portfolio-item.component';
-import { OfficerProfileComponent } from 'src/app/_common/components/officer-profile/officer-profile.component';
 import { CountdownTimerComponent } from 'src/app/_common/components/countdown-timer/countdown-timer.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
-import { PortfolioComponent } from './portfolio/portfolio.component';
-import { PaginationComponent } from './_common/components/pagination/pagination.component';
+import { PortfolioComponent } from 'src/app/portfolio/portfolio.component';
+import { PaginationComponent } from 'src/app/_common/components/pagination/pagination.component';
+import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/officer-badge.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,6 @@ import { PaginationComponent } from './_common/components/pagination/pagination.
     PageHeaderComponent,
     PageFooterComponent,
     PortfolioItemComponent,
-    OfficerProfileComponent,
     CountdownTimerComponent,
     HomeComponent,
     UserProfileComponent,
@@ -60,7 +59,8 @@ import { PaginationComponent } from './_common/components/pagination/pagination.
     UserProfileManagementComponent,
     GameProfileComponent,
     PortfolioComponent,
-    PaginationComponent
+    PaginationComponent,
+    OfficerBadgeComponent
   ],
   imports: [
     BrowserModule,

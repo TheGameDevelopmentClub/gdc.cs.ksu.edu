@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OfficerProfileComponent } from './officer-profile.component';
+import { OfficerBadgeComponent } from './officer-badge.component';
 
-describe('OfficerProfileComponent', () => {
-  let component: OfficerProfileComponent;
-  let fixture: ComponentFixture<OfficerProfileComponent>;
+describe('OfficerBadgeComponent', () => {
+  let component: OfficerBadgeComponent;
+  let fixture: ComponentFixture<OfficerBadgeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OfficerProfileComponent ]
+      declarations: [ OfficerBadgeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OfficerProfileComponent);
+    fixture = TestBed.createComponent(OfficerBadgeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
