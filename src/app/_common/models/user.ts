@@ -1,4 +1,4 @@
-import { environment } from 'src/environments/environment';
+import { API_PATH } from 'src/app/_common/constants/paths';
 
 export class User {
   public userId: number;
@@ -6,8 +6,8 @@ export class User {
   public firstName: string;
   public lastName: string;
   public description: string;
-  public imageUrl: string;
   public email: string;
+  public imageUrl: string;
 
   constructor(user: any) {
     this.userId = user['userId'];
@@ -15,8 +15,12 @@ export class User {
     this.firstName = user['firstName'];
     this.lastName = user['lastName'];
     this.description = user['description'];
-    this.imageUrl = user['imageUrl'] || `${environment.API_URL}/users/${this.userId}/profile-image`;
     this.email = user['email'];
+    this.imageUrl = `${API_PATH.usersBaseUrl}/${this.userId}/image`;
+  }
+
+  get fullName() {
+    return this.firstName + ' ' + this.lastName;
   }
 }
 

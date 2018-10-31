@@ -1,16 +1,11 @@
-import { Game } from 'src/app/_common/models/game';
-
-export class Portfolio {
-  public games: Game[];
-
-  constructor() {
-    this.games = [];
-  }
-}
+import { User } from 'src/app/_common/models/user';
+import { Group } from 'src/app/_common/models/group';
 
 export class PortfolioItem {
   public title: string;
   public description: string;
+  public url: string;
+  public user: User;
+  public group: Group;
   public imageUrl: string;
-  public itemUrl: string;
 }

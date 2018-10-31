@@ -8,15 +8,14 @@ export class Officer {
   constructor(officer: any) {
     this.officerId = officer['officerId'];
     this.position = officer['position'];
-    if (officer['user']) {
-      this.user = new User(officer['user']);
-    }
+    this.user = (officer['user']) ? new User(officer['user']) : new User({});
   }
 
-  getFullName(): string {
-    if (this.user) {
-      return this.user.firstName + ' ' + this.user.lastName;
-    }
-    return '';
+  get fullName(): string {
+    return this.user.fullName;
+  }
+
+  get imageUrl(): string {
+    return this.user.imageUrl;
   }
 }

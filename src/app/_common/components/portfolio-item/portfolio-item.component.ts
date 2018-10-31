@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PortfolioItem } from 'src/app/_common/models/portfolio';
 
 const categories = {
-  game: {
+  games: {
     path: 'games',
     id: 'gameId'
   }

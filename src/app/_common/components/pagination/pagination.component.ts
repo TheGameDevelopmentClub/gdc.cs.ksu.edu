@@ -13,30 +13,25 @@ export class PaginationComponent implements OnInit {
   @Input() itemsLoaded: boolean;
   @Input() totalItemCount: number;
 
-  totalPageCount: number;
+  get totalPageCount() {
+    return Math.ceil(this.totalItemCount / this.pageSize);
+  }
 
-  rightArrowVisible: boolean;
-  leftArrowVisible: boolean;
+  get leftArrowVisible() {
+    return this.pageNumber > 1;
+  }
+  get rightArrowVisible() {
+    return this.pageNumber < this.totalPageCount;
+  }
 
   constructor() { }
 
   ngOnInit() {
-    this.initialize();
-  }
-
-  initialize() {
-    this.setTotalPageCount();
-    this.setView();
   }
 
   changePage(page: number) {
     this.pageNumber = page;
-    this.initialize();
     this.pageChange.emit(page);
-  }
-
-  private setTotalPageCount() {
-    this.totalPageCount = Math.ceil(this.totalItemCount / this.pageSize);
   }
 
   moveNextPage() {
@@ -49,10 +44,5 @@ export class PaginationComponent implements OnInit {
     if (this.pageNumber > 1) {
       this.changePage(this.pageNumber - 1);
     }
-  }
-
-  private setView() {
-    this.leftArrowVisible = this.pageNumber > 1;
-    this.rightArrowVisible = this.pageNumber < this.totalPageCount;
   }
 }

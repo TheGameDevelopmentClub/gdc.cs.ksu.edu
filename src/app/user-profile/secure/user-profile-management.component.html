@@ -1,69 +1,69 @@
 <div class="container">
-    <div *ngIf="isValidated">
-      <button *ngIf="isValidated" (click)="logoutUser()" class="btn logout">Logout</button>
-      <br>
-      <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{user.imageUrl}}"
-        alt-url="assets/images/profile.png">
-      <h1 class="text-center">{{user.username}}</h1>
-      <hr class="hr-primary">
-      <ksu-gdc-info-messages #profileUpdateMessages></ksu-gdc-info-messages>
-      <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" [show-upload]="false" (fileChange)="uploadProfileImage($event)"></ksu-gdc-file-upload>
-      <form (ngSubmit)="updateUserInfo()" #infoForm="ngForm">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" class="form-control" id="firstName" name="firstName" [ngModel]="user.firstName | sanitizeInput"
-            (ngModelChange)="user.firstName=$event" />
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" class="form-control" id="lastName" name="lastName" [ngModel]="user.lastName | sanitizeInput"
-            (ngModelChange)="user.lastName=$event" />
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea type="text" class="form-control" id="description" name="description" [ngModel]="user.description | sanitizeInput"
-            (ngModelChange)="user.description=$event"></textarea>
-        </div>
-        <button type="submit" class="btn btn-success" [disabled]="infoForm.pristine || !infoForm.form.valid">Update</button>
-      </form>
-      <br>
-      <div class="groups-container">
-        <div class="container text-center">
-          <div>
-            <h3>Groups</h3>
-            <!-- <button class="btn btn-success" (click)="openGroupsModal()">Manage</button> -->
-          </div>
-          <hr class="hr-primary">
-          <div *ngIf="!categories.groups.loading && categories.groups.totalItemCount == 0">0 groups have been
-            found</div>
-          <div class="row">
-            <div class="col" *ngFor="let group of categories.groups.list">
-              <div>{{group.name}}</div>
-            </div>
-          </div>
-          <ksu-gdc-pagination [itemsLoaded]="categories.groups.loaded" [totalItemCount]="categories.groups.totalItemCount"
-            [pageSize]="categories.groups.pageSize" (pageChange)="loadPage('groups', $event)"></ksu-gdc-pagination>
-        </div>
+  <div *ngIf="isValidated">
+    <button (click)="logoutUser()" class="btn logout">Logout</button>
+    <br>
+    <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{user.imageUrl}}"
+      alt-url="assets/images/profile.png">
+    <h1 class="text-center">{{user.username}}</h1>
+    <hr class="hr-primary">
+    <ksu-gdc-info-messages #profileUpdateMessages></ksu-gdc-info-messages>
+    <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" [show-upload]="false" (fileChange)="uploadProfileImage($event)"></ksu-gdc-file-upload>
+    <form (ngSubmit)="updateUserInfo()" #infoForm="ngForm">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" [ngModel]="user.firstName | sanitizeInput"
+          (ngModelChange)="user.firstName=$event" />
       </div>
-      <br>
-      <div class="games-container">
-        <div class="container text-center">
-          <div>
-            <h3>Games</h3>
-            <!-- <button class="btn btn-success" (click)="openGamesModal()">Manage</button> -->
-          </div>
-          <hr class="hr-primary">
-          <div *ngIf="!categories.games.loading && categories.games.totalItemCount == 0">0 games have been
-            found</div>
-          <div class="row">
-            <div class="col" *ngFor="let game of categories.games.list">
-              <div>{{game.title}}</div>
-            </div>
-          </div>
-          <ksu-gdc-pagination [itemsLoaded]="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount"
-            [pageSize]="categories.games.pageSize" (pageChange)="loadPage('groups', $event)"></ksu-gdc-pagination>
-        </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" [ngModel]="user.lastName | sanitizeInput"
+          (ngModelChange)="user.lastName=$event" />
       </div>
-      <br>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea type="text" class="form-control" id="description" name="description" [ngModel]="user.description | sanitizeInput"
+          (ngModelChange)="user.description=$event"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="infoForm.pristine || !infoForm.form.valid">Update</button>
+    </form>
+    <br>
+    <div class="groups-container">
+      <div class="container text-center">
+        <div>
+          <h3>Groups</h3>
+          <button class="btn btn-success" (click)="openGroupCreationModal()">Create New</button>
+        </div>
+        <hr class="hr-primary">
+        <div *ngIf="!categories.groups.loading && categories.groups.totalItemCount == 0">0 groups have been
+          found</div>
+        <div class="row">
+          <div class="col" *ngFor="let group of categories.groups.list">
+            <div>{{group.name}}</div>
+          </div>
+        </div>
+        <ksu-gdc-pagination [itemsLoaded]="categories.groups.loaded" [totalItemCount]="categories.groups.totalItemCount"
+          [pageSize]="categories.groups.pageSize" (pageChange)="loadPage('groups', $event)"></ksu-gdc-pagination>
+      </div>
     </div>
+    <br>
+    <div class="games-container">
+      <div class="container text-center">
+        <div>
+          <h3>Games</h3>
+          <button class="btn btn-success" (click)="openGameCreationModal()">Create New</button>
+        </div>
+        <hr class="hr-primary">
+        <div *ngIf="!categories.games.loading && categories.games.totalItemCount == 0">0 games have been
+          found</div>
+        <div class="row">
+          <div class="col" *ngFor="let game of categories.games.list">
+            <div>{{game.title}}</div>
+          </div>
+        </div>
+        <ksu-gdc-pagination [itemsLoaded]="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount"
+          [pageSize]="categories.games.pageSize" (pageChange)="loadPage('groups', $event)"></ksu-gdc-pagination>
+      </div>
+    </div>
+    <br>
   </div>
+</div>

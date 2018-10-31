@@ -1,3 +1,31 @@
-<p>
-  game-profile-management works!
-</p>
+<div class="container">
+  <div *ngIf="game && isValidated">
+    <br>
+    <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{game.imageUrl}}"
+      alt-url="assets/images/profile.png">
+    <hr class="hr-primary">
+    <ksu-gdc-info-messages #profileUpdateMessages></ksu-gdc-info-messages>
+    <ksu-gdc-file-upload btn-text="Choose Profile Image" file-type="image/jpg" [show-upload]="false" (fileChange)="uploadImage($event)"></ksu-gdc-file-upload>
+    <form (ngSubmit)="updateGameInfo()" #infoForm="ngForm">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" [ngModel]="game.title | sanitizeInput"
+          (ngModelChange)="game.title=$event" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea type="text" class="form-control" id="description" name="description" [ngModel]="game.description | sanitizeInput"
+          (ngModelChange)="game.description=$event"></textarea>
+      </div>
+      <div class="form-group">
+          <label for="itemUrl">Link to Game</label>
+          <textarea type="text" class="form-control" id="description" name="description" [ngModel]="game.url | sanitizeInput"
+            (ngModelChange)="game.itemUrl=$event"></textarea>
+        </div>
+      <button type="submit" class="btn btn-success" [disabled]="infoForm.pristine || !infoForm.form.valid">Update</button>
+    </form>
+    <br>
+  </div>
+  <ksu-gdc-error *ngIf="gameNotFound"></ksu-gdc-error>
+  <br>
+</div>

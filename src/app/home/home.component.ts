@@ -12,19 +12,16 @@ import { Officer } from 'src/app/_common/models/officer';
 export class HomeComponent implements OnInit {
   officers = new Map<string, Officer[]>();
 
-  categoryServices = {
-    games: this.gameService
-  };
-
-  featuredItemsLoading: boolean;
-  featuredCategoryLoaded: boolean;
-  featuredLists = new Map([
-    ['games', []]
-  ]);
-  featuredInfo = {
-    category: '',
-    pageSize: 3,
-    totalItemCount: 0
+  featuredCategory = '';
+  featuredLoading: boolean;
+  featuredLoaded: boolean;
+  categories = {
+    games: {
+      service: this.gameService,
+      pageSize: 3,
+      totalItemCount: 0,
+      list: []
+    }
   };
 
   constructor(
@@ -49,7 +46,6 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
   getOfficer(position: string, index: number): Officer {
     position = position.toLowerCase();
     const officerList = this.officers.get(position);
@@ -60,29 +56,18 @@ export class HomeComponent implements OnInit {
   }
 
   changeFeaturedCategory(category: string) {
-    this.featuredCategoryLoaded = false;
-    this.featuredInfo.category = category;
+    this.featuredLoaded = false;
+    this.featuredCategory = category;
     this.loadFeaturedPage(1);
   }
-  changeFeaturedPage(pageNumber: number) {
-    this.loadFeaturedPage(pageNumber);
-  }
   loadFeaturedPage(pageNumber: number) {
-    this.featuredItemsLoading = true;
-    const service = this.categoryServices[this.featuredInfo.category];
-    service.getPaginationOfFeatured(pageNumber, this.featuredInfo.pageSize)
+    this.featuredLoading = true;
+    this.categories[this.featuredCategory].service.getPaginationOfFeatured(pageNumber, this.categories[this.featuredCategory].pageSize)
       .then((items) => {
-        this.resetFeaturedLists();
-        this.featuredLists.set(this.featuredInfo.category, items.value);
-        this.featuredInfo.totalItemCount = items.totalItemCount;
-        this.featuredCategoryLoaded = true;
-        this.featuredItemsLoading = false;
+        this.categories[this.featuredCategory].list = items.value;
+        this.categories[this.featuredCategory].totalItemCount = items.total;
+        this.featuredLoaded = true;
+        this.featuredLoading = false;
       });
-  }
-
-  private resetFeaturedLists() {
-    this.featuredLists.forEach((value, key, map) => {
-      map.set(key, []);
-    });
   }
 }

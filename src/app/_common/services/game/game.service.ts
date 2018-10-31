@@ -64,4 +64,33 @@ export class GameService {
           error => reject(error));
     });
   }
+
+  update(game: Game): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.put<boolean>(`${API_PATH.gamesBaseUrl}/${game.gameId}`, game)
+        .subscribe(
+          success => resolve(success),
+          error => reject(error));
+    });
+  }
+
+  getImage(gameId: number): Promise<File> {
+    return new Promise<File>((resolve, reject) => {
+      this.http.get<File>(`${API_PATH.gamesBaseUrl}/${gameId}/thumbnail-image`)
+        .subscribe(
+          image => resolve(image),
+          error => reject(error));
+    });
+  }
+
+  updateImage(gameId: number, image: File): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      const data = new FormData();
+      data.append('image', image);
+      this.http.post<boolean>(`${API_PATH.usersBaseUrl}/${gameId}/thumbnail-image`, data)
+        .subscribe(
+          success => resolve(success),
+          error => reject(error));
+    });
+  }
 }

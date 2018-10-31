@@ -25,6 +25,7 @@ import { GameProfileComponent } from 'src/app/game-profile/public/game-profile.c
 
 // *Secure Page Components*
 import { UserProfileManagementComponent } from 'src/app/user-profile/secure/user-profile-management.component';
+import { CreateGroupComponent } from 'src/app/create-group/create-group.component';
 import { GroupProfileManagementComponent } from 'src/app/group-profile/secure/group-profile-management.component';
 import { GameProfileManagementComponent } from 'src/app/game-profile/secure/game-profile-management.component';
 
@@ -64,6 +65,7 @@ import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/
     PaginationComponent,
     OfficerBadgeComponent,
     GameProfileManagementComponent,
+    CreateGroupComponent,
     GroupProfileManagementComponent
   ],
   imports: [
@@ -76,6 +78,7 @@ import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/
     FormsModule
   ],
   entryComponents: [
+    CreateGroupComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

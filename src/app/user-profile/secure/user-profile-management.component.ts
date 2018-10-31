@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
+import { CreateGroupComponent } from 'src/app/create-group/create-group.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
@@ -46,9 +48,12 @@ export class UserProfileManagementComponent implements OnInit {
     }
   };
 
+  dialogRef: MatDialogRef<any>;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     private authService: AuthService,
     private utilityService: UtilityService,
     private userService: UserService,
@@ -75,7 +80,7 @@ export class UserProfileManagementComponent implements OnInit {
     this.categories[category].service.getPaginationOfAllByUserId(this.user.userId, pageNumber, this.categories[category].pageSize)
       .then((items) => {
         this.categories[category].list = items.value;
-        this.categories[category].totalItemCount = items.originalCount;
+        this.categories[category].totalItemCount = items.total;
         this.categories[category].loaded = true;
         this.categories[category].loading = false;
       });
@@ -89,7 +94,7 @@ export class UserProfileManagementComponent implements OnInit {
         this.profileImageUploader.isProcessing = false;
         this.profileImage.reload();
       })
-      .catch(error => this.profileUpdateMessages.showError('There was a problem updating your profile picture.'));
+      .catch(error => this.profileUpdateMessages.showError('There was a problem updating your profile image.'));
   }
 
   updateUserInfo() {
@@ -106,5 +111,22 @@ export class UserProfileManagementComponent implements OnInit {
 
   logoutUser() {
     this.authService.logoutWithCAS('');
+  }
+
+  openGroupCreationModal() {
+    this.dialogRef = this.dialog.open(CreateGroupComponent, {
+      height: '400px',
+      width: '400px'
+    });
+    this.dialogRef.afterClosed()
+      .subscribe((created) => {
+        if (created) {
+          this.loadPage('groups', 1);
+        }
+      });
+  }
+
+  openGameCreationModal() {
+
   }
 }

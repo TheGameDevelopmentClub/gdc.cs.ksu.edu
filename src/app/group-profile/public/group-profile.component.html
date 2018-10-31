@@ -1,32 +1,36 @@
-<div *ngIf="group" class="container">
-  <br>
-  <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{group?.imageUrl}}" alt-url="assets/images/profile.png">
-  <h1 class="text-center">{{group?.name}}</h1>
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea type="text" class="form-control" id="description" name="description" [ngModel]="group?.description"
-      readonly></textarea>
-  </div>
-  <br>
-  <div class="users-container">
-    <div>
-      <h3>Members</h3>
+<div class="container">
+  <div *ngIf="group">
+    <br>
+    <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{group.imageUrl}}"
+      alt-url="assets/images/profile.png">
+    <h1 class="text-center">{{group.name}}</h1>
+    <hr class="hr-primary">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea type="text" class="form-control" id="description" name="description" [ngModel]="group.description"
+        readonly></textarea>
     </div>
-    <div *ngFor="let user of members">
-      {{user.username}}
-    </div>
-  </div>
-  <br>
-  <div class="games-container">
-    <div>
-      <h3>Games</h3>
-    </div>
-    <div *ngFor="let game of portfolio.games">
+    <br>
+    <div class="users-container">
       <div>
-        {{game.title}}
+        <h3>Members</h3>
+      </div>
+      <div *ngFor="let user of categories.users.list">
+        {{user.username}}
       </div>
     </div>
+    <br>
+    <div class="games-container">
+      <div>
+        <h3>Games</h3>
+      </div>
+      <div *ngFor="let game of categories.games.list">
+        <div>
+          {{game.title}}
+        </div>
+      </div>
+    </div>
+    <br>
   </div>
-  <br>
+  <ksu-gdc-error *ngIf="groupNotFound"></ksu-gdc-error>
 </div>
-<ksu-gdc-error *ngIf="groupNotFound"></ksu-gdc-error>

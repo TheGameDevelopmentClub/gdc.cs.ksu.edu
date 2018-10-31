@@ -1,9 +1,9 @@
 export class PaginatedList<T> {
   public value: T[];
-  public originalCount: number;
+  public total: number;
 
   constructor(pageList: any) {
     this.value = pageList['value'];
-    this.originalCount = pageList['originalCount'];
+    this.total = pageList['total'];
   }
 }

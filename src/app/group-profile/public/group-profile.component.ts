@@ -5,8 +5,6 @@ import { GroupService } from 'src/app/_common/services/group/group.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { Group } from 'src/app/_common/models/group';
-import { User } from 'src/app/_common/models/user';
-import { Portfolio } from 'src/app/_common/models/portfolio';
 
 @Component({
   selector: 'ksu-gdc-group-profile',
@@ -36,9 +34,6 @@ export class GroupProfileComponent implements OnInit {
   groupNotFound: boolean;
   group: Group;
 
-  members: User[];
-  portfolio: Portfolio = new Portfolio();
-
   constructor(
     private route: ActivatedRoute,
     private groupService: GroupService,
@@ -65,7 +60,7 @@ export class GroupProfileComponent implements OnInit {
     this.categories[category].service.getPaginationOfAllByGroupId(this.group.groupId, pageNumber, this.categories[category].pageSize)
       .then((items) => {
         this.categories[category].list = items.value;
-        this.categories[category].totalItemCount = items.originalCount;
+        this.categories[category].totalItemCount = items.total;
         this.categories[category].loaded = true;
         this.categories[category].loading = false;
       });

@@ -31,6 +31,6 @@ export class GameProfileComponent implements OnInit {
   }
 
   openMoreInfo() {
-    window.open(this.game.itemUrl, '_blank');
+    window.open(this.game.url, '_blank');
   }
 }

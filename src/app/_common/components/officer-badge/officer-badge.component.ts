@@ -16,26 +16,4 @@ export class OfficerBadgeComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  getPosition(): string {
-    if (this.officer) {
-      return this.officer.position;
-    } else {
-      return this.position;
-    }
-  }
-
-  getFullName(): string {
-    if (this.officer && this.officer.user) {
-      return this.officer.user.firstName + ' ' + this.officer.user.lastName;
-    } else {
-      return '[Unassigned]';
-    }
-  }
-
-  getImageUrl(): string {
-    if (this.officer && this.officer.user) {
-      return this.officer.user.imageUrl;
-    }
-  }
 }

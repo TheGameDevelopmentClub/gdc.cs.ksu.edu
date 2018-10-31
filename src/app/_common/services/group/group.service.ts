@@ -14,6 +14,21 @@ export class GroupService {
     private http: HttpClient
   ) { }
 
+  create(group: Group): Promise<Group> {
+    return new Promise<Group>((resolve, reject) => {
+      this.http.post<Group>(`${API_PATH.groupsBaseUrl}`, group)
+        .subscribe(
+          newGroup => resolve(new Group(newGroup)),
+          error => reject(error));
+    });
+  }
+
+  addMember(groupId: number, userId: number): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+
+    });
+  }
+
   getById(groupId: number): Promise<Group> {
     return new Promise<Group>((resolve, reject) => {
       this.http.get<Group>(`${API_PATH.groupsBaseUrl}/${groupId}`)
