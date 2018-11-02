@@ -15,6 +15,6 @@ export class Group {
     this.groupId = group['groupId'];
     this.name = group['name'];
     this.description = group['description'];
-    this.imageUrl = `${API_PATH.groupsBaseUrl}/${this.groupId}/image`;
+    this.imageUrl = `${API_PATH.groupsBaseUrl}/${this.groupId}/profile-image`;
   }
 }

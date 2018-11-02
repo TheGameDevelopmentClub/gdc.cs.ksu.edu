@@ -16,7 +16,7 @@ export class User {
     this.lastName = user['lastName'];
     this.description = user['description'];
     this.email = user['email'];
-    this.imageUrl = `${API_PATH.usersBaseUrl}/${this.userId}/image`;
+    this.imageUrl = `${API_PATH.usersBaseUrl}/${this.userId}/profile-image`;
   }
 
   get fullName() {
