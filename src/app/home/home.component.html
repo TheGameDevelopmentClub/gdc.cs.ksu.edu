@@ -1,0 +1,85 @@
+<header class="masthead">
+  <div class="container">
+    <img class="img-fluid rounded-circle logo-container" src="assets/images/gdclogo.png">
+    <div class="intro-text">
+      <h1 class="name">K-State GDC</h1>
+      <span class="description">
+        K-State’s Game Development Club is the club to be in at K-State. We get together every week
+        to develop every kind of game imaginable. We welcome all majors and skill levels to join us as we discuss
+        aspects of game development, gaming trends, and just about anything else our members want to discuss. To see
+        the games we are working on check below.
+      </span>
+    </div>
+  </div>
+</header>
+
+<section id="featured">
+  <div class="container text-center">
+    <h2 class="mobile-header text-center">Featured</h2>
+
+    <div class="row">
+      <div class="col">
+          <button class="btn btn-success featured-btn" [class.active]="featuredCategory === 'games'" (click)="changeFeaturedCategory('games')">Games</button>
+      </div>
+    </div>
+
+    <div *ngIf="featuredCategory !== ''">
+      <hr class="hr-primary">
+      <div class="col" *ngIf="!featuredLoading && categories[featuredCategory].totalItemCount == 0">0 items
+        featured</div>
+      <div class="row">
+        <div class="col" *ngFor="let item of categories[featuredCategory].list">
+          <ksu-gdc-portfolio-item [category]="featuredCategory" [item]="item"></ksu-gdc-portfolio-item>
+        </div>
+      </div>
+      <ksu-gdc-pagination [itemsLoaded]="featuredLoaded" [totalItemCount]="categories[featuredCategory].totalItemCount"
+        [pageSize]="categories[featuredCategory].pageSize" (pageChange)="loadFeaturedPage($event)"></ksu-gdc-pagination>
+    </div>
+  </div>
+</section>
+
+<section class="success" id="about">
+  <div class="container">
+    <h2 class="mobile-header text-center">Meet the Team</h2>
+    <hr class="hr-light">
+    <div class="row">
+      <div class="col-lg ml-auto">
+        <div class="row">
+          <div class="col-lg-4 col-sm-6 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="President" [officer]="getOfficer('President', 0)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="Vice President" [officer]="getOfficer('Vice President', 0)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-4 col-sm-4 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="Treasurer" [officer]="getOfficer('Treasurer', 0)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="Secretary" [officer]="getOfficer('Secretary', 0)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="Website Manager" [officer]="getOfficer('Website Manager', 0)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="Social Media Manager" [officer]="getOfficer('Social Media Manager', 0)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="Industry Liaison" [officer]="getOfficer('Industry Liaison', 0)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="Industry Liaison" [officer]="getOfficer('Industry Liaison', 1)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="Event Coordinator" [officer]="getOfficer('Event Coordinator', 0)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-3 col-sm-4 col-6 text-center mb-4">
+            <ksu-gdc-officer-badge position="Recruitment and Retention Officer" [officer]="getOfficer('Recruitment and Retention Officer', 0)"></ksu-gdc-officer-badge>
+          </div>
+          <div class="col-lg-3 col-sm-4 col-12 text-center mb-4">
+            <ksu-gdc-officer-badge position="Advisor" [officer]="getOfficer('Advisor', 0)"></ksu-gdc-officer-badge>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

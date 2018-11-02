@@ -1,0 +1,4 @@
+<div *ngIf="showMessages" class="messages-container">
+  <p class="errorMessage" *ngIf="error">Sorry! {{errorMessage}} If the problem persists, please let us know by one of the contact methods below.</p>
+  <p class="successMessage" *ngIf="success">Hooray! {{successMessage}}</p>
+</div>

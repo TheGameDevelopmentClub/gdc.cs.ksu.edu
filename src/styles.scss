@@ -22,7 +22,7 @@ h5,
 h6 {
   font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
 hr.hr-light,
@@ -32,7 +32,8 @@ hr.hr-primary {
   padding: 0;
   text-align: center;
   border: none;
-  border-top: solid 3px
+  border-top: solid 3px;
+  transform: translateY(2px);
 }
 
 hr.hr-light:after,
@@ -56,10 +57,10 @@ hr.hr-light:after {
 }
 
 hr.hr-primary {
-  border-color: #2C3E50
+  border-color: black
 }
 
 hr.hr-primary:after {
-  color: #2C3E50;
+  color:black;
   background-color: #fff
 }

@@ -1,0 +1,16 @@
+<div class="container">
+  <br>
+  <div *ngIf="game">
+    <img class="profile-container img-fluid d-block mx-auto" image-loader src="{{game?.imageUrl}}" alt-url="assets/images/profile.png">
+    <h1 class="text-center">{{game?.title}}</h1>
+    <hr class="hr-primary">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea rows="6" type="text" class="form-control" id="description" name="description" [ngModel]="game?.description"
+        readonly></textarea>
+    </div>
+    <button class="btn btn-success" (click)="openMoreInfo()">More Info</button>
+  </div>
+  <ksu-gdc-error *ngIf="gameNotFound"></ksu-gdc-error>
+  <br>
+</div>
