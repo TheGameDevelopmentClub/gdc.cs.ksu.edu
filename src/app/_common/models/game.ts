@@ -9,7 +9,7 @@ export class Game extends PortfolioItem {
     this.gameId = game['gameId'];
     this.title = game['title'];
     this.description = game['description'];
-    this.url = game['itemUrl'];
+    this.url = game['url'];
     this.user = game['user'];
     this.group = game['group'];
     this.imageUrl = `${API_PATH.gamesBaseUrl}/${this.gameId}/thumbnail-image`;
