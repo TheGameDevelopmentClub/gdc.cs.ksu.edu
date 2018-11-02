@@ -1,2 +1,9 @@
-<div id="expired-text" *ngIf="expired">Expired</div>
-<div id="countdown-text" *ngIf="!expired">{{getDaysLeftAsString()}} : {{getHoursLeftAsString()}} : {{getMinutesLeftAsString()}} : {{getSecondsLeftAsString()}}</div>
+<div>
+  <div id="expired-text" *ngIf="timeExpired">Expired</div>
+  <div id="countdown-text" *ngIf="!timeExpired">
+    {{getDaysLeftAsString()}} <b>:</b>
+    {{getHoursLeftAsString()}} <b>:</b>
+    {{getMinutesLeftAsString()}} <b>:</b>
+    {{getSecondsLeftAsString()}}
+  </div>
+</div>

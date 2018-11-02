@@ -22,6 +22,7 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { UserProfileComponent } from 'src/app/user-profile/public/user-profile.component';
 import { GroupProfileComponent } from 'src/app/group-profile/public/group-profile.component';
 import { GameProfileComponent } from 'src/app/game-profile/public/game-profile.component';
+import { GameJamComponent } from 'src/app/game-jam/game-jam.component';
 
 // *Secure Page Components*
 import { UserProfileManagementComponent } from 'src/app/user-profile/secure/user-profile-management.component';
@@ -66,7 +67,8 @@ import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/
     OfficerBadgeComponent,
     GameProfileManagementComponent,
     CreateGroupComponent,
-    GroupProfileManagementComponent
+    GroupProfileManagementComponent,
+    GameJamComponent
   ],
   imports: [
     BrowserModule,

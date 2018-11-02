@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 const MS_IN_SEC = 1000;
 const MS_IN_MIN = 60 * MS_IN_SEC;
@@ -11,10 +11,20 @@ const MS_IN_DAY = 24 * MS_IN_HOUR;
   styleUrls: ['./countdown-timer.component.scss']
 })
 export class CountdownTimerComponent implements OnInit {
+  @Output() expired: EventEmitter<void> = new EventEmitter<void>();
+
+  /*
+  * Valid Date Strings Examples:
+  * "February 11, 2018 3:00 PM"
+  */
+  @Input('targetDate') set setTargetDate(targetDateString: string) {
+    this.targetDate = new Date(targetDateString);
+  }
+
   private timer;
+  timeExpired: boolean;
 
   targetDate: Date;
-  expired: boolean;
 
   daysLeft: number;
   hoursLeft: number;
@@ -25,19 +35,10 @@ export class CountdownTimerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.expired = false;
     this.setTimer();
-    if (!this.expired) {
+    if (!this.timeExpired) {
       this.startTimer();
     }
-  }
-
-  /*
-  Examples of Valid Date Strings:
-    'February 11, 2018 3:00 PM'
-  */
-  @Input('target-date') set setTargetDate(targetDateString: string) {
-    this.targetDate = new Date(targetDateString);
   }
 
   setTimer() {
@@ -48,8 +49,9 @@ export class CountdownTimerComponent implements OnInit {
       this.minutesLeft = 0;
       this.secondsLeft = 0;
       this.millisecondsLeft = 0;
-      this.expired = true;
       this.stopTimer();
+      this.timeExpired = true;
+      this.expired.emit();
       return;
     }
     this.daysLeft = Math.floor(this.millisecondsLeft / MS_IN_DAY);
