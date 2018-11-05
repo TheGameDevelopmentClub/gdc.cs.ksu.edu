@@ -19,14 +19,15 @@
 
     <div class="row">
       <div class="col">
-          <button class="btn btn-success featured-btn" [class.active]="featuredCategory === 'games'" (click)="changeFeaturedCategory('games')">Games</button>
+          <button class="btn btn-success featured-btn" [disabled]="featuredCategory === 'games'" (click)="changeFeaturedCategory('games')">Games</button>
       </div>
     </div>
 
     <div *ngIf="featuredCategory !== ''">
       <hr class="hr-primary">
-      <div class="col" *ngIf="!featuredLoading && categories[featuredCategory].totalItemCount == 0">0 items
-        featured</div>
+      <div class="col" *ngIf="!featuredLoading && categories[featuredCategory].totalItemCount == 0">
+        0 items featured
+      </div>
       <div class="row">
         <div class="col" *ngFor="let item of categories[featuredCategory].list">
           <ksu-gdc-portfolio-item [category]="featuredCategory" [item]="item"></ksu-gdc-portfolio-item>
