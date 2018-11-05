@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'ksu-gdc-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  selector: 'ksu-gdc-pagination-bar',
+  templateUrl: './pagination-bar.component.html',
+  styleUrls: ['./pagination-bar.component.scss']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationBarComponent implements OnInit {
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
   @Input() pageNumber = 1;
@@ -27,6 +27,10 @@ export class PaginationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  reset() {
+    this.pageNumber = 1;
   }
 
   changePage(page: number) {

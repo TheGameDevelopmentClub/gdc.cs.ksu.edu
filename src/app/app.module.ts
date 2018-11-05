@@ -40,7 +40,7 @@ import { PortfolioItemComponent } from 'src/app/_common/components/portfolio-ite
 import { CountdownTimerComponent } from 'src/app/_common/components/countdown-timer/countdown-timer.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { PortfolioComponent } from 'src/app/portfolio/portfolio.component';
-import { PaginationComponent } from 'src/app/_common/components/pagination/pagination.component';
+import { PaginationBarComponent } from 'src/app/_common/components/pagination-bar/pagination-bar.component';
 import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/officer-badge.component';
 
 @NgModule({
@@ -63,7 +63,7 @@ import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/
     UserProfileManagementComponent,
     GameProfileComponent,
     PortfolioComponent,
-    PaginationComponent,
+    PaginationBarComponent,
     OfficerBadgeComponent,
     GameProfileManagementComponent,
     CreateGroupComponent,

@@ -41,8 +41,8 @@
             <div>{{group.name}}</div>
           </div>
         </div>
-        <ksu-gdc-pagination [itemsLoaded]="categories.groups.loaded" [totalItemCount]="categories.groups.totalItemCount"
-          [pageSize]="categories.groups.pageSize" (pageChange)="loadPage('groups', $event)"></ksu-gdc-pagination>
+        <ksu-gdc-pagination-bar [itemsLoaded]="categories.groups.loaded" [totalItemCount]="categories.groups.totalItemCount"
+          [pageSize]="categories.groups.pageSize" (pageChange)="loadPage('groups', $event)"></ksu-gdc-pagination-bar>
       </div>
     </div>
     <br>
@@ -60,8 +60,8 @@
             <div>{{game.title}}</div>
           </div>
         </div>
-        <ksu-gdc-pagination [itemsLoaded]="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount"
-          [pageSize]="categories.games.pageSize" (pageChange)="loadPage('groups', $event)"></ksu-gdc-pagination>
+        <ksu-gdc-pagination-bar [itemsLoaded]="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount"
+          [pageSize]="categories.games.pageSize" (pageChange)="loadPage('groups', $event)"></ksu-gdc-pagination-bar>
       </div>
     </div>
     <br>

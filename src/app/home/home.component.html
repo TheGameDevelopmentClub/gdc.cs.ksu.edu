@@ -32,8 +32,8 @@
           <ksu-gdc-portfolio-item [category]="featuredCategory" [item]="item"></ksu-gdc-portfolio-item>
         </div>
       </div>
-      <ksu-gdc-pagination [itemsLoaded]="featuredLoaded" [totalItemCount]="categories[featuredCategory].totalItemCount"
-        [pageSize]="categories[featuredCategory].pageSize" (pageChange)="loadFeaturedPage($event)"></ksu-gdc-pagination>
+      <ksu-gdc-pagination-bar [itemsLoaded]="featuredLoaded" [totalItemCount]="categories[featuredCategory].totalItemCount"
+        [pageSize]="categories[featuredCategory].pageSize" (pageChange)="loadFeaturedPage($event)"></ksu-gdc-pagination-bar>
     </div>
   </div>
 </section>
