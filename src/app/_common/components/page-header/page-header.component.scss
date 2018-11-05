@@ -113,3 +113,9 @@ section.success {
     font-size: 1.5em;
   }
 }
+
+@media (max-width: 434px) {
+  .nav-container {
+    padding-bottom: 90px;
+  }
+}
