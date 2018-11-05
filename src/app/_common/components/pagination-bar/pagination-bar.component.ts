@@ -29,10 +29,6 @@ export class PaginationBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  reset() {
-    this.pageNumber = 1;
-  }
-
   changePage(page: number) {
     this.pageNumber = page;
     this.pageChange.emit(page);
