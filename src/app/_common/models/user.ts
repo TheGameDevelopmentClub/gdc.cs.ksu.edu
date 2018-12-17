@@ -16,7 +16,7 @@ export class User {
     this.lastName = user['lastName'];
     this.description = user['description'];
     this.email = user['email'];
-    this.imageUrl = `${API_PATH.usersBaseUrl}/${this.userId}/profile-image`;
+    this.imageUrl = `${API_PATH.users}/${this.userId}/profile-image`;
   }
 
   get fullName() {
@@ -24,11 +24,18 @@ export class User {
   }
 }
 
-export class AuthUser extends User {
-  public isOfficer: boolean;
+export class AuthUser {
+  public userId: number;
+  public username: string;
+  public roles: Array<string>;
 
   constructor(user: any) {
-    super(user);
-    this.isOfficer = user['isOfficer'];
+    this.userId = user['userId'];
+    this.username = user['username'];
+    this.roles = user['roles'];
+  }
+
+  isOfficer(): boolean {
+    return this.roles.includes('officer');
   }
 }

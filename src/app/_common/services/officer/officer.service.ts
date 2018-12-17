@@ -14,7 +14,7 @@ export class OfficerService {
 
   getAll(): Promise<Officer[]> {
     return new Promise((resolve, reject) => {
-      this.http.get<Officer[]>(`${API_PATH.officersBaseUrl}`)
+      this.http.get<Officer[]>(`${API_PATH.officers}`)
       .subscribe(
         officers => resolve(officers.map((officer) => new Officer(officer))),
         error => reject(error));
@@ -23,7 +23,7 @@ export class OfficerService {
 
   getById(officerId: number): Promise<Officer> {
     return new Promise((resolve, reject) => {
-      this.http.get<Officer[]>(`${API_PATH.officersBaseUrl}/${officerId}`)
+      this.http.get<Officer[]>(`${API_PATH.officers}/${officerId}`)
       .subscribe(
         officer => resolve(new Officer(officer)),
         error => reject(error));
@@ -32,7 +32,7 @@ export class OfficerService {
 
   getByPosition(position: string): Promise<Officer[]> {
     return new Promise<any>((resolve, reject) => {
-      this.http.get<Officer[]>(`${API_PATH.officersBaseUrl}?position=${position}`)
+      this.http.get<Officer[]>(`${API_PATH.officers}?position=${position}`)
       .subscribe(
         officers => resolve(officers.map((officer) => new Officer(officer))),
         error => reject(error));

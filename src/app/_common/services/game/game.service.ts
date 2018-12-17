@@ -16,7 +16,7 @@ export class GameService {
 
   getById(gameId: number): Promise<Game> {
     return new Promise<Game>((resolve, reject) => {
-      this.http.get<Game>(`${API_PATH.gamesBaseUrl}/${gameId}`)
+      this.http.get<Game>(`${API_PATH.groups}/${gameId}`)
         .subscribe(
           game => resolve(new Game(game)),
           error => reject(error));
@@ -25,7 +25,7 @@ export class GameService {
 
   getPaginationOfAll(pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
     return new Promise<PaginatedList<Game>>((resolve, reject) => {
-      this.http.get<PaginatedList<Game>>(`${API_PATH.gamesBaseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      this.http.get<PaginatedList<Game>>(`${API_PATH.groups}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
         .subscribe(
           pageGames => {
             pageGames.value = pageGames.value.map((game) => new Game(game));
@@ -41,7 +41,7 @@ export class GameService {
 
   getPaginationOfAllByUserId(userId: number, pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
     return new Promise<PaginatedList<Game>>((resolve, reject) => {
-      this.http.get<PaginatedList<Game>>(`${API_PATH.usersBaseUrl}/${userId}/portfolio/games?pageNumber=${pageNumber}
+      this.http.get<PaginatedList<Game>>(`${API_PATH.users}/${userId}/portfolio/games?pageNumber=${pageNumber}
       &pageSize=${pageSize}`)
         .subscribe(
           pageGames => {
@@ -54,7 +54,7 @@ export class GameService {
 
   getPaginationOfAllByGroupId(groupId: number, pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
     return new Promise<PaginatedList<Game>>((resolve, reject) => {
-      this.http.get<PaginatedList<Game>>(`${API_PATH.groupsBaseUrl}/${groupId}/portfolio/games?pageNumber=${pageNumber}
+      this.http.get<PaginatedList<Game>>(`${API_PATH.groups}/${groupId}/portfolio/games?pageNumber=${pageNumber}
       &pageSize=${pageSize}`)
         .subscribe(
           pageGames => {
@@ -67,7 +67,7 @@ export class GameService {
 
   update(game: Game): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      this.http.put<boolean>(`${API_PATH.gamesBaseUrl}/${game.gameId}`, game)
+      this.http.put<boolean>(`${API_PATH.groups}/${game.gameId}`, game)
         .subscribe(
           success => resolve(success),
           error => reject(error));
@@ -76,7 +76,7 @@ export class GameService {
 
   getImage(gameId: number): Promise<File> {
     return new Promise<File>((resolve, reject) => {
-      this.http.get<File>(`${API_PATH.gamesBaseUrl}/${gameId}/thumbnail-image`)
+      this.http.get<File>(`${API_PATH.groups}/${gameId}/thumbnail-image`)
         .subscribe(
           image => resolve(image),
           error => reject(error));
@@ -87,7 +87,7 @@ export class GameService {
     return new Promise<boolean>((resolve, reject) => {
       const data = new FormData();
       data.append('image', image);
-      this.http.post<boolean>(`${API_PATH.usersBaseUrl}/${gameId}/thumbnail-image`, data)
+      this.http.post<boolean>(`${API_PATH.users}/${gameId}/thumbnail-image`, data)
         .subscribe(
           success => resolve(success),
           error => reject(error));

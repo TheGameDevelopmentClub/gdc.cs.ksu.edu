@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -42,6 +43,8 @@ import { FileUploadComponent } from 'src/app/_common/components/file-upload/file
 import { PortfolioComponent } from 'src/app/portfolio/portfolio.component';
 import { PaginationBarComponent } from 'src/app/_common/components/pagination-bar/pagination-bar.component';
 import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/officer-badge.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -68,9 +71,12 @@ import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/
     GameProfileManagementComponent,
     CreateGroupComponent,
     GroupProfileManagementComponent,
-    GameJamComponent
+    GameJamComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

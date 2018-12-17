@@ -1,6 +1,5 @@
 <div class="container">
-  <div *ngIf="isValidated">
-    <button (click)="logoutUser()" class="btn logout">Logout</button>
+  <div *ngIf="!errorOccurred && loadedUser">
     <br>
     <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{user.imageUrl}}"
       alt-url="assets/images/profile.png">
@@ -66,4 +65,5 @@
     </div>
     <br>
   </div>
+  <ksu-gdc-error *ngIf="errorOccurred"></ksu-gdc-error>
 </div>

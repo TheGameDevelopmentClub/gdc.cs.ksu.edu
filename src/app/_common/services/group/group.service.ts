@@ -16,7 +16,7 @@ export class GroupService {
 
   create(group: Group): Promise<Group> {
     return new Promise<Group>((resolve, reject) => {
-      this.http.post<Group>(`${API_PATH.groupsBaseUrl}`, group)
+      this.http.post<Group>(`${API_PATH.groups}`, group)
         .subscribe(
           newGroup => resolve(new Group(newGroup)),
           error => reject(error));
@@ -31,7 +31,7 @@ export class GroupService {
 
   getById(groupId: number): Promise<Group> {
     return new Promise<Group>((resolve, reject) => {
-      this.http.get<Group>(`${API_PATH.groupsBaseUrl}/${groupId}`)
+      this.http.get<Group>(`${API_PATH.groups}/${groupId}`)
         .subscribe(
           group => resolve(new Group(group)),
           error => reject(error));
@@ -40,7 +40,7 @@ export class GroupService {
 
   getPaginationOfAll(pageNumber: number, pageSize: number): Promise<PaginatedList<Group>> {
     return new Promise<PaginatedList<Group>>((resolve, reject) => {
-      this.http.get<PaginatedList<Group>>(`${API_PATH.groupsBaseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      this.http.get<PaginatedList<Group>>(`${API_PATH.groups}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
         .subscribe(
           pageGroups => {
             pageGroups.value = pageGroups.value.map((group) => new Group(group));
@@ -52,7 +52,7 @@ export class GroupService {
 
   getPaginationOfAllByUserId(userId: number, pageNumber: number, pageSize: number): Promise<PaginatedList<Group>> {
     return new Promise<PaginatedList<Group>>((resolve, reject) => {
-      this.http.get<PaginatedList<Group>>(`${API_PATH.usersBaseUrl}/${userId}/groups?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      this.http.get<PaginatedList<Group>>(`${API_PATH.users}/${userId}/groups?pageNumber=${pageNumber}&pageSize=${pageSize}`)
         .subscribe(
           pageGroups => {
             pageGroups.value = pageGroups.value.map((group) => new Group(group));

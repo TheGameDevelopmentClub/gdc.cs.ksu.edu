@@ -12,6 +12,6 @@ export class Game extends PortfolioItem {
     this.url = game['url'];
     this.user = game['user'];
     this.group = game['group'];
-    this.imageUrl = `${API_PATH.gamesBaseUrl}/${this.gameId}/thumbnail-image`;
+    this.imageUrl = `${API_PATH.games}/${this.gameId}/thumbnail-image`;
   }
 }

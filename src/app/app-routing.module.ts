@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from 'src/app/_common/guards/auth.guard';
+import { APP_PATH } from 'src/app/_common/constants/paths';
 
 // *Public Components*
 import { ErrorComponent } from 'src/app/error/error.component';
 import { HomeComponent } from 'src/app/home/home.component';
+import { LoginComponent } from 'src/app/login/login.component';
+import { LogoutComponent } from 'src/app/logout/logout.component';
 import { UserProfileComponent } from 'src/app/user-profile/public/user-profile.component';
 import { GroupProfileComponent } from 'src/app/group-profile/public/group-profile.component';
 import { PortfolioComponent } from 'src/app/portfolio/portfolio.component';
@@ -17,6 +20,8 @@ import { UserProfileManagementComponent } from 'src/app/user-profile/secure/user
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   {
     path: 'members', children: [
       { path: '', component: ErrorComponent, pathMatch: 'full' },
@@ -41,14 +46,12 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: 'game-jam', component: GameJamComponent
+    path: 'manage', canActivate: [AuthGuard], children: [
+      { path: '', component: ErrorComponent, pathMatch: 'full' },
+      { path: 'me', component: UserProfileManagementComponent }
+    ]
   },
-  // {
-  //   path: 'manage', canActivate: [AuthGuard], children: [
-  //     { path: '', component: ErrorComponent, pathMatch: 'full' },
-  //     { path: 'me', component: UserProfileManagementComponent }
-  //   ]
-  // },
+  { path: 'game-jam', component: GameJamComponent },
   { path: '**', component: ErrorComponent }
 ];
 

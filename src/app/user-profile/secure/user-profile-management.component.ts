@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -8,7 +8,6 @@ import { FileUploadComponent } from 'src/app/_common/components/file-upload/file
 import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
-import { UtilityService } from 'src/app/_common/services/utility/utility.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
 import { GroupService } from 'src/app/_common/services/group/group.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
@@ -26,8 +25,9 @@ export class UserProfileManagementComponent implements OnInit {
   @ViewChild(FileUploadComponent) profileImageUploader: FileUploadComponent;
   @ViewChild(ImageLoaderDirective) profileImage: ImageLoaderDirective;
 
-  isValidated: boolean;
+  errorOccurred: boolean;
   user: User;
+  loadedUser: boolean;
 
   categories = {
     groups: {
@@ -52,27 +52,22 @@ export class UserProfileManagementComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private dialog: MatDialog,
-    private authService: AuthService,
-    private utilityService: UtilityService,
     private userService: UserService,
+    private authService: AuthService,
     private groupService: GroupService,
     private gameService: GameService
   ) { }
 
   ngOnInit() {
-    this.authService.validateCASTicket(this.router.url, this.route.snapshot.queryParams['ticket'])
-      .then(user => {
-        this.utilityService.deleteQueryParams(this.router, this.route, ['ticket']);
+    this.userService.getById(this.authService.authenticatedUser.userId)
+      .then((user) => {
         this.user = user;
-        this.isValidated = true;
+        this.loadedUser = true;
         this.loadPage('groups', 1);
         this.loadPage('games', 1);
       })
-      .catch(error => {
-        this.authService.loginWithCAS(this.router.url);
-      });
+      .catch((error) => this.errorOccurred = true);
   }
 
   loadPage(category: string, pageNumber: number) {
@@ -83,7 +78,8 @@ export class UserProfileManagementComponent implements OnInit {
         this.categories[category].totalItemCount = items.total;
         this.categories[category].loaded = true;
         this.categories[category].loading = false;
-      });
+      })
+      .catch();
   }
 
   uploadProfileImage(image: File) {
@@ -104,13 +100,7 @@ export class UserProfileManagementComponent implements OnInit {
         this.infoForm.form.markAsUntouched();
         this.profileUpdateMessages.showSuccess('Your info has been updated.');
       })
-      .catch(error => {
-        this.profileUpdateMessages.showError('There was a problem updating your info.');
-      });
-  }
-
-  logoutUser() {
-    this.authService.logoutWithCAS('');
+      .catch(error => this.profileUpdateMessages.showError('There was a problem updating your info.'));
   }
 
   openGroupCreationModal() {
