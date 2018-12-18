@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { GroupService } from 'src/app/_common/services/group/group.service';
@@ -12,6 +12,12 @@ import { Group } from 'src/app/_common/models/group';
   styleUrls: ['../group-profile.component.scss']
 })
 export class GroupProfileComponent implements OnInit {
+  @Input() groupId: number;
+  @Output() edit: EventEmitter<void> = new EventEmitter<void>();
+
+  errorOccurred: boolean;
+  group: Group;
+
   categories = {
     users: {
       service: this.userService,
@@ -31,9 +37,6 @@ export class GroupProfileComponent implements OnInit {
     }
   };
 
-  groupNotFound: boolean;
-  group: Group;
-
   constructor(
     private route: ActivatedRoute,
     private groupService: GroupService,
@@ -51,7 +54,7 @@ export class GroupProfileComponent implements OnInit {
       })
       .catch(error => {
         this.group = null;
-        this.groupNotFound = true;
+        this.errorOccurred = true;
       });
   }
 
@@ -64,5 +67,13 @@ export class GroupProfileComponent implements OnInit {
         this.categories[category].loaded = true;
         this.categories[category].loading = false;
       });
+  }
+
+  canEdit(): boolean {
+    return true;
+  }
+
+  editGroup(): void {
+    this.edit.emit();
   }
 }

@@ -9,8 +9,9 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { LogoutComponent } from 'src/app/logout/logout.component';
 import { UserProfileContainerComponent } from 'src/app/user-profile/user-profile-container.component';
+import { GroupProfileContainerComponent } from 'src/app/group-profile/group-profile-container.component';
 import { PortfolioComponent } from 'src/app/portfolio/portfolio.component';
-import { GameProfileComponent } from 'src/app/game-profile/public/game-profile.component';
+import { GameProfileContainerComponent } from 'src/app/game-profile/game-profile-container.component';
 import { GameJamComponent } from 'src/app/game-jam/game-jam.component';
 
 // *Secure Components*
@@ -25,19 +26,19 @@ const appRoutes: Routes = [
       { path: ':userId', component: UserProfileContainerComponent }
     ]
   },
-  // {
-  //   path: 'groups', children: [
-  //     { path: '', component: ErrorComponent, pathMatch: 'full' },
-  //     { path: ':groupId', component: GroupProfileComponent }
-  //   ]
-  // },
+  {
+    path: 'groups', children: [
+      { path: '', component: ErrorComponent, pathMatch: 'full' },
+      { path: ':groupId', component: GroupProfileContainerComponent }
+    ]
+  },
   {
     path: 'portfolio', children: [
       { path: '', component: PortfolioComponent, pathMatch: 'full' },
       {
         path: 'games', children: [
           { path: '', component: ErrorComponent, pathMatch: 'full' },
-          { path: ':gameId', component: GameProfileComponent }
+          { path: ':gameId', component: GameProfileContainerComponent }
         ]
       }
     ]

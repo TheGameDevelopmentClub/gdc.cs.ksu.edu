@@ -18,12 +18,18 @@ import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/im
 import { SanitizeInputPipe } from 'src/app/_common/pipes/sanitize-input/sanitize-input.pipe';
 
 // *Public Page Components*
+import { AppComponent } from 'src/app/app.component';
 import { ErrorComponent } from 'src/app/error/error.component';
 import { HomeComponent } from 'src/app/home/home.component';
+import { UserProfileContainerComponent } from 'src/app/user-profile/user-profile-container.component';
 import { UserProfileComponent } from 'src/app/user-profile/public/user-profile.component';
+import { GroupProfileContainerComponent } from 'src/app/group-profile/group-profile-container.component';
 import { GroupProfileComponent } from 'src/app/group-profile/public/group-profile.component';
+import { GameProfileContainerComponent } from 'src/app/game-profile/game-profile-container.component';
 import { GameProfileComponent } from 'src/app/game-profile/public/game-profile.component';
 import { GameJamComponent } from 'src/app/game-jam/game-jam.component';
+import { LoginComponent } from 'src/app/login/login.component';
+import { LogoutComponent } from 'src/app/logout/logout.component';
 
 // *Secure Page Components*
 import { UserProfileManagementComponent } from 'src/app/user-profile/secure/user-profile-management.component';
@@ -32,7 +38,6 @@ import { GroupProfileManagementComponent } from 'src/app/group-profile/secure/gr
 import { GameProfileManagementComponent } from 'src/app/game-profile/secure/game-profile-management.component';
 
 // *Common Components*
-import { AppComponent } from 'src/app/app.component';
 import { LoadingOverlayComponent } from 'src/app/_common/components/loading-overlay/loading-overlay.component';
 import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { PageHeaderComponent } from 'src/app/_common/components/page-header/page-header.component';
@@ -43,9 +48,6 @@ import { FileUploadComponent } from 'src/app/_common/components/file-upload/file
 import { PortfolioComponent } from 'src/app/portfolio/portfolio.component';
 import { PaginationBarComponent } from 'src/app/_common/components/pagination-bar/pagination-bar.component';
 import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/officer-badge.component';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { UserProfileContainerComponent } from './user-profile/user-profile-container.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { UserProfileContainerComponent } from './user-profile/user-profile-conta
     GameJamComponent,
     LoginComponent,
     LogoutComponent,
-    UserProfileContainerComponent
+    UserProfileContainerComponent,
+    GroupProfileContainerComponent,
+    GameProfileContainerComponent
   ],
   imports: [
     NgbModule,
