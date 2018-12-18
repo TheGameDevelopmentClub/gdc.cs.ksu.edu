@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -7,7 +6,6 @@ import { CreateGroupComponent } from 'src/app/create-group/create-group.componen
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
-import { AuthService } from 'src/app/_common/services/auth/auth.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
 import { GroupService } from 'src/app/_common/services/group/group.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
@@ -19,6 +17,9 @@ import { User } from 'src/app/_common/models/user';
   styleUrls: ['../user-profile.component.scss']
 })
 export class UserProfileManagementComponent implements OnInit {
+  @Input() userId: number;
+  @Output() doneEditing: EventEmitter<void> = new EventEmitter<void>();
+
   @ViewChild('profileUpdateMessages') profileUpdateMessages: InfoMessagesComponent;
   @ViewChild('gamesUpdateMessages') gamesUpdateMessages: InfoMessagesComponent;
   @ViewChild('infoForm') infoForm: NgForm;
@@ -51,23 +52,21 @@ export class UserProfileManagementComponent implements OnInit {
   dialogRef: MatDialogRef<any>;
 
   constructor(
-    private router: Router,
     private dialog: MatDialog,
     private userService: UserService,
-    private authService: AuthService,
     private groupService: GroupService,
     private gameService: GameService
   ) { }
 
   ngOnInit() {
-    this.userService.getById(this.authService.authenticatedUser.userId)
-      .then((user) => {
+    this.userService.getById(this.userId)
+      .then(user => {
         this.user = user;
         this.loadedUser = true;
         this.loadPage('groups', 1);
         this.loadPage('games', 1);
       })
-      .catch((error) => this.errorOccurred = true);
+      .catch(error => this.errorOccurred = true);
   }
 
   loadPage(category: string, pageNumber: number) {
@@ -80,6 +79,10 @@ export class UserProfileManagementComponent implements OnInit {
         this.categories[category].loading = false;
       })
       .catch();
+  }
+
+  stopEditing(): void {
+    this.doneEditing.emit();
   }
 
   uploadProfileImage(image: File) {

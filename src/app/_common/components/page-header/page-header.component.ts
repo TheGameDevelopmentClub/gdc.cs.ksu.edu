@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
+import { AuthUser } from 'src/app/_common/models/user';
 
 @Component({
   selector: 'ksu-gdc-page-header',
@@ -21,7 +22,7 @@ export class PageHeaderComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
 
-  getAuthUserUsername(): string {
-    return this.authService.authenticatedUser.username;
+  getAuthUser(): AuthUser {
+    return this.authService.authenticatedUser;
   }
 }

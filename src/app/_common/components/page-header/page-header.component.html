@@ -22,12 +22,12 @@
           <a class="nav-link" routerLink="/login" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: false}">Login</a>
         </li>
         <li *ngIf="isAuthenticated()" class="nav-item" ngbDropdown>
-          <a class="nav-link" id="userDropdown" ngbDropdownToggle>{{getAuthUserUsername()}}</a>
+          <a class="nav-link" id="userDropdown" ngbDropdownToggle>{{getAuthUser().username}}</a>
           <div ngbDropdownMenu aria-labelledby="userDropdown" id="userDropdownMenu" class="dropdown-menu">
             <ul>
               <li class="nav-item dropdown-item">
-                <a class="nav-link" routerLink="/manage/me" routerLinkActive="nav-link-active"
-                  [routerLinkActiveOptions]="{exact: false}">Manage</a>
+                <a class="nav-link" routerLink="/members/{{getAuthUser().userId}}" routerLinkActive="nav-link-active"
+                  [routerLinkActiveOptions]="{exact: false}">My Profile</a>
               </li>
               <li class="nav-item dropdown-item">
                 <a class="nav-link" routerLink="/logout" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: false}">Logout</a>

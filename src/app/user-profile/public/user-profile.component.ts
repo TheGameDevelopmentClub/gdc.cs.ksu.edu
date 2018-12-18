@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { AuthService } from 'src/app/_common/services/auth/auth.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
 import { GroupService } from 'src/app/_common/services/group/group.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
@@ -12,6 +13,9 @@ import { User } from 'src/app/_common/models/user';
   styleUrls: ['../user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  @Input() userId: number;
+  @Output() edit: EventEmitter<void> = new EventEmitter<void>();
+
   userNotFound: boolean;
   user: User;
 
@@ -36,14 +40,14 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private authService: AuthService,
     private userService: UserService,
     private groupService: GroupService,
     private gameService: GameService
   ) { }
 
   ngOnInit() {
-    const userId = this.route.snapshot.params['userId'];
-    this.userService.getById(userId)
+    this.userService.getById(this.userId)
       .then(user => {
         this.user = user;
         this.loadPage('groups', 1);
@@ -64,5 +68,13 @@ export class UserProfileComponent implements OnInit {
         this.categories[category].loaded = true;
         this.categories[category].loading = false;
       });
+  }
+
+  canEdit(): boolean {
+    return this.authService.isAuthenticated() && this.authService.authenticatedUser.userId === this.userId;
+  }
+
+  editUser(): void {
+    this.edit.emit();
   }
 }

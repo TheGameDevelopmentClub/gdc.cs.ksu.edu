@@ -45,6 +45,7 @@ import { PaginationBarComponent } from 'src/app/_common/components/pagination-ba
 import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/officer-badge.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UserProfileContainerComponent } from './user-profile/user-profile-container.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { LogoutComponent } from './logout/logout.component';
     GroupProfileManagementComponent,
     GameJamComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserProfileContainerComponent
   ],
   imports: [
     NgbModule,
