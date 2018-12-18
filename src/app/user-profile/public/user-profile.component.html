@@ -1,4 +1,4 @@
-<div *ngIf="user">
+<div *ngIf="!errorOccurred && user">
   <br>
   <button *ngIf="canEdit()" class="btn btn-success" (click)="editUser()">Edit</button>
   <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{user?.imageUrl}}" alt-url="assets/images/profile.png">
@@ -55,4 +55,4 @@
   </div>
   <br>
 </div>
-<ksu-gdc-error *ngIf="userNotFound"></ksu-gdc-error>
+<ksu-gdc-error *ngIf="errorOccurred"></ksu-gdc-error>

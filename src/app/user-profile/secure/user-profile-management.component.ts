@@ -28,7 +28,6 @@ export class UserProfileManagementComponent implements OnInit {
 
   errorOccurred: boolean;
   user: User;
-  loadedUser: boolean;
 
   categories = {
     groups: {
@@ -62,7 +61,6 @@ export class UserProfileManagementComponent implements OnInit {
     this.userService.getById(this.userId)
       .then(user => {
         this.user = user;
-        this.loadedUser = true;
         this.loadPage('groups', 1);
         this.loadPage('games', 1);
       })

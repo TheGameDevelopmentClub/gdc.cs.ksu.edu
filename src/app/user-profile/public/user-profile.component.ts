@@ -16,7 +16,7 @@ export class UserProfileComponent implements OnInit {
   @Input() userId: number;
   @Output() edit: EventEmitter<void> = new EventEmitter<void>();
 
-  userNotFound: boolean;
+  errorOccurred: boolean;
   user: User;
 
   categories = {
@@ -55,7 +55,7 @@ export class UserProfileComponent implements OnInit {
       })
       .catch(error => {
         this.user = null;
-        this.userNotFound = true;
+        this.errorOccurred = true;
       });
   }
 
