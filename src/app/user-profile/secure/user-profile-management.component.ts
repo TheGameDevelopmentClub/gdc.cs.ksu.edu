@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
+import { CreateGameComponent } from 'src/app/create-game/create-game.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
@@ -52,7 +53,10 @@ export class UserProfileManagementComponent implements OnInit {
         this.user = user;
         this.loadPage('games', 1);
       })
-      .catch(error => this.errorOccurred = true);
+      .catch(error => {
+        this.user = null;
+        this.errorOccurred = true;
+      });
   }
 
   loadPage(category: string, pageNumber: number) {
@@ -93,15 +97,20 @@ export class UserProfileManagementComponent implements OnInit {
   }
 
   openGameCreationModal() {
-    // this.dialogRef = this.dialog.open(CreateGameComponent, {
-    //   height: '400px',
-    //   width: '400px'
-    // });
-    // this.dialogRef.afterClosed()
-    //   .subscribe((created) => {
-    //     if (created) {
-    //       this.loadPage('games', 1);
-    //     }
-    //   });
+    this.dialogRef = this.dialog.open(CreateGameComponent, {
+      height: '500px',
+      width: '500px',
+      maxHeight: '70%',
+      maxWidth: '70%',
+      data: {
+        user: this.user
+      }
+    });
+    this.dialogRef.afterClosed()
+      .subscribe((created) => {
+        if (created) {
+          this.loadPage('games', 1);
+        }
+      });
   }
 }

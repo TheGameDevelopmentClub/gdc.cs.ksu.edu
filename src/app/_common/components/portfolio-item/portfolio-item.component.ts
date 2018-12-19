@@ -6,7 +6,7 @@ import { PortfolioItem } from 'src/app/_common/models/portfolio';
 const categories = {
   games: {
     path: 'games',
-    id: 'gameId'
+    idRef: 'gameId'
   }
 };
 
@@ -19,17 +19,17 @@ export class PortfolioItemComponent implements OnInit {
   @Input() category: string;
   @Input() item: PortfolioItem;
 
-  info;
+  itemInfo: { path: any; idRef: string; };
 
   constructor(
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.info = categories[this.category];
+    this.itemInfo = categories[this.category];
   }
 
   openItemInfo() {
-    this.router.navigate([`/portfolio/${this.info.path}/${this.item[this.info.id]}`]);
+    this.router.navigate([`/portfolio/${this.itemInfo.path}/${this.item[this.itemInfo.idRef]}`]);
   }
 }

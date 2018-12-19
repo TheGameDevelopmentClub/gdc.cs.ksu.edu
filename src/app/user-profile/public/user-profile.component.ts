@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
@@ -30,7 +29,6 @@ export class UserProfileComponent implements OnInit {
   };
 
   constructor(
-    private route: ActivatedRoute,
     private authService: AuthService,
     private userService: UserService,
     private gameService: GameService

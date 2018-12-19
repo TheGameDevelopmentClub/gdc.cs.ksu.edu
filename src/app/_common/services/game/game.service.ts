@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { API_PATH } from 'src/app/_common/constants/paths';
 import { PaginatedList } from 'src/app/_common/models/paginated-list';
-import { Game } from 'src/app/_common/models/game';
+import { NewGame, Game } from 'src/app/_common/models/game';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,18 @@ export class GameService {
     private http: HttpClient
   ) { }
 
+  create(userId: number, newGame: NewGame): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.post<boolean>(`${API_PATH.games}`, { userId: userId, game: newGame })
+        .subscribe(
+          success => resolve(success),
+          error => reject(error));
+    });
+  }
+
   getById(gameId: number): Promise<Game> {
     return new Promise<Game>((resolve, reject) => {
-      this.http.get<Game>(`${API_PATH.groups}/${gameId}`)
+      this.http.get<Game>(`${API_PATH.games}/${gameId}`)
         .subscribe(
           game => resolve(new Game(game)),
           error => reject(error));
@@ -25,7 +34,7 @@ export class GameService {
 
   getPaginationOfAll(pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
     return new Promise<PaginatedList<Game>>((resolve, reject) => {
-      this.http.get<PaginatedList<Game>>(`${API_PATH.groups}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      this.http.get<PaginatedList<Game>>(`${API_PATH.games}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
         .subscribe(
           pageGames => {
             pageGames.value = pageGames.value.map((game) => new Game(game));
