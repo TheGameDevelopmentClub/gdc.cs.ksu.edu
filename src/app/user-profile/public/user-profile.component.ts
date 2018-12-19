@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
-import { GroupService } from 'src/app/_common/services/group/group.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { User } from 'src/app/_common/models/user';
 
@@ -20,14 +19,6 @@ export class UserProfileComponent implements OnInit {
   user: User;
 
   categories = {
-    groups: {
-      service: this.groupService,
-      loading: false,
-      loaded: false,
-      pageSize: 6,
-      totalItemCount: 0,
-      list: []
-    },
     games: {
       service: this.gameService,
       loading: false,
@@ -42,7 +33,6 @@ export class UserProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private userService: UserService,
-    private groupService: GroupService,
     private gameService: GameService
   ) { }
 
@@ -50,7 +40,6 @@ export class UserProfileComponent implements OnInit {
     this.userService.getById(this.userId)
       .then(user => {
         this.user = user;
-        this.loadPage('groups', 1);
         this.loadPage('games', 1);
       })
       .catch(error => {

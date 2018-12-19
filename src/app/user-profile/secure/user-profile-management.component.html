@@ -25,25 +25,6 @@
     <button type="submit" class="btn btn-success" [disabled]="infoForm.pristine || !infoForm.form.valid">Update</button>
   </form>
   <br>
-  <div class="groups-container">
-    <div class="container text-center">
-      <div>
-        <h3>Groups</h3>
-        <button class="btn btn-success" (click)="openGroupCreationModal()">Create New</button>
-      </div>
-      <hr class="hr-primary">
-      <div *ngIf="!categories.groups.loading && categories.groups.totalItemCount == 0">0 groups have been
-        found</div>
-      <div class="row">
-        <div class="col" *ngFor="let group of categories.groups.list">
-          <div>{{group.name}}</div>
-        </div>
-      </div>
-      <ksu-gdc-pagination-bar [itemsLoaded]="categories.groups.loaded" [totalItemCount]="categories.groups.totalItemCount"
-        [pageSize]="categories.groups.pageSize" (pageChange)="loadPage('groups', $event)"></ksu-gdc-pagination-bar>
-    </div>
-  </div>
-  <br>
   <div class="games-container">
     <div class="container text-center">
       <div>

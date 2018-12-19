@@ -2,12 +2,10 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
-import { CreateGroupComponent } from 'src/app/create-group/create-group.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
 import { UserService } from 'src/app/_common/services/user/user.service';
-import { GroupService } from 'src/app/_common/services/group/group.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { User } from 'src/app/_common/models/user';
 
@@ -30,14 +28,6 @@ export class UserProfileManagementComponent implements OnInit {
   user: User;
 
   categories = {
-    groups: {
-      service: this.groupService,
-      loading: false,
-      loaded: false,
-      pageSize: 6,
-      totalItemCount: 0,
-      list: []
-    },
     games: {
       service: this.gameService,
       loading: false,
@@ -53,7 +43,6 @@ export class UserProfileManagementComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private userService: UserService,
-    private groupService: GroupService,
     private gameService: GameService
   ) { }
 
@@ -61,7 +50,6 @@ export class UserProfileManagementComponent implements OnInit {
     this.userService.getById(this.userId)
       .then(user => {
         this.user = user;
-        this.loadPage('groups', 1);
         this.loadPage('games', 1);
       })
       .catch(error => this.errorOccurred = true);
@@ -104,20 +92,16 @@ export class UserProfileManagementComponent implements OnInit {
       .catch(error => this.profileUpdateMessages.showError('There was a problem updating your info.'));
   }
 
-  openGroupCreationModal() {
-    this.dialogRef = this.dialog.open(CreateGroupComponent, {
-      height: '400px',
-      width: '400px'
-    });
-    this.dialogRef.afterClosed()
-      .subscribe((created) => {
-        if (created) {
-          this.loadPage('groups', 1);
-        }
-      });
-  }
-
   openGameCreationModal() {
-
+    // this.dialogRef = this.dialog.open(CreateGameComponent, {
+    //   height: '400px',
+    //   width: '400px'
+    // });
+    // this.dialogRef.afterClosed()
+    //   .subscribe((created) => {
+    //     if (created) {
+    //       this.loadPage('games', 1);
+    //     }
+    //   });
   }
 }

@@ -52,19 +52,6 @@ export class GameService {
     });
   }
 
-  getPaginationOfAllByGroupId(groupId: number, pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
-    return new Promise<PaginatedList<Game>>((resolve, reject) => {
-      this.http.get<PaginatedList<Game>>(`${API_PATH.groups}/${groupId}/portfolio/games?pageNumber=${pageNumber}
-      &pageSize=${pageSize}`)
-        .subscribe(
-          pageGames => {
-            pageGames.value = pageGames.value.map((game) => new Game(game));
-            resolve(new PaginatedList<Game>(pageGames));
-          },
-          error => reject(error));
-    });
-  }
-
   update(game: Game): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       this.http.put<boolean>(`${API_PATH.groups}/${game.gameId}`, game)

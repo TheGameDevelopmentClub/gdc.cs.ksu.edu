@@ -23,8 +23,6 @@ import { ErrorComponent } from 'src/app/error/error.component';
 import { HomeComponent } from 'src/app/home/home.component';
 import { UserProfileContainerComponent } from 'src/app/user-profile/user-profile-container.component';
 import { UserProfileComponent } from 'src/app/user-profile/public/user-profile.component';
-import { GroupProfileContainerComponent } from 'src/app/group-profile/group-profile-container.component';
-import { GroupProfileComponent } from 'src/app/group-profile/public/group-profile.component';
 import { GameProfileContainerComponent } from 'src/app/game-profile/game-profile-container.component';
 import { GameProfileComponent } from 'src/app/game-profile/public/game-profile.component';
 import { GameJamComponent } from 'src/app/game-jam/game-jam.component';
@@ -33,8 +31,6 @@ import { LogoutComponent } from 'src/app/logout/logout.component';
 
 // *Secure Page Components*
 import { UserProfileManagementComponent } from 'src/app/user-profile/secure/user-profile-management.component';
-import { CreateGroupComponent } from 'src/app/create-group/create-group.component';
-import { GroupProfileManagementComponent } from 'src/app/group-profile/secure/group-profile-management.component';
 import { GameProfileManagementComponent } from 'src/app/game-profile/secure/game-profile-management.component';
 
 // *Common Components*
@@ -64,7 +60,6 @@ import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/
     LoadingOverlayComponent,
     FileUploadComponent,
     InfoMessagesComponent,
-    GroupProfileComponent,
     ErrorComponent,
     UserProfileManagementComponent,
     GameProfileComponent,
@@ -72,13 +67,10 @@ import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/
     PaginationBarComponent,
     OfficerBadgeComponent,
     GameProfileManagementComponent,
-    CreateGroupComponent,
-    GroupProfileManagementComponent,
     GameJamComponent,
     LoginComponent,
     LogoutComponent,
     UserProfileContainerComponent,
-    GroupProfileContainerComponent,
     GameProfileContainerComponent
   ],
   imports: [
@@ -92,7 +84,6 @@ import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/
     FormsModule
   ],
   entryComponents: [
-    CreateGroupComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
