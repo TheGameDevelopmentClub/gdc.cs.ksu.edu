@@ -5,6 +5,7 @@ export class NewGame {
   public title: string;
   public description: string;
   public hostUrl: string;
+  public userId: number;
 }
 
 export class Game extends PortfolioItem {

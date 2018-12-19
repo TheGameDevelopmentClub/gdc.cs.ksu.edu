@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { NewGame } from 'src/app/_common/models/game';
 import { User } from '../_common/models/user';
@@ -11,6 +12,8 @@ import { User } from '../_common/models/user';
   styleUrls: ['./create-game.component.scss']
 })
 export class CreateGameComponent implements OnInit {
+  @ViewChild('gameCreateMessages') gameCreateMessages: InfoMessagesComponent;
+
   game = new NewGame();
 
   constructor(
@@ -28,6 +31,7 @@ export class CreateGameComponent implements OnInit {
         this.dialogRef.close(true);
       })
       .catch(error => {
+        this.gameCreateMessages.showError('There was a problem creating your game.');
       });
   }
 

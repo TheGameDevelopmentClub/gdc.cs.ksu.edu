@@ -98,7 +98,7 @@ export class UserProfileManagementComponent implements OnInit {
 
   openGameCreationModal() {
     this.dialogRef = this.dialog.open(CreateGameComponent, {
-      height: '500px',
+      height: '600px',
       width: '500px',
       maxHeight: '70%',
       maxWidth: '70%',

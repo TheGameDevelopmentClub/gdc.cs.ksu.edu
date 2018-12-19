@@ -14,11 +14,11 @@ export class GameService {
     private http: HttpClient
   ) { }
 
-  create(userId: number, newGame: NewGame): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-      this.http.post<boolean>(`${API_PATH.games}`, { userId: userId, game: newGame })
+  create(userId: number, newGame: NewGame): Promise<Game> {
+    return new Promise<Game>((resolve, reject) => {
+      this.http.post<Game>(`${API_PATH.users}/${userId}/portfolio/games`, newGame)
         .subscribe(
-          success => resolve(success),
+          game => resolve(new Game(game)),
           error => reject(error));
     });
   }
@@ -45,13 +45,20 @@ export class GameService {
   }
 
   getPaginationOfFeatured(pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
-    return this.getPaginationOfAll(pageNumber, pageSize);
+    return new Promise<PaginatedList<Game>>((resolve, reject) => {
+      this.http.get<PaginatedList<Game>>(`${API_PATH.games}/featured?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+        .subscribe(
+          pageGames => {
+            pageGames.value = pageGames.value.map((game) => new Game(game));
+            resolve(new PaginatedList<Game>(pageGames));
+          },
+          error => reject(error));
+    });
   }
 
   getPaginationOfAllByUserId(userId: number, pageNumber: number, pageSize: number): Promise<PaginatedList<Game>> {
     return new Promise<PaginatedList<Game>>((resolve, reject) => {
-      this.http.get<PaginatedList<Game>>(`${API_PATH.users}/${userId}/portfolio/games?pageNumber=${pageNumber}
-      &pageSize=${pageSize}`)
+      this.http.get<PaginatedList<Game>>(`${API_PATH.users}/${userId}/portfolio/games?pageNumber=${pageNumber}&pageSize=${pageSize}`)
         .subscribe(
           pageGames => {
             pageGames.value = pageGames.value.map((game) => new Game(game));
