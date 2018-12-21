@@ -32,7 +32,7 @@ export class PortfolioComponent implements OnInit {
     this.categories[category].service.getPaginationOfAll(pageNumber, this.categories[category].pageSize)
       .then((items) => {
         this.categories[category].list = items.value;
-        this.categories[category].totalItemCount = items.originalCount;
+        this.categories[category].totalItemCount = items.total;
         this.categories[category].loaded = true;
         this.categories[category].loading = false;
       });
