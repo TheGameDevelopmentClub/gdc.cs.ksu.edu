@@ -84,6 +84,30 @@ section.success {
   padding-right: 10px;
 }
 
+#userDropdownMenu {
+  background-color: $nav-bg;
+  border-style: none;
+}
+
+.dropdown-menu ul {
+  padding-left: 0px;
+  text-align: center;
+}
+
+.dropdown-item {
+  &:hover {
+    background-color: $nav-bg;
+  }
+
+  &:active {
+    background-color: $nav-bg;
+  }
+
+  a.nav-link {
+    color: #fff;
+  }
+}
+
 @media (min-width: 992px) {
   .nav-container {
     padding-bottom: 66px;
@@ -118,16 +142,6 @@ section.success {
   #mainNav.navbar-brand {
     font-size: 1.5em;
   }
-}
-
-#userDropdownMenu {
-  background-color: $nav-bg;
-  border-style: none;
-}
-
-.dropdown-menu ul {
-  padding-left: 0px;
-  text-align: center;
 }
 
 @media (max-width: 434px) {
