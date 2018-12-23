@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { InfoMessageComponent } from 'src/app/_common/components/info-messages/info-messages.component';
+import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { AuthService } from '../_common/services/auth/auth.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { AuthService } from '../_common/services/auth/auth.service';
   styleUrls: ['./logout.component.scss']
 })
 export class LogoutComponent implements OnInit {
-  @ViewChild('logoutResponseMessages') logoutResponseMessages: InfoMessageComponent;
+  @ViewChild('logoutResponseMessages') logoutResponseMessages: InfoMessagesComponent;
 
   constructor(
     private authService: AuthService

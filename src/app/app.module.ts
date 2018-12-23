@@ -36,7 +36,7 @@ import { GameProfileManagementComponent } from 'src/app/game-profile/secure/game
 
 // *Common Components*
 import { LoadingOverlayComponent } from 'src/app/_common/components/loading-overlay/loading-overlay.component';
-import { InfoMessageComponent } from 'src/app/_common/components/info-messages/info-messages.component';
+import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { PageHeaderComponent } from 'src/app/_common/components/page-header/page-header.component';
 import { PageFooterComponent } from 'src/app/_common/components/page-footer/page-footer.component';
 import { PortfolioItemComponent } from 'src/app/_common/components/portfolio-item/portfolio-item.component';
@@ -62,7 +62,7 @@ import { AddGameUsersComponent } from 'src/app/_common/components/add-game-users
     UserProfileComponent,
     LoadingOverlayComponent,
     FileUploadComponent,
-    InfoMessageComponent,
+    InfoMessagesComponent,
     ErrorComponent,
     UserProfileManagementComponent,
     GameProfileComponent,

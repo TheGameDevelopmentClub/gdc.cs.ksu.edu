@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { InfoMessageComponent } from 'src/app/_common/components/info-messages/info-messages.component';
+import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/_common/services/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('loginResponseMessages') loginResponseMessages: InfoMessageComponent;
+  @ViewChild('loginResponseMessages') loginResponseMessages: InfoMessagesComponent;
 
   constructor(
     private route: ActivatedRoute,

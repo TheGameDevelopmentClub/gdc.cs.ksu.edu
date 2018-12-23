@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material';
 
 import { AddGameUsersComponent } from 'src/app/_common/components/add-game-users/add-game-users.component';
-import { InfoMessageComponent } from 'src/app/_common/components/info-messages/info-messages.component';
+import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
 import { GameService } from 'src/app/_common/services/game/game.service';
@@ -20,7 +20,7 @@ export class GameProfileManagementComponent implements OnInit {
   @Input() gameId: number;
   @Output() doneEditing: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild('gamesUpdateMessages') gameUpdateMessages: InfoMessageComponent;
+  @ViewChild('gamesUpdateMessages') gameUpdateMessages: InfoMessagesComponent;
   @ViewChild('infoForm') infoForm: NgForm;
   @ViewChild(FileUploadComponent) gameImageUploader: FileUploadComponent;
   @ViewChild(ImageLoaderDirective) gameImage: ImageLoaderDirective;
