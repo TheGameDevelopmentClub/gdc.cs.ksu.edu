@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
-import { Game } from 'src/app/_common/models/game';
 import { GameService } from 'src/app/_common/services/game/game.service';
+import { UserService } from 'src/app/_common/services/user/user.service';
+import { Game } from 'src/app/_common/models/game';
 
 @Component({
   selector: 'ksu-gdc-game-profile',
@@ -16,19 +16,44 @@ export class GameProfileComponent implements OnInit {
   errorOccurred: boolean;
   game: Game;
 
+  categories = {
+    users: {
+      service: this.userService,
+      loading: false,
+      loaded: false,
+      pageSize: 6,
+      totalItemCount: 0,
+      list: []
+    }
+  };
+
   constructor(
-    private gameService: GameService
+    private gameService: GameService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.gameService.getById(this.gameId)
       .then(game => {
         this.game = game;
+        this.loadPage('users', 1);
       })
       .catch(error => {
         this.game = null;
         this.errorOccurred = true;
       });
+  }
+
+  loadPage(category: string, pageNumber: number) {
+    this.categories[category].loading = true;
+    this.categories[category].service.getPaginationOfAllByGameId(this.game.gameId, pageNumber, this.categories[category].pageSize)
+      .then((items) => {
+        this.categories[category].list = items.value;
+        this.categories[category].totalItemCount = items.total;
+        this.categories[category].loaded = true;
+        this.categories[category].loading = false;
+      })
+      .catch();
   }
 
   canEdit(): boolean {

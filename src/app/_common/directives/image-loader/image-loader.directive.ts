@@ -8,12 +8,14 @@ export class ImageLoaderDirective implements AfterContentInit, OnDestroy {
   @Input('alt-url') set setFallbackUrl(url: string) {
     this.alternateUrl = url;
   }
+  private source: string;
 
   private cancelOnLoad: Function;
   private cancelOnError: Function;
 
   private element: HTMLElement;
   private alternateUrl = '';
+  private sourceUrl: string;
 
   constructor(
     private el: ElementRef,
@@ -33,19 +35,22 @@ export class ImageLoaderDirective implements AfterContentInit, OnDestroy {
   }
 
   reload(): void {
-    this.updateImage(this.element.getAttribute('src') + '?ts=' + Date.now());
+    this.updateImage(this.sourceUrl + '?ts=' + Date.now());
   }
 
   private onLoad(): void {
-    // this.removeOnLoadEvent();
+    const curSource = this.element.getAttribute('src');
+    if (curSource !== this.alternateUrl) {
+      this.sourceUrl = curSource;
+    }
   }
 
   private onError(): void {
-    if (this.element.getAttribute('src') !== this.alternateUrl) {
-      this.renderer.setAttribute(this.element, 'src', this.alternateUrl);
+    const curSource = this.element.getAttribute('src');
+    if (curSource !== this.alternateUrl) {
+      this.sourceUrl = curSource;
+      this.updateImage(this.alternateUrl);
       this.error.emit();
-    // } else {
-    //   this.removeOnLoadEvent();
     }
   }
 

@@ -90,7 +90,16 @@ export class GameService {
     return new Promise<boolean>((resolve, reject) => {
       const data = new FormData();
       data.append('image', image);
-      this.http.post<boolean>(`${API_PATH.users}/${gameId}/thumbnail-image`, data)
+      this.http.post<boolean>(`${API_PATH.games}/${gameId}/thumbnail-image`, data)
+        .subscribe(
+          success => resolve(success),
+          error => reject(error));
+    });
+  }
+
+  removeCollaborator(userId: number, gameId: number): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.delete<boolean>(`${API_PATH.users}/${userId}/portfolio/games/${gameId}`)
         .subscribe(
           success => resolve(success),
           error => reject(error));

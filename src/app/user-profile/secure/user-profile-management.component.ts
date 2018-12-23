@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
-import { CreateGameComponent } from 'src/app/create-game/create-game.component';
+import { CreateGameComponent } from 'src/app/_common/components/create-game/create-game.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
-import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
+import { InfoMessageComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
 import { UserService } from 'src/app/_common/services/user/user.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
@@ -19,8 +19,7 @@ export class UserProfileManagementComponent implements OnInit {
   @Input() userId: number;
   @Output() doneEditing: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild('profileUpdateMessages') profileUpdateMessages: InfoMessagesComponent;
-  @ViewChild('gamesUpdateMessages') gamesUpdateMessages: InfoMessagesComponent;
+  @ViewChild('profileUpdateMessages') profileUpdateMessages: InfoMessageComponent;
   @ViewChild('infoForm') infoForm: NgForm;
   @ViewChild(FileUploadComponent) profileImageUploader: FileUploadComponent;
   @ViewChild(ImageLoaderDirective) profileImage: ImageLoaderDirective;

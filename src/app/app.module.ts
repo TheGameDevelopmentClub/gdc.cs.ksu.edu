@@ -21,6 +21,7 @@ import { SanitizeInputPipe } from 'src/app/_common/pipes/sanitize-input/sanitize
 import { AppComponent } from 'src/app/app.component';
 import { ErrorComponent } from 'src/app/error/error.component';
 import { HomeComponent } from 'src/app/home/home.component';
+import { PortfolioComponent } from 'src/app/portfolio/portfolio.component';
 import { UserProfileContainerComponent } from 'src/app/user-profile/user-profile-container.component';
 import { UserProfileComponent } from 'src/app/user-profile/public/user-profile.component';
 import { GameProfileContainerComponent } from 'src/app/game-profile/game-profile-container.component';
@@ -35,16 +36,17 @@ import { GameProfileManagementComponent } from 'src/app/game-profile/secure/game
 
 // *Common Components*
 import { LoadingOverlayComponent } from 'src/app/_common/components/loading-overlay/loading-overlay.component';
-import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
+import { InfoMessageComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { PageHeaderComponent } from 'src/app/_common/components/page-header/page-header.component';
 import { PageFooterComponent } from 'src/app/_common/components/page-footer/page-footer.component';
 import { PortfolioItemComponent } from 'src/app/_common/components/portfolio-item/portfolio-item.component';
+import { MemberItemComponent } from 'src/app/_common/components/member-item/member-item.component';
 import { CountdownTimerComponent } from 'src/app/_common/components/countdown-timer/countdown-timer.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
-import { PortfolioComponent } from 'src/app/portfolio/portfolio.component';
 import { PaginationBarComponent } from 'src/app/_common/components/pagination-bar/pagination-bar.component';
 import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/officer-badge.component';
-import { CreateGameComponent } from 'src/app/create-game/create-game.component';
+import { CreateGameComponent } from 'src/app/_common/components/create-game/create-game.component';
+import { AddGameUsersComponent } from 'src/app/_common/components/add-game-users/add-game-users.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,7 @@ import { CreateGameComponent } from 'src/app/create-game/create-game.component';
     UserProfileComponent,
     LoadingOverlayComponent,
     FileUploadComponent,
-    InfoMessagesComponent,
+    InfoMessageComponent,
     ErrorComponent,
     UserProfileManagementComponent,
     GameProfileComponent,
@@ -73,7 +75,9 @@ import { CreateGameComponent } from 'src/app/create-game/create-game.component';
     LogoutComponent,
     UserProfileContainerComponent,
     GameProfileContainerComponent,
-    CreateGameComponent
+    CreateGameComponent,
+    AddGameUsersComponent,
+    MemberItemComponent
   ],
   imports: [
     NgbModule,
@@ -86,7 +90,8 @@ import { CreateGameComponent } from 'src/app/create-game/create-game.component';
     FormsModule
   ],
   entryComponents: [
-    CreateGameComponent
+    CreateGameComponent,
+    AddGameUsersComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

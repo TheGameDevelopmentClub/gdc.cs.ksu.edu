@@ -1,7 +1,7 @@
 <div *ngIf="!errorOccurred && game">
   <br>
   <button *ngIf="canEdit()" class="btn btn-success" (click)="editGame()">Edit</button>
-  <img class="profile-container img-fluid d-block mx-auto" image-loader src="{{game?.imageUrl}}">
+  <img class="thumbnail-container img-fluid d-block mx-auto" image-loader src="{{game?.imageUrl}}" alt-url="assets/images/img-not-available.png">
   <h1 class="text-center">{{game?.title}}</h1>
   <hr class="hr-primary">
   <div class="form-group">
@@ -10,5 +10,25 @@
       readonly></textarea>
   </div>
   <button class="btn btn-success" (click)="openMoreInfo()">More Info</button>
+  <br>
+  <br>
+  <div class="users-container">
+    <div class="container text-center">
+      <div>
+        <h3>Collaborators</h3>
+      </div>
+      <hr class="hr-primary">
+      <div *ngIf="!categories.users.loading && categories.users.totalItemCount == 0">0 collaborators have been
+        found</div>
+      <div class="row">
+        <div class="col" *ngFor="let user of categories.users.list">
+          <ksu-gdc-member-item [user]="user"></ksu-gdc-member-item>
+        </div>
+      </div>
+      <ksu-gdc-pagination-bar [itemsLoaded]="categories.users.loaded" [totalItemCount]="categories.users.totalItemCount"
+        [pageSize]="categories.users.pageSize" (pageChange)="loadPage('users', $event)"></ksu-gdc-pagination-bar>
+    </div>
+  </div>
+  <br>
 </div>
 <ksu-gdc-error *ngIf="errorOccurred"></ksu-gdc-error>

@@ -43,6 +43,18 @@ export class UserService {
     });
   }
 
+  getPaginationOfAllByGameId(gameId: number, pageNumber: number, pageSize: number): Promise<PaginatedList<User>> {
+    return new Promise<PaginatedList<User>>((resolve, reject) => {
+      this.http.get<PaginatedList<User>>(`${API_PATH.games}/${gameId}/users?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+        .subscribe(
+          pageUsers => {
+            pageUsers.value = pageUsers.value.map((user) => new User(user));
+            resolve(new PaginatedList<User>(pageUsers));
+          },
+          error => reject(error));
+    });
+  }
+
   update(user: User): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       this.http.put<boolean>(`${API_PATH.users}/${user.userId}`, user)

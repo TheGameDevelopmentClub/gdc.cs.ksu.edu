@@ -1,0 +1,11 @@
+<div class="user-item">
+  <div class="user-tile">
+    <div class="user-link" (click)="openUserInfo()">
+      <img class="user-img rounded-circle img-fluid d-block mx-auto" src={{user?.imageUrl}} onerror="this.src='assets/images/img-not-available.png'">
+      <span id="user-name">
+        {{user?.username}}
+      </span>
+    </div>
+    <span *ngIf="showX" id="x" (click)="X()">&times;</span>
+  </div>
+</div>

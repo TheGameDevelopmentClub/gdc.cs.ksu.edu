@@ -1,0 +1,39 @@
+.user-item {
+  padding: 5px 5px 5px 5px;
+}
+
+.user-tile {
+  max-width: 250px !important;
+  max-height: 100px !important;
+  width: auto;
+  height: auto;
+  border: solid 3px #000000;
+  border-radius: 5px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.user-link {
+  padding: 5px 5px 5px 5px;
+  cursor: pointer;
+}
+
+.user-img {
+  display: inline !important;
+  width: 40px;
+  height: 40px;
+}
+
+#user-name {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#x {
+  padding: 5px 5px 5px 5px;
+
+  &:hover {
+    color: red;
+    cursor: pointer;
+  }
+}

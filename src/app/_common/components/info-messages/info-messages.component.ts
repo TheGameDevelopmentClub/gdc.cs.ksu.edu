@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './info-messages.component.html',
   styleUrls: ['./info-messages.component.scss']
 })
-export class InfoMessagesComponent implements OnInit {
+export class InfoMessageComponent implements OnInit {
   showMessages: boolean;
 
   messageVisibility: Map<string, Function> = new Map([
