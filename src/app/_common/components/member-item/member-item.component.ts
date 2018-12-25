@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { User } from 'src/app/_common/models/user';
 
@@ -11,20 +10,19 @@ import { User } from 'src/app/_common/models/user';
 export class MemberItemComponent implements OnInit {
   @Input() user: User;
   @Input() showX = false;
+  @Output() clicked: EventEmitter<User> = new EventEmitter<User>();
   @Output() clickedX: EventEmitter<User> = new EventEmitter<User>();
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  openUserInfo() {
-    this.router.navigate([`/members/${this.user.userId}`]);
+  handleClick(): void {
+    this.clicked.emit(this.user);
   }
 
-  X() {
+  X(): void {
     this.clickedX.emit(this.user);
   }
 }

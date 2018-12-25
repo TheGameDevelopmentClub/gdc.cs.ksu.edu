@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { GameService } from 'src/app/_common/services/game/game.service';
+import { PortfolioItem } from '../_common/models/portfolio';
 
 @Component({
   selector: 'ksu-gdc-portfolio',
@@ -20,6 +22,7 @@ export class PortfolioComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private gameService: GameService
   ) { }
 
@@ -36,5 +39,9 @@ export class PortfolioComponent implements OnInit {
         this.categories[category].loaded = true;
         this.categories[category].loading = false;
       });
+  }
+
+  navigateToPortfolioItemPage(item: PortfolioItem): void {
+    item.navigateToProfilePage(this.router);
   }
 }

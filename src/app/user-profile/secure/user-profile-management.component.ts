@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -9,6 +10,7 @@ import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/im
 import { UserService } from 'src/app/_common/services/user/user.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { User } from 'src/app/_common/models/user';
+import { PortfolioItem } from 'src/app/_common/models/portfolio';
 
 @Component({
   selector: 'ksu-gdc-user-profile-management',
@@ -41,6 +43,7 @@ export class UserProfileManagementComponent implements OnInit {
   dialogRef: MatDialogRef<any>;
 
   constructor(
+    private router: Router,
     private dialog: MatDialog,
     private userService: UserService,
     private gameService: GameService
@@ -93,6 +96,10 @@ export class UserProfileManagementComponent implements OnInit {
         this.profileUpdateMessages.showSuccess('Your info has been updated.');
       })
       .catch(error => this.profileUpdateMessages.showError('There was a problem updating your info.'));
+  }
+
+  navigateToPortfolioItemPage(item: PortfolioItem): void {
+    item.navigateToProfilePage(this.router);
   }
 
   openGameCreationModal() {

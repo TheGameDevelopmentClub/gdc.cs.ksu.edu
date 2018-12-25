@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material';
 
@@ -42,6 +43,7 @@ export class GameProfileManagementComponent implements OnInit {
   dialogRef: MatDialogRef<any>;
 
   constructor(
+    private router: Router,
     private dialog: MatDialog,
     private gameService: GameService,
     private userService: UserService
@@ -96,6 +98,10 @@ export class GameProfileManagementComponent implements OnInit {
       .catch(error => this.gameUpdateMessages.showError('There was a problem updating your info.'));
   }
 
+  navigateToMemberProfile(user: User): void {
+    user.navigateToProfilePage(this.router);
+  }
+
   openAddGameUserModal(): void {
     this.dialogRef = this.dialog.open(AddGameUsersComponent, {
       height: '600px',
@@ -120,8 +126,6 @@ export class GameProfileManagementComponent implements OnInit {
         this.gameUpdateMessages.showSuccess(`'${user.username}' was removed as a collaborator.`);
         this.loadPage('users', 1);
       })
-      .catch((err) => {
-        this.gameUpdateMessages.showError(`There was a problem removing '${user.username}' from collaborators.`);
-      });
+      .catch((err) => this.gameUpdateMessages.showError(`There was a problem removing '${user.username}' from collaborators.`));
   }
 }

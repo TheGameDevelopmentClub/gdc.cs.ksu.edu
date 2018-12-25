@@ -1,9 +1,11 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { User } from 'src/app/_common/models/user';
+import { PortfolioItem } from 'src/app/_common/models/portfolio';
 
 @Component({
   selector: 'ksu-gdc-user-profile',
@@ -29,6 +31,7 @@ export class UserProfileComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private userService: UserService,
     private gameService: GameService
@@ -63,5 +66,9 @@ export class UserProfileComponent implements OnInit {
 
   editUser(): void {
     this.edit.emit();
+  }
+
+  navigateToPortfolioItemPage(item: PortfolioItem): void {
+    item.navigateToProfilePage(this.router);
   }
 }

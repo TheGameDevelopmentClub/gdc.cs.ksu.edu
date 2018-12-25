@@ -1,4 +1,5 @@
 import { API_PATH } from 'src/app/_common/constants/paths';
+import { Router } from '@angular/router';
 
 export class User {
   public userId: number;
@@ -10,13 +11,17 @@ export class User {
   public imageUrl: string;
 
   constructor(user: any) {
-    this.userId = user['userId'];
+    this.userId = Number(user['userId']);
     this.username = user['username'];
     this.firstName = user['firstName'];
     this.lastName = user['lastName'];
     this.description = user['description'];
     this.email = user['email'];
     this.imageUrl = `${API_PATH.users}/${this.userId}/profile-image`;
+  }
+
+  navigateToProfilePage(router: Router) {
+    router.navigate([`/members/${this.userId}`]);
   }
 
   get fullName() {

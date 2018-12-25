@@ -97,6 +97,15 @@ export class GameService {
     });
   }
 
+  addCollaborator(userId: number, gameId: number): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.put<boolean>(`${API_PATH.users}/${userId}/portfolio/games/${gameId}`, null)
+        .subscribe(
+          success => resolve(success),
+          error => reject(error));
+    });
+  }
+
   removeCollaborator(userId: number, gameId: number): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       this.http.delete<boolean>(`${API_PATH.users}/${userId}/portfolio/games/${gameId}`)

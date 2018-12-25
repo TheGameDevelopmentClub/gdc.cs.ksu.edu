@@ -9,7 +9,7 @@
     <textarea rows="6" type="text" class="form-control" id="description" name="description" [ngModel]="game?.description"
       readonly></textarea>
   </div>
-  <button class="btn btn-success" (click)="openMoreInfo()">More Info</button>
+  <button *ngIf="game.hostUrl !== null" class="btn btn-success" (click)="openMoreInfo()">More Info</button>
   <br>
   <br>
   <div class="users-container">
@@ -22,7 +22,7 @@
         found</div>
       <div class="row">
         <div class="col" *ngFor="let user of categories.users.list">
-          <ksu-gdc-member-item [user]="user"></ksu-gdc-member-item>
+          <ksu-gdc-member-item [user]="user" (clicked)="navigateToMemberProfile($event)"></ksu-gdc-member-item>
         </div>
       </div>
       <ksu-gdc-pagination-bar [itemsLoaded]="categories.users.loaded" [totalItemCount]="categories.users.totalItemCount"

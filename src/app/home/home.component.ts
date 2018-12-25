@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { OfficerService } from 'src/app/_common/services/officer/officer.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { Officer } from 'src/app/_common/models/officer';
+import { PortfolioItem } from 'src/app/_common/models/portfolio';
 
 @Component({
   selector: 'ksu-gdc-home',
@@ -25,6 +27,7 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private officerService: OfficerService,
     private gameService: GameService
   ) { }
@@ -69,5 +72,9 @@ export class HomeComponent implements OnInit {
         this.featuredLoaded = true;
         this.featuredLoading = false;
       });
+  }
+
+  navigateToPortfolioItemPage(item: PortfolioItem): void {
+    item.navigateToProfilePage(this.router);
   }
 }

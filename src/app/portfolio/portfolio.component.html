@@ -7,11 +7,11 @@
       <div class="row">
         <div class="col" *ngIf="!categories.games.loading && categories.games.list.length == 0">0 games have been found</div>
         <div class="col" *ngFor="let game of categories.games.list">
-          <ksu-gdc-portfolio-item category="games" [item]="game"></ksu-gdc-portfolio-item>
+          <ksu-gdc-portfolio-item [item]="game" (clicked)="navigateToPortfolioItemPage($event)"></ksu-gdc-portfolio-item>
         </div>
       </div>
-      <ksu-gdc-pagination-bar [itemsLoaded]="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount" [pageSize]="categories.games.pageSize"
-        (pageChange)="loadPage('games', $event)"></ksu-gdc-pagination-bar>
+      <ksu-gdc-pagination-bar [itemsLoaded]="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount"
+        [pageSize]="categories.games.pageSize" (pageChange)="loadPage('games', $event)"></ksu-gdc-pagination-bar>
     </div>
   </div>
 </section>

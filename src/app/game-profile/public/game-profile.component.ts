@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { UserService } from 'src/app/_common/services/user/user.service';
 import { Game } from 'src/app/_common/models/game';
+import { User } from 'src/app/_common/models/user';
 
 @Component({
   selector: 'ksu-gdc-game-profile',
@@ -28,6 +30,7 @@ export class GameProfileComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private gameService: GameService,
     private userService: UserService
   ) { }
@@ -66,5 +69,9 @@ export class GameProfileComponent implements OnInit {
 
   openMoreInfo(): void {
     window.open(this.game.hostUrl, '_blank');
+  }
+
+  navigateToMemberProfile(user: User) {
+    user.navigateToProfilePage(this.router);
   }
 }

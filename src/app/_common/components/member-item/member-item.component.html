@@ -1,6 +1,6 @@
 <div class="user-item">
   <div class="user-tile">
-    <div class="user-link" (click)="openUserInfo()">
+    <div class="user-link" (click)="handleClick()">
       <img class="user-img rounded-circle img-fluid d-block mx-auto" src={{user?.imageUrl}} onerror="this.src='assets/images/img-not-available.png'">
       <span id="user-name">
         {{user?.username}}
