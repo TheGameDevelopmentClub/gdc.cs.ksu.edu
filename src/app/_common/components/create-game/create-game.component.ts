@@ -25,6 +25,10 @@ export class CreateGameComponent implements OnInit {
   ngOnInit() {
   }
 
+  closeDialog() {
+    this.dialogRef.close(false);
+  }
+
   createGame() {
     this.gameService.create(this.data.user.userId, this.game)
       .then(() => {
@@ -33,9 +37,5 @@ export class CreateGameComponent implements OnInit {
       .catch(error => {
         this.gameCreateMessages.showError('There was a problem creating your game.');
       });
-  }
-
-  closeDialog() {
-    this.dialogRef.close(false);
   }
 }

@@ -3,12 +3,11 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material';
 
-import { AddGameUsersComponent } from 'src/app/_common/components/add-game-users/add-game-users.component';
+import { AddCollaboratorComponent } from 'src/app/_common/components/add-collaborator/add-collaborator.component';
 import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
 import { GameService } from 'src/app/_common/services/game/game.service';
-import { UserService } from 'src/app/_common/services/user/user.service';
 import { Game } from 'src/app/_common/models/game';
 import { User } from 'src/app/_common/models/user';
 
@@ -80,11 +79,11 @@ export class GameProfileManagementComponent implements OnInit {
     this.gameImageUploader.isProcessing = true;
     this.gameService.updateImage(this.game.gameId, image)
       .then(() => {
-        this.gameUpdateMessages.showSuccess('Your profile image has been updated.');
+        this.gameUpdateMessages.showSuccess('The image has been updated.');
         this.gameImageUploader.isProcessing = false;
         this.gameImage.reload();
       })
-      .catch(error => this.gameUpdateMessages.showError('There was a problem updating your profile image.'));
+      .catch(error => this.gameUpdateMessages.showError('There was a problem updating the image.'));
   }
 
   updateGameInfo(): void {
@@ -92,9 +91,9 @@ export class GameProfileManagementComponent implements OnInit {
       .then(() => {
         this.infoForm.form.markAsPristine();
         this.infoForm.form.markAsUntouched();
-        this.gameUpdateMessages.showSuccess('Your info has been updated.');
+        this.gameUpdateMessages.showSuccess('Info has been updated.');
       })
-      .catch(error => this.gameUpdateMessages.showError('There was a problem updating your info.'));
+      .catch(error => this.gameUpdateMessages.showError('There was a problem updating the info.'));
   }
 
   navigateToMemberProfile(user: User): void {
@@ -102,13 +101,13 @@ export class GameProfileManagementComponent implements OnInit {
   }
 
   openAddGameUserModal(): void {
-    this.dialogRef = this.dialog.open(AddGameUsersComponent, {
-      height: '600px',
+    this.dialogRef = this.dialog.open(AddCollaboratorComponent, {
+      height: '700px',
       width: '500px',
       maxHeight: '70%',
       maxWidth: '70%',
       data: {
-        game: this.game
+        item: this.game
       }
     });
     this.dialogRef.afterClosed()
@@ -120,7 +119,7 @@ export class GameProfileManagementComponent implements OnInit {
   }
 
   removeCollaborator(user: User): void {
-    this.gameService.removeCollaborator(user.userId, this.game.gameId)
+    this.gameService.removeCollaborator(this.game.gameId, user.userId)
       .then(() => {
         this.gameUpdateMessages.showSuccess(`'${user.username}' was removed as a collaborator.`);
         this.loadPage('users', 1);

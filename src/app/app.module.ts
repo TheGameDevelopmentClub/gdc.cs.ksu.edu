@@ -46,7 +46,7 @@ import { FileUploadComponent } from 'src/app/_common/components/file-upload/file
 import { PaginationBarComponent } from 'src/app/_common/components/pagination-bar/pagination-bar.component';
 import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/officer-badge.component';
 import { CreateGameComponent } from 'src/app/_common/components/create-game/create-game.component';
-import { AddGameUsersComponent } from 'src/app/_common/components/add-game-users/add-game-users.component';
+import { AddCollaboratorComponent } from './_common/components/add-collaborator/add-collaborator.component';
 
 @NgModule({
   declarations: [
@@ -76,8 +76,8 @@ import { AddGameUsersComponent } from 'src/app/_common/components/add-game-users
     UserProfileContainerComponent,
     GameProfileContainerComponent,
     CreateGameComponent,
-    AddGameUsersComponent,
-    MemberItemComponent
+    MemberItemComponent,
+    AddCollaboratorComponent
   ],
   imports: [
     NgbModule,
@@ -91,7 +91,7 @@ import { AddGameUsersComponent } from 'src/app/_common/components/add-game-users
   ],
   entryComponents: [
     CreateGameComponent,
-    AddGameUsersComponent
+    AddCollaboratorComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

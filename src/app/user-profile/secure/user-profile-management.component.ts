@@ -81,12 +81,12 @@ export class UserProfileManagementComponent implements OnInit {
     this.profileImageUploader.isProcessing = true;
     this.userService.updateImage(this.user.userId, image)
       .then(() => {
-        this.profileUpdateMessages.showSuccess('Your profile image has been updated.');
+        this.profileUpdateMessages.showSuccess('The image has been updated.');
         this.profileImageUploader.isProcessing = false;
         this.profileImage.reload();
       })
       .catch(error => {
-        this.profileUpdateMessages.showError('There was a problem updating your profile image.');
+        this.profileUpdateMessages.showError('There was a problem updating the image.');
       });
   }
 
@@ -95,10 +95,10 @@ export class UserProfileManagementComponent implements OnInit {
       .then(() => {
         this.infoForm.form.markAsPristine();
         this.infoForm.form.markAsUntouched();
-        this.profileUpdateMessages.showSuccess('Your info has been updated.');
+        this.profileUpdateMessages.showSuccess('Info has been updated.');
       })
       .catch(error => {
-        this.profileUpdateMessages.showError('There was a problem updating your info.');
+        this.profileUpdateMessages.showError('There was a problem updating the info.');
       });
   }
 
