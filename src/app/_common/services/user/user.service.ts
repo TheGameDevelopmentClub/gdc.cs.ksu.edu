@@ -13,7 +13,7 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  get(pageNumber: number | undefined, pageSize: number | undefined): Promise<PaginatedList<User> | Array<User>> {
+  get(pageNumber?: number, pageSize?: number): Promise<PaginatedList<User> | Array<User>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<User>>((resolve, reject) => {
         this.http.get<PaginatedList<User>>(`${API_PATH.users}?pageNumber=${pageNumber}&pageSize=${pageSize}`)

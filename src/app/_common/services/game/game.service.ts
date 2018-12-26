@@ -24,7 +24,7 @@ export class GameService {
     });
   }
 
-  get(pageNumber: number | undefined, pageSize: number | undefined): Promise<PaginatedList<Game> | Array<Game>> {
+  get(pageNumber?: number, pageSize?: number): Promise<PaginatedList<Game> | Array<Game>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<Game>>((resolve, reject) => {
         this.http.get<PaginatedList<Game>>(`${API_PATH.games}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
@@ -54,7 +54,7 @@ export class GameService {
     });
   }
 
-  getByFeatured(pageNumber: number | undefined, pageSize: number | undefined): Promise<PaginatedList<Game> | Array<Game>> {
+  getByFeatured(pageNumber?: number, pageSize?: number): Promise<PaginatedList<Game> | Array<Game>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<Game>>((resolve, reject) => {
         this.http.get<PaginatedList<Game>>(`${API_PATH.games}/featured?pageNumber=${pageNumber}&pageSize=${pageSize}`)
@@ -75,7 +75,7 @@ export class GameService {
     }
   }
 
-  getByUserId(userId: number, pageNumber: number | undefined, pageSize: number | undefined)
+  getByUserId(userId: number, pageNumber?: number, pageSize?: number)
     : Promise<PaginatedList<Game> | Array<Game>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<Game>>((resolve, reject) => {
@@ -97,7 +97,7 @@ export class GameService {
     }
   }
 
-  getCollaborators(gameId: number, pageNumber: number | undefined, pageSize: number | undefined)
+  getCollaborators(gameId: number, pageNumber?: number, pageSize?: number)
     : Promise<PaginatedList<User> | Array<User>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<User>>((resolve, reject) => {
@@ -119,7 +119,7 @@ export class GameService {
     }
   }
 
-  getNonCollaborators(gameId: number, pageNumber: number | undefined, pageSize: number | undefined)
+  getNonCollaborators(gameId: number, pageNumber?: number, pageSize?: number)
     : Promise<PaginatedList<User> | Array<User>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<User>>((resolve, reject) => {
