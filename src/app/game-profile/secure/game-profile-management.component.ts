@@ -7,6 +7,7 @@ import { AddCollaboratorComponent } from 'src/app/_common/components/add-collabo
 import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/info-messages.component';
 import { FileUploadComponent } from 'src/app/_common/components/file-upload/file-upload.component';
 import { ImageLoaderDirective } from 'src/app/_common/directives/image-loader/image-loader.directive';
+import { AuthService } from 'src/app/_common/services/auth/auth.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { Game } from 'src/app/_common/models/game';
 import { User } from 'src/app/_common/models/user';
@@ -44,6 +45,7 @@ export class GameProfileManagementComponent implements OnInit {
   constructor(
     private router: Router,
     private dialog: MatDialog,
+    private authService: AuthService,
     private gameService: GameService
   ) { }
 
@@ -121,8 +123,12 @@ export class GameProfileManagementComponent implements OnInit {
   removeCollaborator(user: User): void {
     this.gameService.removeCollaborator(this.game.gameId, user.userId)
       .then(() => {
-        this.gameUpdateMessages.showSuccess(`'${user.username}' was removed as a collaborator.`);
-        this.loadPage('users', 1);
+        if (this.authService.authenticatedUser.userId === user.userId) {
+          user.navigateToProfilePage(this.router);
+        } else {
+          this.gameUpdateMessages.showSuccess(`'${user.username}' was removed as a collaborator.`);
+          this.loadPage('users', 1);
+        }
       })
       .catch((err) => this.gameUpdateMessages.showError(`There was a problem removing '${user.username}' from collaborators.`));
   }
