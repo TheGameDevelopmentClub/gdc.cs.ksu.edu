@@ -21,7 +21,7 @@ export class GameProfileManagementComponent implements OnInit {
   @Input() gameId: number;
   @Output() doneEditing: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild('gamesUpdateMessages') gameUpdateMessages: InfoMessagesComponent;
+  @ViewChild('gameUpdateMessages') gameUpdateMessages: InfoMessagesComponent;
   @ViewChild('infoForm') infoForm: NgForm;
   @ViewChild(FileUploadComponent) gameImageUploader: FileUploadComponent;
   @ViewChild(ImageLoaderDirective) gameImage: ImageLoaderDirective;
