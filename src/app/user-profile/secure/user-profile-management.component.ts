@@ -85,7 +85,9 @@ export class UserProfileManagementComponent implements OnInit {
         this.profileImageUploader.isProcessing = false;
         this.profileImage.reload();
       })
-      .catch(error => this.profileUpdateMessages.showError('There was a problem updating your profile image.'));
+      .catch(error => {
+        this.profileUpdateMessages.showError('There was a problem updating your profile image.');
+      });
   }
 
   updateUserInfo() {
@@ -95,7 +97,9 @@ export class UserProfileManagementComponent implements OnInit {
         this.infoForm.form.markAsUntouched();
         this.profileUpdateMessages.showSuccess('Your info has been updated.');
       })
-      .catch(error => this.profileUpdateMessages.showError('There was a problem updating your info.'));
+      .catch(error => {
+        this.profileUpdateMessages.showError('There was a problem updating your info.');
+      });
   }
 
   navigateToPortfolioItemPage(item: PortfolioItem): void {
