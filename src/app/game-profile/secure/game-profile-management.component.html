@@ -17,7 +17,7 @@
         (ngModelChange)="game.description=$event"></textarea>
     </div>
     <div class="form-group">
-      <label for="hostUrl">Link To Game</label>
+      <label for="hostUrl">Address to More Info and/or Download</label>
       <input type="text" class="form-control" id="hostUrl" name="hostUrl" [ngModel]="game.hostUrl | sanitizeInput"
         (ngModelChange)="game.hostUrl=$event" />
     </div>
@@ -35,7 +35,7 @@
         found</div>
       <div class="row">
         <div class="col" *ngFor="let user of categories.users.list">
-          <ksu-gdc-member-item [user]="user" [showX]="categories.users.list.length > 0" (clicked)="navigateToMemberProfile($event)"
+          <ksu-gdc-member-item [user]="user" [showX]="categories.users.list.length > 1" (clicked)="navigateToMemberProfile($event)"
             (clickedX)="removeCollaborator($event)"></ksu-gdc-member-item>
         </div>
       </div>
