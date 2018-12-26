@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.officerService.getAll()
+    this.officerService.get()
       .then((officers) => this.setOfficersMap(officers));
   }
 
@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
   }
   loadFeaturedPage(pageNumber: number) {
     this.featuredLoading = true;
-    this.categories[this.featuredCategory].service.getPaginationOfFeatured(pageNumber, this.categories[this.featuredCategory].pageSize)
+    this.categories[this.featuredCategory].service.getByFeatured(pageNumber, this.categories[this.featuredCategory].pageSize)
       .then((items) => {
         this.categories[this.featuredCategory].list = items.value;
         this.categories[this.featuredCategory].totalItemCount = items.total;

@@ -13,6 +13,27 @@ export class UserService {
     private http: HttpClient
   ) { }
 
+  get(pageNumber: number | undefined, pageSize: number | undefined): Promise<PaginatedList<User> | Array<User>> {
+    if (pageNumber && pageSize) {
+      return new Promise<PaginatedList<User>>((resolve, reject) => {
+        this.http.get<PaginatedList<User>>(`${API_PATH.users}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+          .subscribe(
+            pageUsers => {
+              pageUsers.value = pageUsers.value.map((user) => new User(user));
+              resolve(new PaginatedList<User>(pageUsers));
+            },
+            error => reject(error));
+      });
+    } else {
+      return new Promise<Array<User>>((resolve, reject) => {
+        this.http.get<Array<User>>(`${API_PATH.users}`)
+          .subscribe(
+            users => resolve(users.map((user) => new User(user))),
+            error => reject(error));
+      });
+    }
+  }
+
   getById(userId: number): Promise<User> {
     return new Promise<User>((resolve, reject) => {
       this.http.get<User>(`${API_PATH.users}/${userId}`)
@@ -27,30 +48,6 @@ export class UserService {
       this.http.get<User>(`${API_PATH.users}?username=${username}`)
         .subscribe(
           user => resolve(new User(user)),
-          error => reject(error));
-    });
-  }
-
-  getPaginationOfAll(pageNumber: number, pageSize: number): Promise<PaginatedList<User>> {
-    return new Promise<PaginatedList<User>>((resolve, reject) => {
-      this.http.get<PaginatedList<User>>(`${API_PATH.users}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
-        .subscribe(
-          pageUsers => {
-            pageUsers.value = pageUsers.value.map((user) => new User(user));
-            resolve(new PaginatedList<User>(pageUsers));
-          },
-          error => reject(error));
-    });
-  }
-
-  getPaginationOfAllByGameId(gameId: number, pageNumber: number, pageSize: number): Promise<PaginatedList<User>> {
-    return new Promise<PaginatedList<User>>((resolve, reject) => {
-      this.http.get<PaginatedList<User>>(`${API_PATH.games}/${gameId}/users?pageNumber=${pageNumber}&pageSize=${pageSize}`)
-        .subscribe(
-          pageUsers => {
-            pageUsers.value = pageUsers.value.map((user) => new User(user));
-            resolve(new PaginatedList<User>(pageUsers));
-          },
           error => reject(error));
     });
   }

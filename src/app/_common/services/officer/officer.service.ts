@@ -12,30 +12,30 @@ export class OfficerService {
     private http: HttpClient
   ) { }
 
-  getAll(): Promise<Officer[]> {
+  get(): Promise<Array<Officer>> {
     return new Promise((resolve, reject) => {
-      this.http.get<Officer[]>(`${API_PATH.officers}`)
-      .subscribe(
-        officers => resolve(officers.map((officer) => new Officer(officer))),
-        error => reject(error));
+      this.http.get<Array<Officer>>(`${API_PATH.officers}`)
+        .subscribe(
+          officers => resolve(officers.map((officer) => new Officer(officer))),
+          error => reject(error));
     });
   }
 
   getById(officerId: number): Promise<Officer> {
     return new Promise((resolve, reject) => {
-      this.http.get<Officer[]>(`${API_PATH.officers}/${officerId}`)
-      .subscribe(
-        officer => resolve(new Officer(officer)),
-        error => reject(error));
+      this.http.get<Officer>(`${API_PATH.officers}/${officerId}`)
+        .subscribe(
+          officer => resolve(new Officer(officer)),
+          error => reject(error));
     });
   }
 
-  getByPosition(position: string): Promise<Officer[]> {
-    return new Promise<any>((resolve, reject) => {
-      this.http.get<Officer[]>(`${API_PATH.officers}?position=${position}`)
-      .subscribe(
-        officers => resolve(officers.map((officer) => new Officer(officer))),
-        error => reject(error));
+  getByPosition(position: string): Promise<Array<Officer>> {
+    return new Promise<Array<Officer>>((resolve, reject) => {
+      this.http.get<Array<Officer>>(`${API_PATH.officers}?position=${position}`)
+        .subscribe(
+          officers => resolve(officers.map((officer) => new Officer(officer))),
+          error => reject(error));
     });
   }
 }

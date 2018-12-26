@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
 
   loadPage(category: string, pageNumber: number) {
     this.categories[category].loading = true;
-    this.categories[category].service.getPaginationOfAllByUserId(this.user.userId, pageNumber, this.categories[category].pageSize)
+    this.categories[category].service.getByUserId(this.user.userId, pageNumber, this.categories[category].pageSize)
       .then((items) => {
         this.categories[category].list = items.value;
         this.categories[category].totalItemCount = items.total;

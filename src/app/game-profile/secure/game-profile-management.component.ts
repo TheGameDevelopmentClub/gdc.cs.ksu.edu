@@ -31,7 +31,7 @@ export class GameProfileManagementComponent implements OnInit {
 
   categories = {
     users: {
-      service: this.userService,
+      service: this.gameService,
       loading: false,
       loaded: false,
       pageSize: 6,
@@ -45,8 +45,7 @@ export class GameProfileManagementComponent implements OnInit {
   constructor(
     private router: Router,
     private dialog: MatDialog,
-    private gameService: GameService,
-    private userService: UserService
+    private gameService: GameService
   ) { }
 
   ngOnInit() {
@@ -63,7 +62,7 @@ export class GameProfileManagementComponent implements OnInit {
 
   loadPage(category: string, pageNumber: number) {
     this.categories[category].loading = true;
-    this.categories[category].service.getPaginationOfAllByGameId(this.game.gameId, pageNumber, this.categories[category].pageSize)
+    this.categories[category].service.getCollaborators(this.game.gameId, pageNumber, this.categories[category].pageSize)
       .then((items) => {
         this.categories[category].list = items.value;
         this.categories[category].totalItemCount = items.total;
