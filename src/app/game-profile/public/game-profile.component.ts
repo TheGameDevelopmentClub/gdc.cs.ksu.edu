@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthService } from 'src/app/_common/services/auth/auth.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
-import { UserService } from 'src/app/_common/services/user/user.service';
 import { Game } from 'src/app/_common/models/game';
 import { User } from 'src/app/_common/models/user';
 
@@ -18,6 +18,8 @@ export class GameProfileComponent implements OnInit {
   errorOccurred: boolean;
   game: Game;
 
+  canEdit: boolean;
+
   categories = {
     users: {
       service: this.gameService,
@@ -31,6 +33,7 @@ export class GameProfileComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private authService: AuthService,
     private gameService: GameService
   ) { }
 
@@ -39,6 +42,18 @@ export class GameProfileComponent implements OnInit {
       .then(game => {
         this.game = game;
         this.loadPage('users', 1);
+        if (this.authService.isAuthenticated()) {
+          this.gameService.getByUserId(this.authService.authenticatedUser.userId)
+            .then((games: Array<Game>) => {
+              console.log(games.findIndex(g => g.id === game.id));
+              this.canEdit = games.findIndex(g => g.id === game.id) > -1;
+            })
+            .catch((err) => {
+              this.canEdit = false;
+            });
+        } else {
+          this.canEdit = false;
+        }
       })
       .catch(error => {
         this.game = null;
@@ -56,10 +71,6 @@ export class GameProfileComponent implements OnInit {
         this.categories[category].loading = false;
       })
       .catch();
-  }
-
-  canEdit(): boolean {
-    return true;
   }
 
   editGame(): void {

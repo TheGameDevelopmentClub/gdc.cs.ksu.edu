@@ -1,6 +1,6 @@
 <div *ngIf="!errorOccurred && game">
   <br>
-  <button *ngIf="canEdit()" class="btn btn-success" (click)="editGame()">Edit</button>
+  <button *ngIf="canEdit" class="btn btn-success" (click)="editGame()">Edit</button>
   <img class="thumbnail-container img-fluid d-block mx-auto" image-loader src="{{game?.imageUrl}}" alt-url="assets/images/img-not-available.png">
   <h1 class="text-center">{{game?.title}}</h1>
   <hr class="hr-primary">
