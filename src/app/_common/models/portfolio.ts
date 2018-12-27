@@ -10,3 +10,7 @@ export abstract class PortfolioItem {
     router.navigate([`/portfolio/${this.category}/${this.id}`]);
   }
 }
+
+export abstract class NewPortfolioItem {
+  public userId: number;
+}

@@ -1,11 +1,14 @@
 import { API_PATH } from 'src/app/_common/constants/paths';
-import { PortfolioItem } from 'src/app/_common/models/portfolio';
+import { PortfolioItem, NewPortfolioItem } from 'src/app/_common/models/portfolio';
 
-export class NewGame {
+export class NewGame extends NewPortfolioItem {
   public title: string;
   public description: string;
   public hostUrl: string;
-  public userId: number;
+
+  constructor() {
+    super();
+  }
 }
 
 export class Game extends PortfolioItem {
