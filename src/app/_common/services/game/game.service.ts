@@ -17,10 +17,21 @@ export class GameService {
 
   create(userId: number, newGame: NewGame): Promise<Game> {
     return new Promise<Game>((resolve, reject) => {
-      this.http.post<Game>(`${API_PATH.users}/${userId}/portfolio/games`, newGame)
+      newGame.userId = userId;
+      this.http.post<Game>(`${API_PATH.games}`, newGame)
         .subscribe(
           game => resolve(new Game(game)),
           error => reject(error));
+    });
+  }
+
+  addCollaborator(gameId: number, userId: number): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.post<boolean>(`${API_PATH.games}/${gameId}/users`, {
+        userId: userId
+      }).subscribe(
+        success => resolve(success),
+        error => reject(error));
     });
   }
 
@@ -170,18 +181,9 @@ export class GameService {
     });
   }
 
-  addCollaborator(gameId: number, userId: number): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-      this.http.put<boolean>(`${API_PATH.users}/${userId}/portfolio/games/${gameId}`, null)
-        .subscribe(
-          success => resolve(success),
-          error => reject(error));
-    });
-  }
-
   removeCollaborator(gameId: number, userId: number): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      this.http.delete<boolean>(`${API_PATH.users}/${userId}/portfolio/games/${gameId}`)
+      this.http.delete<boolean>(`${API_PATH.games}/${gameId}/users/${userId}`)
         .subscribe(
           success => resolve(success),
           error => reject(error));
