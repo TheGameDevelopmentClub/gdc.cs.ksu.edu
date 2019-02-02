@@ -14,8 +14,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) { }
 
   isAuthenticated(): boolean {
@@ -33,14 +32,18 @@ export class AuthService {
     }
   }
 
-  login(): void {
-    const service = `${environment.APP_URL}${APP_PATH.login}`;
+  login(service?: string): void {
+    if (!service) {
+      service = `${environment.APP_URL}${APP_PATH.login}`;
+    }
     window.location.href = `${API_PATH.auth.cas}/login?service=${service}`;
   }
 
-  validate(ticket: string): Promise<void> {
+  validate(ticket: string, service?: string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      const service = `${environment.APP_URL}${APP_PATH.login}`;
+      if (!service) {
+        service = `${environment.APP_URL}${APP_PATH.login}`;
+      }
       this.http.get<AuthUser>(`${API_PATH.auth.cas}/validate?service=${service}&ticket=${ticket}`)
         .subscribe(
           user => {
@@ -51,8 +54,10 @@ export class AuthService {
     });
   }
 
-  logout(): void {
-    const service = `${environment.APP_URL}${APP_PATH.home}`;
+  logout(service?: string): void {
+    if (!service) {
+      service = `${environment.APP_URL}${APP_PATH.home}`;
+    }
     window.location.href = `${API_PATH.auth.cas}/logout?service=${service}`;
   }
 }
