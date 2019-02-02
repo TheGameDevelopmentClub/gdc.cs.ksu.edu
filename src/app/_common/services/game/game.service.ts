@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { API_PATH } from 'src/app/_common/constants/paths';
+import { AuthService } from '../auth/auth.service';
 import { PaginatedList } from 'src/app/_common/models/paginated-list';
 import { NewGame, Game } from 'src/app/_common/models/game';
 import { User } from 'src/app/_common/models/user';
@@ -12,26 +13,37 @@ import { User } from 'src/app/_common/models/user';
 export class GameService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   create(userId: number, newGame: NewGame): Promise<Game> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: this.authService.getApiToken()
+      })
+    };
     return new Promise<Game>((resolve, reject) => {
       newGame.userId = userId;
-      this.http.post<Game>(`${API_PATH.games}`, newGame)
-        .subscribe(
-          game => resolve(new Game(game)),
-          error => reject(error));
+      this.http.post<Game>(`${API_PATH.games}`, newGame, options).subscribe(
+        game => resolve(new Game(game)),
+        error => reject(error));
     });
   }
 
   addCollaborator(gameId: number, userId: number): Promise<boolean> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: this.authService.getApiToken()
+      })
+    };
     return new Promise<boolean>((resolve, reject) => {
       this.http.post<boolean>(`${API_PATH.games}/${gameId}/users`, {
         userId: userId
-      }).subscribe(
-        success => resolve(success),
-        error => reject(error));
+      }, options)
+        .subscribe(
+          success => resolve(success),
+          error => reject(error));
     });
   }
 
@@ -153,8 +165,13 @@ export class GameService {
   }
 
   update(game: Game): Promise<boolean> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: this.authService.getApiToken()
+      })
+    };
     return new Promise<boolean>((resolve, reject) => {
-      this.http.put<boolean>(`${API_PATH.games}/${game.gameId}`, game)
+      this.http.put<boolean>(`${API_PATH.games}/${game.gameId}`, game, options)
         .subscribe(
           success => resolve(success),
           error => reject(error));
@@ -162,8 +179,13 @@ export class GameService {
   }
 
   getImage(gameId: number): Promise<File> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: this.authService.getApiToken()
+      })
+    };
     return new Promise<File>((resolve, reject) => {
-      this.http.get<File>(`${API_PATH.groups}/${gameId}/thumbnail-image`)
+      this.http.get<File>(`${API_PATH.groups}/${gameId}/thumbnail-image`, options)
         .subscribe(
           image => resolve(image),
           error => reject(error));
@@ -171,10 +193,15 @@ export class GameService {
   }
 
   updateImage(gameId: number, image: File): Promise<boolean> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: this.authService.getApiToken()
+      })
+    };
     return new Promise<boolean>((resolve, reject) => {
       const data = new FormData();
       data.append('image', image);
-      this.http.post<boolean>(`${API_PATH.games}/${gameId}/thumbnail-image`, data)
+      this.http.post<boolean>(`${API_PATH.games}/${gameId}/thumbnail-image`, data, options)
         .subscribe(
           success => resolve(success),
           error => reject(error));
@@ -182,8 +209,13 @@ export class GameService {
   }
 
   removeCollaborator(gameId: number, userId: number): Promise<boolean> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: this.authService.getApiToken()
+      })
+    };
     return new Promise<boolean>((resolve, reject) => {
-      this.http.delete<boolean>(`${API_PATH.games}/${gameId}/users/${userId}`)
+      this.http.delete<boolean>(`${API_PATH.games}/${gameId}/users/${userId}`, options)
         .subscribe(
           success => resolve(success),
           error => reject(error));

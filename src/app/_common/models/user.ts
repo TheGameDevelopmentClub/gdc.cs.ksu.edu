@@ -33,11 +33,13 @@ export class AuthUser {
   public userId: number;
   public username: string;
   public roles: Array<string>;
+  public token: string;
 
   constructor(user: any) {
     this.userId = user['userId'];
     this.username = user['username'];
     this.roles = user['roles'];
+    this.token = 'Bearer ' + user['token'];
   }
 
   isOfficer(): boolean {

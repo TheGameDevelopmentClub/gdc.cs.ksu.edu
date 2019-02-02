@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const redirectUrl = this.route.snapshot.queryParams['redirect'];
+    const redirectUrl = this.route.snapshot.queryParams['r'];
     const ticket = this.route.snapshot.queryParams['ticket'];
     if (ticket) {
       this.authService.validate(ticket).then(() => {

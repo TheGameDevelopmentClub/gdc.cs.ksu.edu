@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { API_PATH } from 'src/app/_common/constants/paths';
+import { AuthService } from '../auth/auth.service';
 import { PaginatedList } from 'src/app/_common/models/paginated-list';
 import { User } from 'src/app/_common/models/user';
 
@@ -10,7 +11,8 @@ import { User } from 'src/app/_common/models/user';
 })
 export class UserService {
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   get(pageNumber?: number, pageSize?: number): Promise<PaginatedList<User> | Array<User>> {
@@ -53,8 +55,13 @@ export class UserService {
   }
 
   update(user: User): Promise<boolean> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: this.authService.getApiToken()
+      })
+    };
     return new Promise<boolean>((resolve, reject) => {
-      this.http.put<boolean>(`${API_PATH.users}/${user.userId}`, user)
+      this.http.put<boolean>(`${API_PATH.users}/${user.userId}`, user, options)
         .subscribe(
           success => resolve(success),
           error => reject(error));
@@ -71,10 +78,15 @@ export class UserService {
   }
 
   updateImage(userId: number, image: File): Promise<boolean> {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: this.authService.getApiToken()
+      })
+    };
     return new Promise<boolean>((resolve, reject) => {
       const data = new FormData();
       data.append('image', image);
-      this.http.post<boolean>(`${API_PATH.users}/${userId}/profile-image`, data)
+      this.http.post<boolean>(`${API_PATH.users}/${userId}/profile-image`, data, options)
         .subscribe(
           success => resolve(success),
           error => reject(error));

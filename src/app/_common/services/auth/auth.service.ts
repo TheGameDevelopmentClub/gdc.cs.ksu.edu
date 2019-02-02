@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 import { API_PATH, APP_PATH } from 'src/app/_common/constants/paths';
@@ -12,11 +13,24 @@ export class AuthService {
   public authenticatedUser: AuthUser;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   isAuthenticated(): boolean {
-    return this.authenticatedUser != null;
+    if (this.authenticatedUser == null) {
+      return false;
+    }
+    return true;
+  }
+
+  getApiToken(): string {
+    if (this.isAuthenticated()) {
+      return this.authenticatedUser.token;
+    } else {
+      return '';
+    }
   }
 
   login(): void {

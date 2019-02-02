@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { API_PATH } from 'src/app/_common/constants/paths';
+import { AuthService } from '../auth/auth.service';
 import { Officer } from 'src/app/_common/models/officer';
 
 @Injectable({
@@ -9,7 +10,8 @@ import { Officer } from 'src/app/_common/models/officer';
 })
 export class OfficerService {
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   get(): Promise<Array<Officer>> {
