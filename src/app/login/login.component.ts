@@ -18,16 +18,17 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const redirectUrl = this.route.snapshot.queryParams['r'];
-    const ticket = this.route.snapshot.queryParams['ticket'];
+    const snapshot = this.route.snapshot;
+    const redirectUrl = snapshot.queryParams['r'];
+    const ticket = snapshot.queryParams['ticket'];
     if (ticket) {
       this.authService.validate(ticket).then(() => {
-          if (redirectUrl) {
-            this.router.navigate([redirectUrl]);
-          } else {
-            this.router.navigate(['/']);
-          }
-        }).catch((error) => this.loginResponseMessages.showError('There was a problem logging you in. Please try again.'));
+        if (redirectUrl) {
+          this.router.navigate([redirectUrl]);
+        } else {
+          this.router.navigate(['/']);
+        }
+      }).catch((error) => this.loginResponseMessages.showError('There was a problem logging you in. Please try again.'));
     } else {
       this.authService.login();
     }
