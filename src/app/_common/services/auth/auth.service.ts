@@ -54,6 +54,23 @@ export class AuthService {
     });
   }
 
+  validateToken(token: string) {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: this.getApiToken()
+      })
+    };
+    return new Promise<void>((resolve, reject) => {
+      this.http.get<AuthUser>(`${API_PATH.auth}/validate/token`, options)
+        .subscribe(
+          user => {
+            this.authenticatedUser = new AuthUser(user);
+            resolve();
+          },
+          error => reject(error));
+    });
+  }
+
   logout(service?: string): void {
     if (!service) {
       service = `${environment.APP_URL}${APP_PATH.home}`;
