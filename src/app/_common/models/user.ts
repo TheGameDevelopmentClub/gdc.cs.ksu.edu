@@ -39,7 +39,7 @@ export class AuthUser {
     this.userId = user['userId'];
     this.username = user['username'];
     this.roles = user['roles'];
-    this.token = 'Bearer ' + user['token'];
+    this.token = user['token'];
   }
 
   isOfficer(): boolean {
