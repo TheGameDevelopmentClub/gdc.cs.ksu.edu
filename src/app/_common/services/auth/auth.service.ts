@@ -57,7 +57,7 @@ export class AuthService {
   validateToken(token: string) {
     const options = {
       headers: new HttpHeaders({
-        Authorization: this.getApiToken()
+        Authorization: token
       })
     };
     return new Promise<void>((resolve, reject) => {
