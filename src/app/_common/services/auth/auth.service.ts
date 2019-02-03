@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 import { API_PATH, APP_PATH } from 'src/app/_common/constants/paths';
+import { StorageService } from 'src/app/_common/services/storage/storage.service';
 import { AuthUser } from 'src/app/_common/models/user';
 
 @Injectable({
@@ -14,7 +15,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private storageService: StorageService
   ) { }
 
   isAuthenticated(): boolean {
@@ -48,6 +50,7 @@ export class AuthService {
         .subscribe(
           user => {
             this.authenticatedUser = new AuthUser(user);
+            this.storageService.setLocalStorageItem('gdc-user-token', this.authenticatedUser.token);
             resolve();
           },
           error => reject(error));
