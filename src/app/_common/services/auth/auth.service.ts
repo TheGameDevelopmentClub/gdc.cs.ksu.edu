@@ -38,7 +38,7 @@ export class AuthService {
     if (!service) {
       service = `${environment.APP_URL}${APP_PATH.login}`;
     }
-    window.location.href = `${API_PATH.auth.cas}/login?service=${service}`;
+    window.location.href = `${API_PATH.auth}/cas/login?service=${service}`;
   }
 
   validate(ticket: string, service?: string): Promise<void> {
@@ -46,11 +46,11 @@ export class AuthService {
       if (!service) {
         service = `${environment.APP_URL}${APP_PATH.login}`;
       }
-      this.http.get<AuthUser>(`${API_PATH.auth.cas}/validate?service=${service}&ticket=${ticket}`)
+      this.http.get<AuthUser>(`${API_PATH.auth}/cas/validate?service=${service}&ticket=${ticket}`)
         .subscribe(
           user => {
             this.authenticatedUser = new AuthUser(user);
-            this.storageService.setLocalStorageItem('gdc-user-token', this.authenticatedUser.token);
+            this.storageService.setLocalStorageItem('ksu-gdc-user-token', this.authenticatedUser.token);
             resolve();
           },
           error => reject(error));
@@ -78,6 +78,6 @@ export class AuthService {
     if (!service) {
       service = `${environment.APP_URL}${APP_PATH.home}`;
     }
-    window.location.href = `${API_PATH.auth.cas}/logout?service=${service}`;
+    window.location.href = `${API_PATH.auth}/cas/logout?service=${service}`;
   }
 }
