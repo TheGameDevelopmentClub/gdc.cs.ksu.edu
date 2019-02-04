@@ -85,7 +85,10 @@ export class GameProfileManagementComponent implements OnInit {
         this.gameImageUploader.isProcessing = false;
         this.gameImage.reload();
       })
-      .catch(error => this.gameUpdateMessages.showError('There was a problem updating the image.'));
+      .catch(error => {
+        this.gameUpdateMessages.showError('There was a problem updating the image.');
+        this.gameImageUploader.isProcessing = false;
+      });
   }
 
   updateGameInfo(): void {

@@ -87,6 +87,7 @@ export class UserProfileManagementComponent implements OnInit {
       })
       .catch(error => {
         this.profileUpdateMessages.showError('There was a problem updating the image.');
+        this.profileImageUploader.isProcessing = false;
       });
   }
 
