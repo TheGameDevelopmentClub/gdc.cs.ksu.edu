@@ -45,7 +45,6 @@ export class GameProfileComponent implements OnInit {
         if (this.authService.isAuthenticated()) {
           this.gameService.getByUserId(this.authService.authenticatedUser.userId)
             .then((games: Array<Game>) => {
-              console.log(games.findIndex(g => g.id === game.id));
               this.canEdit = games.findIndex(g => g.id === game.id) > -1;
             })
             .catch((err) => {
