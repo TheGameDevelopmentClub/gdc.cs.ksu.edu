@@ -17,11 +17,11 @@ import { AuthCheckGuard } from './_common/guards/auth-check/auth-check.guard';
 // *Secure Components*
 
 const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   {
     path: '', canActivate: [AuthCheckGuard], children: [
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      { path: 'logout', component: LogoutComponent },
       {
         path: 'members', children: [
           { path: '', component: ErrorComponent, pathMatch: 'full' },
