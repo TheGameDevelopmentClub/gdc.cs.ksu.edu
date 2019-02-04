@@ -78,6 +78,7 @@ export class AuthService {
     if (!service) {
       service = `${environment.APP_URL}${APP_PATH.home}`;
     }
+    this.storageService.clearLocalStorage();
     window.location.href = `${API_PATH.auth}/cas/logout?service=${service}`;
   }
 }
