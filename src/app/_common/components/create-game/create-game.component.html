@@ -19,8 +19,8 @@
         (ngModelChange)="game.hostUrl=$event" />
     </div>
   </form>
+  <ksu-gdc-info-messages #gameCreateMessages></ksu-gdc-info-messages>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <ksu-gdc-info-messages #gameCreateMessages></ksu-gdc-info-messages>
   <button type="submit" class="btn btn-success" [disabled]="gameForm.pristine || !gameForm.form.valid" (click)="createGame()">Create</button>
 </mat-dialog-actions>

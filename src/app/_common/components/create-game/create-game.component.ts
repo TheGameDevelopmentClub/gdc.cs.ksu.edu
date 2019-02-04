@@ -35,7 +35,11 @@ export class CreateGameComponent implements OnInit {
         this.dialogRef.close(true);
       })
       .catch(error => {
-        this.gameCreateMessages.showError('There was a problem creating your game.');
+        if (error.status === 400) {
+          this.gameCreateMessages.showError(error.error.errorMessages[0]);
+        } else {
+          this.gameCreateMessages.showError('There was a problem creating your game.');
+        }
       });
   }
 }
