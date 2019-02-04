@@ -70,7 +70,6 @@ export class AddCollaboratorComponent implements OnInit {
       })
       .catch(error => {
         this.addCollaboratorMessages.showError('There was a problem adding chosen collaborators.');
-        this.loadPage(1);
       });
   }
 }
