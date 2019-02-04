@@ -185,7 +185,7 @@ export class GameService {
       })
     };
     return new Promise<File>((resolve, reject) => {
-      this.http.get<File>(`${API_PATH.groups}/${gameId}/thumbnail-image`, options)
+      this.http.get<File>(`${API_PATH.games}/${gameId}/thumbnail-image`, options)
         .subscribe(
           image => resolve(image),
           error => reject(error));

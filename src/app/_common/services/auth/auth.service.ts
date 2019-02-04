@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 import { API_PATH, APP_PATH } from 'src/app/_common/constants/paths';
+import { StorageService } from 'src/app/_common/services/storage/storage.service';
 import { AuthUser } from 'src/app/_common/models/user';
 
 @Injectable({
@@ -14,7 +15,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private storageService: StorageService
   ) { }
 
   isAuthenticated(): boolean {
@@ -36,7 +38,7 @@ export class AuthService {
     if (!service) {
       service = `${environment.APP_URL}${APP_PATH.login}`;
     }
-    window.location.href = `${API_PATH.auth.cas}/login?service=${service}`;
+    window.location.href = `${API_PATH.auth}/cas/login?service=${service}`;
   }
 
   validate(ticket: string, service?: string): Promise<void> {
@@ -44,7 +46,25 @@ export class AuthService {
       if (!service) {
         service = `${environment.APP_URL}${APP_PATH.login}`;
       }
-      this.http.get<AuthUser>(`${API_PATH.auth.cas}/validate?service=${service}&ticket=${ticket}`)
+      this.http.get<AuthUser>(`${API_PATH.auth}/cas/validate?service=${service}&ticket=${ticket}`)
+        .subscribe(
+          user => {
+            this.authenticatedUser = new AuthUser(user);
+            this.storageService.setLocalStorageItem('ksu-gdc-user-token', this.authenticatedUser.token);
+            resolve();
+          },
+          error => reject(error));
+    });
+  }
+
+  validateToken(token: string) {
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: token
+      })
+    };
+    return new Promise<void>((resolve, reject) => {
+      this.http.get<AuthUser>(`${API_PATH.auth}/validate/token`, options)
         .subscribe(
           user => {
             this.authenticatedUser = new AuthUser(user);
@@ -58,6 +78,7 @@ export class AuthService {
     if (!service) {
       service = `${environment.APP_URL}${APP_PATH.home}`;
     }
-    window.location.href = `${API_PATH.auth.cas}/logout?service=${service}`;
+    this.storageService.clearLocalStorage();
+    window.location.href = `${API_PATH.auth}/cas/logout?service=${service}`;
   }
 }
