@@ -12,11 +12,11 @@ export class AuthCheckGuard implements CanActivate {
     private storageService: StorageService,
     private authService: AuthService
   ) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Promise<boolean> {
     if (!this.authService.isAuthenticated()) {
       const token = this.storageService.getLocalStorageItem('ksu-gdc-user-token');
       if (token && token !== '') {
-        this.authService.validateToken(token);
+        return this.authService.validateToken(token);
       }
     }
     return true;

@@ -63,14 +63,14 @@ export class AuthService {
         Authorization: token
       })
     };
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<boolean>((resolve, reject) => {
       this.http.get<AuthUser>(`${API_PATH.auth}/validate/token`, options)
         .subscribe(
           user => {
             this.authenticatedUser = new AuthUser(user);
-            resolve();
+            resolve(true);
           },
-          error => reject(error));
+          error => resolve(false));
     });
   }
 
