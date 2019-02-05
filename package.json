@@ -28,6 +28,7 @@
     "core-js": "^2.6.3",
     "moment": "^2.24.0",
     "rxjs": "^6.4.0",
+    "terser": "^3.14.1",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
