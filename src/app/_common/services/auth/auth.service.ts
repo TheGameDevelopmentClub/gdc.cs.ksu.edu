@@ -34,17 +34,20 @@ export class AuthService {
     }
   }
 
-  login(service?: string): void {
+  loginCAS(service?: string): void {
     if (!service) {
       service = `${environment.APP_URL}${APP_PATH.login}`;
     }
     window.location.href = `${API_PATH.auth}/cas/login?service=${service}`;
   }
 
-  validate(ticket: string, service?: string): Promise<void> {
+  validateCASTicket(ticket: string, service?: string): Promise<void> {
+    if (!service) {
+      service = `${environment.APP_URL}${APP_PATH.login}`;
+    }
     return new Promise<void>((resolve, reject) => {
-      if (!service) {
-        service = `${environment.APP_URL}${APP_PATH.login}`;
+      if (!(ticket && ticket !== '')) {
+        return reject({ status: 401 });
       }
       this.http.get<AuthUser>(`${API_PATH.auth}/cas/validate?service=${service}&ticket=${ticket}`)
         .subscribe(
@@ -63,18 +66,23 @@ export class AuthService {
         Authorization: token
       })
     };
-    return new Promise<boolean>((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
+      if (!(token && token !== '')) {
+        return reject({ status: 401 });
+      }
       this.http.get<AuthUser>(`${API_PATH.auth}/validate/token`, options)
         .subscribe(
           user => {
             this.authenticatedUser = new AuthUser(user);
-            resolve(true);
+            resolve();
           },
-          error => resolve(false));
+          error => {
+            reject(error);
+          });
     });
   }
 
-  logout(service?: string): void {
+  logoutCAS(service?: string): void {
     if (!service) {
       service = `${environment.APP_URL}${APP_PATH.home}`;
     }
