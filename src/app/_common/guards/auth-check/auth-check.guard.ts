@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate } from '@angular/router';
 
-import { StorageService } from 'src/app/_common/services/storage/storage.service';
+import { MiddlewareService } from 'src/app/_common/services/middleware/middleware.service';
 import { AuthService } from 'src/app/_common/services/auth/auth.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthCheckGuard implements CanActivate {
   constructor(
-    private storageService: StorageService,
+    private middlewareService: MiddlewareService,
     private authService: AuthService
   ) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Promise<boolean> {
+  canActivate(): boolean | Promise<boolean> {
     if (!this.authService.isAuthenticated()) {
-      const token = this.storageService.getLocalStorageItem('ksu-gdc-user-token');
-      if (token && token !== '') {
-        return this.authService.validateToken(token);
-      }
+      return this.middlewareService.validateToken();
     }
     return true;
   }
