@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// *Guards*
 import { AuthGuard } from 'src/app/_common/guards/auth/auth.guard';
+import { AuthCheckGuard } from 'src/app/_common/guards/auth-check/auth-check.guard';
+import { LoginGuard } from 'src/app/_common/guards/login/login.guard';
 
 // *Public Components*
 import { ErrorComponent } from 'src/app/error/error.component';
@@ -12,12 +15,11 @@ import { UserProfileContainerComponent } from 'src/app/user-profile/user-profile
 import { PortfolioComponent } from 'src/app/portfolio/portfolio.component';
 import { GameProfileContainerComponent } from 'src/app/game-profile/game-profile-container.component';
 import { GameJamComponent } from 'src/app/game-jam/game-jam.component';
-import { AuthCheckGuard } from './_common/guards/auth-check/auth-check.guard';
 
 // *Secure Components*
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', canActivate: [LoginGuard], component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   {
     path: '', canActivate: [AuthCheckGuard], children: [
