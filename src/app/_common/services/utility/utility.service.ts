@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Params, ActivatedRoute, Router } from '@angular/router';
+import { Params, ActivatedRoute, Router, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,13 @@ export class UtilityService {
     private router: Router
   ) { }
 
-  addQueryParams(additions: [[string, string]]) {
+  hasQueryParam(paramKey: string, snapshot?: ActivatedRouteSnapshot): boolean {
+    const snap = (snapshot) ? snapshot : this.route.snapshot;
+    const value = snap.queryParams[paramKey];
+    return (value && value !== '');
+  }
+
+  addQueryParams(additions: [[string, string]]): void {
     const params: Params = Object.assign({}, this.route.snapshot.queryParams);
     for (let i = 0; i < additions.length; i++) {
       params[additions[i][0]] = additions[i][1];
@@ -19,7 +25,7 @@ export class UtilityService {
     this.router.navigate([], { queryParams: params });
   }
 
-  deleteQueryParams(deletions: string[]) {
+  deleteQueryParams(deletions: string[]): void {
     const oldParams: Params = Object.assign({}, this.route.snapshot.queryParams);
     const newParams = {};
     for (const param in oldParams) {
