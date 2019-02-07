@@ -1,11 +1,16 @@
-import { User } from 'src/app/_common/models/user';
-import { Group } from 'src/app/_common/models/group';
+import { Router } from '@angular/router';
 
-export class PortfolioItem {
+export abstract class PortfolioItem {
+  public category: string;
   public title: string;
-  public description: string;
-  public url: string;
-  public user: User;
-  public group: Group;
   public imageUrl: string;
+
+  abstract get id(): number;
+  navigateToProfilePage(router: Router): void {
+    router.navigate([`/portfolio/${this.category}/${this.id}`]);
+  }
+}
+
+export abstract class NewPortfolioItem {
+  public userId: number;
 }

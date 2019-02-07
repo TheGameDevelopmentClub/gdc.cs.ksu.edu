@@ -1,14 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { PortfolioItem } from 'src/app/_common/models/portfolio';
-
-const categories = {
-  games: {
-    path: 'games',
-    id: 'gameId'
-  }
-};
 
 @Component({
   selector: 'ksu-gdc-portfolio-item',
@@ -16,20 +8,15 @@ const categories = {
   styleUrls: ['./portfolio-item.component.scss']
 })
 export class PortfolioItemComponent implements OnInit {
-  @Input() category: string;
   @Input() item: PortfolioItem;
+  @Output() clicked: EventEmitter<PortfolioItem> = new EventEmitter<PortfolioItem>();
 
-  info;
-
-  constructor(
-    private router: Router
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.info = categories[this.category];
   }
 
-  openItemInfo() {
-    this.router.navigate([`/portfolio/${this.info.path}/${this.item[this.info.id]}`]);
+  handleClick() {
+    this.clicked.emit(this.item);
   }
 }

@@ -1,0 +1,15 @@
+<h3 mat-dialog-title>Add Collaborator
+  <span class="close" (click)="closeDialog()">&times;</span>
+</h3>
+<mat-dialog-content>
+  <ksu-gdc-info-messages #addCollaboratorMessages></ksu-gdc-info-messages>
+  <div class="text-center">
+    <div *ngIf="!loading && totalItemCount === 0">There are no members that can be added as a collaborator at this time</div>
+    <div class="row">
+      <div class="col" *ngFor="let user of users">
+        <ksu-gdc-member-item [user]="user" (clicked)="selectUser($event)"></ksu-gdc-member-item>
+      </div>
+    </div>
+    <ksu-gdc-pagination-bar [itemsLoaded]="loaded" [totalItemCount]="totalItemCount" [pageSize]="pageSize" (pageChange)="loadPage($event)"></ksu-gdc-pagination-bar>
+  </div>
+</mat-dialog-content>

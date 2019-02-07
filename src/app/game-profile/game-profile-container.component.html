@@ -1,0 +1,4 @@
+<div class="container">
+  <ksu-gdc-game-profile *ngIf="!editing" [gameId]="gameId" (edit)="editing = true"></ksu-gdc-game-profile>
+  <ksu-gdc-game-profile-management *ngIf="editing" [gameId]="gameId" (doneEditing)="editing = false"></ksu-gdc-game-profile-management>
+</div>

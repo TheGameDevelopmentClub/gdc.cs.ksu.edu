@@ -1,0 +1,4 @@
+<div class="container">
+  <ksu-gdc-user-profile *ngIf="!editing" [userId]="userId" (edit)="editing = true"></ksu-gdc-user-profile>
+  <ksu-gdc-user-profile-management *ngIf="editing" [userId]="userId" (doneEditing)="editing = false"></ksu-gdc-user-profile-management>
+</div>

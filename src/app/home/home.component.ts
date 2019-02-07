@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { OfficerService } from 'src/app/_common/services/officer/officer.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { Officer } from 'src/app/_common/models/officer';
+import { PortfolioItem } from 'src/app/_common/models/portfolio';
 
 @Component({
   selector: 'ksu-gdc-home',
@@ -25,12 +27,13 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private officerService: OfficerService,
     private gameService: GameService
   ) { }
 
   ngOnInit() {
-    this.officerService.getAll()
+    this.officerService.get()
       .then((officers) => this.setOfficersMap(officers));
   }
 
@@ -62,12 +65,16 @@ export class HomeComponent implements OnInit {
   }
   loadFeaturedPage(pageNumber: number) {
     this.featuredLoading = true;
-    this.categories[this.featuredCategory].service.getPaginationOfFeatured(pageNumber, this.categories[this.featuredCategory].pageSize)
+    this.categories[this.featuredCategory].service.getByFeatured(pageNumber, this.categories[this.featuredCategory].pageSize)
       .then((items) => {
         this.categories[this.featuredCategory].list = items.value;
         this.categories[this.featuredCategory].totalItemCount = items.total;
         this.featuredLoaded = true;
         this.featuredLoading = false;
       });
+  }
+
+  navigateToPortfolioItemPage(item: PortfolioItem): void {
+    item.navigateToProfilePage(this.router);
   }
 }

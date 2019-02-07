@@ -1,0 +1,26 @@
+<h3 mat-dialog-title>Create New Game
+  <span class="close" (click)="closeDialog()">&times;</span>
+</h3>
+<mat-dialog-content>
+  <form (ngSubmit)="createGame()" #gameForm="ngForm">
+    <div class="form-game">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" [ngModel]="game.title | sanitizeInput"
+        (ngModelChange)="game.title=$event" />
+    </div>
+    <div class="form-game">
+      <label for="description">Description</label>
+      <textarea type="text" class="form-control" id="description" name="description" [ngModel]="game.description | sanitizeInput"
+        (ngModelChange)="game.description=$event"></textarea>
+    </div>
+    <div class="form-game">
+      <label for="hostUrl">hostUrl</label>
+      <input type="url" class="form-control" id="hostUrl" name="hostUrl" [ngModel]="game.hostUrl | sanitizeInput"
+        (ngModelChange)="game.hostUrl=$event" />
+    </div>
+  </form>
+  <ksu-gdc-info-messages #gameCreateMessages></ksu-gdc-info-messages>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="submit" class="btn btn-success" [disabled]="gameForm.pristine || !gameForm.form.valid" (click)="createGame()">Create</button>
+</mat-dialog-actions>

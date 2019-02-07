@@ -1,17 +1,32 @@
-import { API_PATH } from '../constants/paths';
-import { PortfolioItem } from 'src/app/_common/models/portfolio';
+import { API_PATH } from 'src/app/_common/constants/paths';
+import { PortfolioItem, NewPortfolioItem } from 'src/app/_common/models/portfolio';
+
+export class NewGame extends NewPortfolioItem {
+  public title: string;
+  public description: string;
+  public hostUrl: string;
+
+  constructor() {
+    super();
+  }
+}
 
 export class Game extends PortfolioItem {
   public gameId: number;
+  public description: string;
+  public hostUrl: string;
 
   constructor(game: any) {
     super();
-    this.gameId = game['gameId'];
+    this.category = 'games';
+    this.gameId = Number(game['gameId']);
     this.title = game['title'];
     this.description = game['description'];
-    this.url = game['url'];
-    this.user = game['user'];
-    this.group = game['group'];
-    this.imageUrl = `${API_PATH.gamesBaseUrl}/${this.gameId}/thumbnail-image`;
+    this.hostUrl = game['hostUrl'];
+    this.imageUrl = `${API_PATH.games}/${this.gameId}/thumbnail-image`;
+  }
+
+  get id(): number {
+    return this.gameId;
   }
 }
