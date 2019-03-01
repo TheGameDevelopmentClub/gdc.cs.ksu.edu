@@ -17,10 +17,10 @@ export class LoginGuard implements CanActivate {
   ) { }
   canActivate(snapshot: ActivatedRouteSnapshot): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      const redirectUrl = snapshot.queryParams['r'];
+      const redirectUrl = snapshot.queryParams['r'] || this.storageService.getSessionStorageItem('ksu-gdc-login-redirect');
       if (this.authService.isAuthenticated()) {
         resolve(false);
-        this.checkRedirect(redirectUrl);
+        return this.checkRedirect(redirectUrl);
       }
       const ticket = snapshot.queryParams['ticket'];
       this.authService.validateCASTicket(ticket).then(() => {
