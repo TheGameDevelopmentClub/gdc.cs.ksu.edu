@@ -41,11 +41,6 @@ const appRoutes: Routes = [
           }
         ]
       },
-      {
-        path: 'manage', canActivate: [AuthGuard], children: [
-          { path: '', component: ErrorComponent, pathMatch: 'full' }
-        ]
-      },
       { path: 'game-jam', component: GameJamComponent },
       { path: '**', component: ErrorComponent }
     ]
