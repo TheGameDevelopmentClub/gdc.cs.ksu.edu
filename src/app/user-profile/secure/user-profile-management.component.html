@@ -1,28 +1,38 @@
 <div *ngIf="!errorOccurred && user">
   <br>
   <button class="btn btn-success" (click)="stopEditing()">Done</button>
-  <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{user.imageUrl}}" alt-url="assets/images/profile.png">
+  <img class="profile-container rounded-circle img-fluid d-block mx-auto" image-loader src="{{user.imageUrl}}"
+    alt-url="assets/images/profile.png">
   <h1 class="text-center">{{user.username}}</h1>
   <hr class="hr-primary">
-  <ksu-gdc-info-messages #profileUpdateMessages></ksu-gdc-info-messages>
-  <ksu-gdc-file-upload btn-text="Upload Profile Image" file-type="image/jpg" [show-upload]="false" (fileChange)="uploadProfileImage($event)"></ksu-gdc-file-upload>
-  <form (ngSubmit)="updateUserInfo()" #infoForm="ngForm">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" name="firstName" [ngModel]="user.firstName | sanitizeInput"
-        (ngModelChange)="user.firstName=$event" />
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" id="lastName" name="lastName" [ngModel]="user.lastName | sanitizeInput"
-        (ngModelChange)="user.lastName=$event" />
-    </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea type="text" class="form-control" id="description" name="description" [ngModel]="user.description | sanitizeInput"
-        (ngModelChange)="user.description=$event"></textarea>
-    </div>
-    <button type="submit" class="btn btn-success" [disabled]="infoForm.pristine || !infoForm.form.valid">Update</button>
+  <ksu-gdc-info-messages></ksu-gdc-info-messages>
+  <ksu-gdc-file-upload btn-text="Upload Profile Image" [show-upload]="false"
+    (fileChange)="uploadProfileImage($event)"></ksu-gdc-file-upload><br>
+  <form [formGroup]="userInfoGroup" (ngSubmit)="updateUserInfo()">
+    <div>
+      <mat-form-field>
+        <input matInput type="text" [formControl]="firstNameControl" placeholder="First Name" />
+        <mat-hint align="end">{{firstNameControl.value.length}} / 50</mat-hint>
+        <mat-error *ngIf="firstNameControl.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="firstNameControl.hasError('maxlength')">Max of 50 characters</mat-error>
+      </mat-form-field>
+    </div><br>
+    <div>
+      <mat-form-field>
+        <input matInput type="text" [formControl]="lastNameControl" placeholder="Last Name" />
+        <mat-hint align="end">{{lastNameControl.value.length}} / 50</mat-hint>
+        <mat-error *ngIf="lastNameControl.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="lastNameControl.hasError('maxlength')">Max of 50 characters</mat-error>
+      </mat-form-field>
+    </div><br>
+    <div>
+      <mat-form-field>
+        <textarea matInput type="text" [formControl]="descriptionControl" placeholder="Description"></textarea>
+        <mat-hint align="end">{{descriptionControl.value.length}} / 500</mat-hint>
+        <mat-error *ngIf="descriptionControl.hasError('maxlength')">Max of 50 characters</mat-error>
+      </mat-form-field>
+    </div><br>
+    <button type="submit" class="btn btn-success" [disabled]="!userInfoIsValid()">Update</button>
   </form>
   <br>
   <div class="games-container">
@@ -36,7 +46,8 @@
         found</div>
       <div class="row">
         <div class="col" *ngFor="let game of categories.games.list">
-          <ksu-gdc-portfolio-item [item]="game" (clicked)="navigateToPortfolioItemPage($event)"></ksu-gdc-portfolio-item>
+          <ksu-gdc-portfolio-item [item]="game" (clicked)="navigateToPortfolioItemPage($event)">
+          </ksu-gdc-portfolio-item>
         </div>
       </div>
       <ksu-gdc-pagination-bar [itemsLoaded]="categories.games.loaded" [totalItemCount]="categories.games.totalItemCount"

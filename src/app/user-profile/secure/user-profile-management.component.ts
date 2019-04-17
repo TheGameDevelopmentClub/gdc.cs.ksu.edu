@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { CreateGameComponent } from 'src/app/_common/components/create-game/create-game.component';
@@ -11,6 +11,7 @@ import { UserService } from 'src/app/_common/services/user/user.service';
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { User } from 'src/app/_common/models/user';
 import { PortfolioItem } from 'src/app/_common/models/portfolio';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'ksu-gdc-user-profile-management',
@@ -21,8 +22,7 @@ export class UserProfileManagementComponent implements OnInit {
   @Input() userId: number;
   @Output() doneEditing: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild('profileUpdateMessages') profileUpdateMessages: InfoMessagesComponent;
-  @ViewChild('infoForm') infoForm: NgForm;
+  @ViewChild(InfoMessagesComponent) profileUpdateMessages: InfoMessagesComponent;
   @ViewChild(FileUploadComponent) profileImageUploader: FileUploadComponent;
   @ViewChild(ImageLoaderDirective) profileImage: ImageLoaderDirective;
 
@@ -42,6 +42,11 @@ export class UserProfileManagementComponent implements OnInit {
 
   dialogRef: MatDialogRef<any>;
 
+  userInfoGroup: FormGroup;
+  firstNameControl: FormControl;
+  lastNameControl: FormControl;
+  descriptionControl: FormControl;
+
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -53,6 +58,14 @@ export class UserProfileManagementComponent implements OnInit {
     this.userService.getById(this.userId)
       .then(user => {
         this.user = user;
+        this.firstNameControl = new FormControl(this.user.firstName || '', [Validators.required, Validators.maxLength(50)]);
+        this.lastNameControl = new FormControl(this.user.lastName || '', [Validators.required, Validators.maxLength(50)]);
+        this.descriptionControl = new FormControl(this.user.description || '', [Validators.maxLength(500)]);
+        this.userInfoGroup = new FormGroup({
+          firstName: this.firstNameControl,
+          lastName: this.lastNameControl,
+          description: this.descriptionControl
+        });
         this.loadPage('games', 1);
       })
       .catch(error => {
@@ -61,10 +74,14 @@ export class UserProfileManagementComponent implements OnInit {
       });
   }
 
+  userInfoIsValid(): boolean {
+    return this.userInfoGroup.touched && this.userInfoGroup.valid;
+  }
+
   loadPage(category: string, pageNumber: number) {
     this.categories[category].loading = true;
     this.categories[category].service.getByUserId(this.user.userId, pageNumber, this.categories[category].pageSize)
-      .then((items) => {
+      .then((items: any) => {
         this.categories[category].list = items.value;
         this.categories[category].totalItemCount = items.total;
         this.categories[category].loaded = true;
@@ -92,15 +109,42 @@ export class UserProfileManagementComponent implements OnInit {
   }
 
   updateUserInfo() {
-    this.userService.update(this.user)
-      .then(() => {
-        this.infoForm.form.markAsPristine();
-        this.infoForm.form.markAsUntouched();
-        this.profileUpdateMessages.showSuccess('Info has been updated.');
-      })
-      .catch(error => {
-        this.profileUpdateMessages.showError('There was a problem updating the info.');
+    const userUpdate = [];
+    if (this.firstNameControl.touched) {
+      userUpdate.push({
+        op: 'replace',
+        path: '/firstName',
+        value: this.firstNameControl.value
       });
+    }
+    if (this.lastNameControl.touched) {
+      userUpdate.push({
+        op: 'replace',
+        path: '/lastName',
+        value: this.lastNameControl.value
+      });
+    }
+    if (this.descriptionControl.touched) {
+      userUpdate.push({
+        op: 'replace',
+        path: '/description',
+        value: this.descriptionControl.value
+      });
+    }
+    if (userUpdate.length > 0) {
+      this.userService.patch(this.user.userId, userUpdate).then(() => {
+        this.userInfoGroup.markAsUntouched();
+        this.profileUpdateMessages.showSuccess('Info has been updated.');
+      }).catch((error: HttpErrorResponse) => {
+        if (error.status === 400) {
+          const modelError = error.error;
+          this.userInfoGroup.markAsUntouched();
+          this.profileUpdateMessages.showError(modelError.errorMessages[0]);
+        } else {
+          this.profileUpdateMessages.showError('There was a problem updating the info.');
+        }
+      });
+    }
   }
 
   navigateToPortfolioItemPage(item: PortfolioItem): void {

@@ -123,8 +123,8 @@ export class ModalUserUpdateComponent implements OnInit {
   private handleError(error: HttpErrorResponse): void {
     if (error.status === 400) {
       const modelError = error.error;
-      this.infoMessage.showError(modelError.errors[0]);
       this.updateUserForm.markAsUntouched();
+      this.infoMessage.showError(modelError.errorMessages[0]);
     } else {
       this.infoMessage.showError('Something went wrong.');
     }
