@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatDialogModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // *Directives*
 import { ScrollOnClickDirective } from 'src/app/_common/directives/scroll-on-click/scroll-on-click.directive';
@@ -47,6 +47,8 @@ import { PaginationBarComponent } from 'src/app/_common/components/pagination-ba
 import { OfficerBadgeComponent } from 'src/app/_common/components/officer-badge/officer-badge.component';
 import { CreateGameComponent } from 'src/app/_common/components/create-game/create-game.component';
 import { AddCollaboratorComponent } from './_common/components/add-collaborator/add-collaborator.component';
+import { ModalUserUpdateComponent } from './_common/components/modal-user-update/modal-user-update.component';
+import { AuthInterceptor } from './_common/components/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { AddCollaboratorComponent } from './_common/components/add-collaborator/
     GameProfileContainerComponent,
     CreateGameComponent,
     MemberItemComponent,
-    AddCollaboratorComponent
+    AddCollaboratorComponent,
+    ModalUserUpdateComponent
   ],
   imports: [
     NgbModule,
@@ -86,14 +89,28 @@ import { AddCollaboratorComponent } from './_common/components/add-collaborator/
     AppRoutingModule,
     BrowserAnimationsModule,
     // NoopAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
-    FormsModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatIconModule,
+    MatButtonModule
   ],
   entryComponents: [
     CreateGameComponent,
-    AddCollaboratorComponent
+    AddCollaboratorComponent,
+    ModalUserUpdateComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

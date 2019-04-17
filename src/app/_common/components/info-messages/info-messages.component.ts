@@ -6,39 +6,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-messages.component.scss']
 })
 export class InfoMessagesComponent implements OnInit {
-  showMessages: boolean;
-
-  messageVisibility: Map<string, Function> = new Map([
-    ['error', (bool) => this.error = bool],
-    ['success', (bool) => this.success = bool]
-  ]);
-  error: boolean;
-  errorMessage: string;
-  success: boolean;
-  successMessage: string;
+  messages = {
+    error: {
+      message: '',
+      isVisible: false
+    },
+    success: {
+      message: '',
+      isVisible: false
+    }
+  };
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  setMessageVisibility(messageType: string): void {
-    this.showMessages = true;
-    this.messageVisibility.forEach((set, type) => {
-      if (type === messageType) {
-        set(true);
-      } else {
-        set(false);
+  hide(): void {
+    this.showMessages([]);
+  }
+
+  shouldShowMessages(): boolean {
+    for (const key in this.messages) {
+      if (this.messages[key].isVisible) {
+        return true;
       }
-    });
+    }
+    return false;
+  }
+
+  showMessages(messageTypes: Array<string>): void {
+    for (const key in this.messages) {
+      if (this.messages.hasOwnProperty(key)) {
+        this.messages[key].isVisible = messageTypes.includes(key);
+      }
+    }
   }
 
   showError(message: string): void {
-    this.errorMessage = message;
-    this.setMessageVisibility('error');
+    this.messages.error.message = message;
+    this.showMessages(['error']);
   }
   showSuccess(message: string): void {
-    this.successMessage = message;
-    this.setMessageVisibility('success');
+    this.messages.success.message = message;
+    this.showMessages(['success']);
   }
 }

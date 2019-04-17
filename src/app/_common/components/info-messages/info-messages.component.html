@@ -1,4 +1,4 @@
-<div *ngIf="showMessages" class="messages-container">
-  <p class="errorMessage" *ngIf="error">Uh oh! {{errorMessage}}</p>
-  <p class="successMessage" *ngIf="success">Ta da! {{successMessage}}</p>
+<div *ngIf="shouldShowMessages()" class="messages-container">
+  <p class="errorMessage" *ngIf="messages.error.isVisible">Uh oh! {{messages.error.message}}</p>
+  <p class="successMessage" *ngIf="messages.success.isVisible">Ta da! {{messages.success.message}}</p>
 </div>

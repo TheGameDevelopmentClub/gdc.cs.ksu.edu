@@ -11,8 +11,7 @@ export class OfficerBadgeComponent implements OnInit {
   @Input() position: string;
   @Input() officer: Officer;
 
-  constructor(
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }

@@ -1,4 +1,4 @@
-import { API_PATH } from 'src/app/_common/constants/paths';
+import { API_URLS } from 'src/app/_common/constants/routing';
 import { Router } from '@angular/router';
 
 export class User {
@@ -7,8 +7,6 @@ export class User {
   public firstName: string;
   public lastName: string;
   public description: string;
-  public email: string;
-  public imageUrl: string;
 
   constructor(user: any) {
     this.userId = Number(user['userId']);
@@ -16,33 +14,36 @@ export class User {
     this.firstName = user['firstName'];
     this.lastName = user['lastName'];
     this.description = user['description'];
-    this.email = user['email'];
-    this.imageUrl = `${API_PATH.users}/${this.userId}/profile-image`;
+  }
+
+  get displayName() {
+    if (this.firstName == null || this.lastName == null) {
+      return this.username;
+    }
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  get imageUrl() {
+    return `${API_URLS.users}/${this.userId}/profile-image`;
+  }
+
+  get email() {
+    return this.username + '@ksu.edu';
   }
 
   navigateToProfilePage(router: Router) {
     router.navigate([`/members/${this.userId}`]);
-  }
-
-  get fullName() {
-    return this.firstName + ' ' + this.lastName;
   }
 }
 
 export class AuthUser {
   public userId: number;
   public username: string;
-  public roles: Array<string>;
-  public token: string;
+  public hasVerifiedInfo: boolean;
 
   constructor(user: any) {
     this.userId = user['userId'];
     this.username = user['username'];
-    this.roles = user['roles'];
-    this.token = user['token'];
-  }
-
-  isOfficer(): boolean {
-    return this.roles.includes('officer');
+    this.hasVerifiedInfo = user['hasVerifiedInfo'];
   }
 }

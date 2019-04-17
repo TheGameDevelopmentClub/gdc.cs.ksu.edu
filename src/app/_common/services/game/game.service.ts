@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { API_PATH } from 'src/app/_common/constants/paths';
+import { API_URLS } from 'src/app/_common/constants/routing';
 import { AuthService } from '../auth/auth.service';
 import { PaginatedList } from 'src/app/_common/models/paginated-list';
 import { NewGame, Game } from 'src/app/_common/models/game';
@@ -18,29 +18,19 @@ export class GameService {
   ) { }
 
   create(userId: number, newGame: NewGame): Promise<Game> {
-    const options = {
-      headers: new HttpHeaders({
-        Authorization: this.authService.getApiToken()
-      })
-    };
     return new Promise<Game>((resolve, reject) => {
       newGame.userId = userId;
-      this.http.post<Game>(`${API_PATH.games}`, newGame, options).subscribe(
+      this.http.post<Game>(`${API_URLS.games}`, newGame).subscribe(
         game => resolve(new Game(game)),
         error => reject(error));
     });
   }
 
   addCollaborator(gameId: number, userId: number): Promise<boolean> {
-    const options = {
-      headers: new HttpHeaders({
-        Authorization: this.authService.getApiToken()
-      })
-    };
     return new Promise<boolean>((resolve, reject) => {
-      this.http.post<boolean>(`${API_PATH.games}/${gameId}/users`, {
+      this.http.post<boolean>(`${API_URLS.games}/${gameId}/users`, {
         userId: userId
-      }, options)
+      })
         .subscribe(
           success => resolve(success),
           error => reject(error));
@@ -50,7 +40,7 @@ export class GameService {
   get(pageNumber?: number, pageSize?: number): Promise<PaginatedList<Game> | Array<Game>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<Game>>((resolve, reject) => {
-        this.http.get<PaginatedList<Game>>(`${API_PATH.games}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+        this.http.get<PaginatedList<Game>>(`${API_URLS.games}?pageNumber=${pageNumber}&pageSize=${pageSize}`)
           .subscribe(
             pageGames => {
               pageGames.value = pageGames.value.map((game) => new Game(game));
@@ -60,7 +50,7 @@ export class GameService {
       });
     } else {
       return new Promise<Array<Game>>((resolve, reject) => {
-        this.http.get<Array<Game>>(`${API_PATH.games}`)
+        this.http.get<Array<Game>>(`${API_URLS.games}`)
           .subscribe(
             games => resolve(games.map((game) => new Game(game))),
             error => reject(error));
@@ -70,7 +60,7 @@ export class GameService {
 
   getById(gameId: number): Promise<Game> {
     return new Promise<Game>((resolve, reject) => {
-      this.http.get<Game>(`${API_PATH.games}/${gameId}`)
+      this.http.get<Game>(`${API_URLS.games}/${gameId}`)
         .subscribe(
           game => resolve(new Game(game)),
           error => reject(error));
@@ -80,7 +70,7 @@ export class GameService {
   getByFeatured(pageNumber?: number, pageSize?: number): Promise<PaginatedList<Game> | Array<Game>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<Game>>((resolve, reject) => {
-        this.http.get<PaginatedList<Game>>(`${API_PATH.games}/featured?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+        this.http.get<PaginatedList<Game>>(`${API_URLS.games}/featured?pageNumber=${pageNumber}&pageSize=${pageSize}`)
           .subscribe(
             pageGames => {
               pageGames.value = pageGames.value.map((game) => new Game(game));
@@ -90,7 +80,7 @@ export class GameService {
       });
     } else {
       return new Promise<Array<Game>>((resolve, reject) => {
-        this.http.get<Array<Game>>(`${API_PATH.games}/featured`)
+        this.http.get<Array<Game>>(`${API_URLS.games}/featured`)
           .subscribe(
             games => resolve(games.map((game) => new Game(game))),
             error => reject(error));
@@ -102,7 +92,7 @@ export class GameService {
     : Promise<PaginatedList<Game> | Array<Game>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<Game>>((resolve, reject) => {
-        this.http.get<PaginatedList<Game>>(`${API_PATH.users}/${userId}/portfolio/games?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+        this.http.get<PaginatedList<Game>>(`${API_URLS.users}/${userId}/portfolio/games?pageNumber=${pageNumber}&pageSize=${pageSize}`)
           .subscribe(
             pageGames => {
               pageGames.value = pageGames.value.map((game) => new Game(game));
@@ -112,7 +102,7 @@ export class GameService {
       });
     } else {
       return new Promise<Array<Game>>((resolve, reject) => {
-        this.http.get<Array<Game>>(`${API_PATH.users}/${userId}/portfolio/games`)
+        this.http.get<Array<Game>>(`${API_URLS.users}/${userId}/portfolio/games`)
           .subscribe(
             games => resolve(games.map((game) => new Game(game))),
             error => reject(error));
@@ -124,7 +114,7 @@ export class GameService {
     : Promise<PaginatedList<User> | Array<User>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<User>>((resolve, reject) => {
-        this.http.get<PaginatedList<User>>(`${API_PATH.games}/${gameId}/users?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+        this.http.get<PaginatedList<User>>(`${API_URLS.games}/${gameId}/users?pageNumber=${pageNumber}&pageSize=${pageSize}`)
           .subscribe(
             pageUsers => {
               pageUsers.value = pageUsers.value.map((user) => new User(user));
@@ -134,7 +124,7 @@ export class GameService {
       });
     } else {
       return new Promise<Array<User>>((resolve, reject) => {
-        this.http.get<Array<User>>(`${API_PATH.games}/${gameId}/users`)
+        this.http.get<Array<User>>(`${API_URLS.games}/${gameId}/users`)
           .subscribe(
             users => resolve(users.map((user) => new User(user))),
             error => reject(error));
@@ -146,7 +136,7 @@ export class GameService {
     : Promise<PaginatedList<User> | Array<User>> {
     if (pageNumber && pageSize) {
       return new Promise<PaginatedList<User>>((resolve, reject) => {
-        this.http.get<PaginatedList<User>>(`${API_PATH.games}/${gameId}/users?non=true&pageNumber=${pageNumber}&pageSize=${pageSize}`)
+        this.http.get<PaginatedList<User>>(`${API_URLS.games}/${gameId}/users?non=true&pageNumber=${pageNumber}&pageSize=${pageSize}`)
           .subscribe(
             pageUsers => {
               pageUsers.value = pageUsers.value.map((user) => new User(user));
@@ -156,7 +146,7 @@ export class GameService {
       });
     } else {
       return new Promise<Array<User>>((resolve, reject) => {
-        this.http.get<Array<User>>(`${API_PATH.games}/${gameId}/users?non=true`)
+        this.http.get<Array<User>>(`${API_URLS.games}/${gameId}/users?non=true`)
           .subscribe(
             users => resolve(users.map((user) => new User(user))),
             error => reject(error));
@@ -165,13 +155,8 @@ export class GameService {
   }
 
   update(game: Game): Promise<boolean> {
-    const options = {
-      headers: new HttpHeaders({
-        Authorization: this.authService.getApiToken()
-      })
-    };
     return new Promise<boolean>((resolve, reject) => {
-      this.http.put<boolean>(`${API_PATH.games}/${game.gameId}`, game, options)
+      this.http.put<boolean>(`${API_URLS.games}/${game.gameId}`, game)
         .subscribe(
           success => resolve(success),
           error => reject(error));
@@ -179,13 +164,8 @@ export class GameService {
   }
 
   getImage(gameId: number): Promise<File> {
-    const options = {
-      headers: new HttpHeaders({
-        Authorization: this.authService.getApiToken()
-      })
-    };
     return new Promise<File>((resolve, reject) => {
-      this.http.get<File>(`${API_PATH.games}/${gameId}/thumbnail-image`, options)
+      this.http.get<File>(`${API_URLS.games}/${gameId}/thumbnail-image`)
         .subscribe(
           image => resolve(image),
           error => reject(error));
@@ -193,15 +173,10 @@ export class GameService {
   }
 
   updateImage(gameId: number, image: File): Promise<boolean> {
-    const options = {
-      headers: new HttpHeaders({
-        Authorization: this.authService.getApiToken()
-      })
-    };
     return new Promise<boolean>((resolve, reject) => {
       const data = new FormData();
       data.append('image', image);
-      this.http.post<boolean>(`${API_PATH.games}/${gameId}/thumbnail-image`, data, options)
+      this.http.post<boolean>(`${API_URLS.games}/${gameId}/thumbnail-image`, data)
         .subscribe(
           success => resolve(success),
           error => reject(error));
@@ -209,13 +184,8 @@ export class GameService {
   }
 
   removeCollaborator(gameId: number, userId: number): Promise<boolean> {
-    const options = {
-      headers: new HttpHeaders({
-        Authorization: this.authService.getApiToken()
-      })
-    };
     return new Promise<boolean>((resolve, reject) => {
-      this.http.delete<boolean>(`${API_PATH.games}/${gameId}/users/${userId}`, options)
+      this.http.delete<boolean>(`${API_URLS.games}/${gameId}/users/${userId}`)
         .subscribe(
           success => resolve(success),
           error => reject(error));

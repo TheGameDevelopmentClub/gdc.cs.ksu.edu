@@ -3,7 +3,7 @@
     <div class="user-link" (click)="handleClick()">
       <img class="user-img rounded-circle img-fluid d-block mx-auto" src={{user?.imageUrl}} onerror="this.src='assets/images/profile.png'">
       <span id="user-name">
-        {{user?.username}}
+        {{user?.displayName}}
       </span>
     </div>
     <span *ngIf="showX" id="x" (click)="X()">&times;</span>

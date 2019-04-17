@@ -10,12 +10,4 @@ export class Officer {
     this.position = officer['position'];
     this.user = (officer['user']) ? new User(officer['user']) : new User({});
   }
-
-  get fullName(): string {
-    return this.user.fullName;
-  }
-
-  get imageUrl(): string {
-    return this.user.imageUrl;
-  }
 }
