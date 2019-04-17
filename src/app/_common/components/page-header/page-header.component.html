@@ -1,8 +1,9 @@
 <div class="nav-container">
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <a class="navbar-brand js-scroll-trigger" routerLink="/">KSU Game Development Club</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation">
       Menu
       <i class="fa fa-bars"></i>
     </button>
@@ -10,16 +11,20 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <!-- <a class="nav-link" routerLink="/events" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">Events</a> -->
-          <a class="nav-link" target="_blank" href="https://calendar.google.com/calendar/embed?src=gjkfjdotg8jtodmhcjraklc15s%40group.calendar.google.com&ctz=America/Chicago">Events</a>
+          <a class="nav-link" target="_blank"
+            href="https://calendar.google.com/calendar/embed?src=gjkfjdotg8jtodmhcjraklc15s%40group.calendar.google.com&ctz=America/Chicago">Events</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/portfolio" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: false}">Portfolio</a>
+          <a class="nav-link" routerLink="/portfolio" routerLinkActive="nav-link-active"
+            [routerLinkActiveOptions]="{exact: false}">Portfolio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/game-jam" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: false}">Game&nbsp;Jam</a>
+          <a class="nav-link" routerLink="/game-jam" routerLinkActive="nav-link-active"
+            [routerLinkActiveOptions]="{exact: false}">Game&nbsp;Jam</a>
         </li>
         <li *ngIf="!isAuthenticated()" class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: false}">Login</a>
+          <a class="nav-link" routerLink="/login" routerLinkActive="nav-link-active"
+            [routerLinkActiveOptions]="{exact: false}">Login</a>
         </li>
         <li *ngIf="isAuthenticated()" class="nav-item" ngbDropdown>
           <a class="nav-link" id="userDropdown" ngbDropdownToggle>{{getAuthUser().username}}</a>
@@ -30,7 +35,8 @@
                   [routerLinkActiveOptions]="{exact: false}">My Profile</a>
               </li>
               <li class="nav-item dropdown-item">
-                <a class="nav-link" routerLink="/logout" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: false}">Logout</a>
+                <a class="nav-link" routerLink="/logout" routerLinkActive="nav-link-active"
+                  [routerLinkActiveOptions]="{exact: false}">Logout</a>
               </li>
             </ul>
           </div>
@@ -38,4 +44,9 @@
       </ul>
     </div>
   </nav>
+  <div id="nav-alert-box" class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Upcoming!</strong> Officer Elections. Enter the running <a href="https://forms.gle/QdP7LKCFb5xLsxVq9"
+      class="alert-link">here</a>.
+  </div>
 </div>

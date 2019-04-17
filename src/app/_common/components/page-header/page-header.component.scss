@@ -6,6 +6,13 @@ $nav-active-color: $ksu-gdc-blue;
   padding-bottom: 54px;
 }
 
+#nav-alert-box {
+  position: fixed;
+  width: 100%;
+  margin-top: 54px;
+  z-index: 999;
+}
+
 #mainNav,
 header.masthead .intro-text .name {
   font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -113,6 +120,10 @@ section.success {
     padding-bottom: 66px;
   }
 
+  #nav-alert-box {
+    margin-top: 66px;
+  }
+
   #mainNav .navbar-brand {
     font-size: 1.7em;
     -webkit-transition: all .3s;
@@ -147,5 +158,9 @@ section.success {
 @media (max-width: 434px) {
   .nav-container {
     padding-bottom: 90px;
+  }
+
+  #nav-alert-box {
+    margin-top: 66px;
   }
 }
