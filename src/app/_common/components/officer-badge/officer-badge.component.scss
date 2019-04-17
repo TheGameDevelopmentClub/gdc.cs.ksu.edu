@@ -9,11 +9,18 @@
   font-size: 24px;
 }
 
+img.clickable {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 @media(max-width: 770px) {
   .badge-container {
     width: 125px;
     height: 125px;
   }
+
   .badge-text {
     font-size: 20px;
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Officer } from 'src/app/_common/models/officer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ksu-gdc-officer-badge',
@@ -11,8 +12,16 @@ export class OfficerBadgeComponent implements OnInit {
   @Input() position: string;
   @Input() officer: Officer;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  openUserProfile(): void {
+    if (this.officer.user) {
+      this.officer.user.navigateToProfilePage(this.router);
+    }
   }
 }
