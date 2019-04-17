@@ -1,6 +1,7 @@
+@import "src/styles.scss";
+
 .profile-container {
-  border: solid 3px;
-  border-color: white;
+  border: solid 3px $ksu-gdc-blue;
   width: 250px;
   height: 250px;
 }
