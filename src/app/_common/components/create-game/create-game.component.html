@@ -2,25 +2,32 @@
   <span class="close" (click)="closeDialog()">&times;</span>
 </h3>
 <mat-dialog-content>
-  <form (ngSubmit)="createGame()" #gameForm="ngForm">
-    <div class="form-game">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" name="title" [ngModel]="game.title | sanitizeInput"
-        (ngModelChange)="game.title=$event" />
+  <form [formGroup]="createGameGroup">
+    <div>
+      <mat-form-field>
+        <input matInput type="text" [formControl]="titleControl" placeholder="Title" />
+        <mat-hint align="end">{{titleControl.value.length}} / 100</mat-hint>
+        <mat-error *ngIf="titleControl.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="titleControl.hasError('maxlength')">Max of 100 characters</mat-error>
+      </mat-form-field>
     </div>
-    <div class="form-game">
-      <label for="description">Description</label>
-      <textarea type="text" class="form-control" id="description" name="description" [ngModel]="game.description | sanitizeInput"
-        (ngModelChange)="game.description=$event"></textarea>
+    <div>
+      <mat-form-field>
+        <textarea matInput type="text" [formControl]="descriptionControl" placeholder="Description"></textarea>
+        <mat-hint align="end">{{descriptionControl.value.length}} / 1000</mat-hint>
+        <mat-error *ngIf="descriptionControl.hasError('maxlength')">Max of 1000 characters</mat-error>
+      </mat-form-field>
     </div>
-    <div class="form-game">
-      <label for="hostUrl">hostUrl</label>
-      <input type="url" class="form-control" id="hostUrl" name="hostUrl" [ngModel]="game.hostUrl | sanitizeInput"
-        (ngModelChange)="game.hostUrl=$event" />
+    <div>
+      <mat-form-field>
+        <input matInput type="text" [formControl]="hostUrlControl" placeholder="Url to More Info and/or Download" />
+        <mat-hint align="end">{{hostUrlControl.value.length}} / 2000</mat-hint>
+        <mat-error *ngIf="hostUrlControl.hasError('maxlength')">Max of 2000 characters</mat-error>
+      </mat-form-field>
     </div>
   </form>
-  <ksu-gdc-info-messages #gameCreateMessages></ksu-gdc-info-messages>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button type="submit" class="btn btn-success" [disabled]="gameForm.pristine || !gameForm.form.valid" (click)="createGame()">Create</button>
+  <button class="btn btn-success" [disabled]="!formIsValid()" (click)="createGame()">Create</button>&nbsp;
+  <ksu-gdc-info-messages></ksu-gdc-info-messages>
 </mat-dialog-actions>

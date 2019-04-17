@@ -5,6 +5,8 @@ import { InfoMessagesComponent } from 'src/app/_common/components/info-messages/
 import { GameService } from 'src/app/_common/services/game/game.service';
 import { NewGame } from 'src/app/_common/models/game';
 import { User } from 'src/app/_common/models/user';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ksu-gdc-create-game',
@@ -12,9 +14,12 @@ import { User } from 'src/app/_common/models/user';
   styleUrls: ['./create-game.component.scss']
 })
 export class CreateGameComponent implements OnInit {
-  @ViewChild('gameCreateMessages') gameCreateMessages: InfoMessagesComponent;
+  @ViewChild(InfoMessagesComponent) gameCreateMessages: InfoMessagesComponent;
 
-  game = new NewGame();
+  createGameGroup: FormGroup;
+  titleControl: FormControl;
+  descriptionControl: FormControl;
+  hostUrlControl: FormControl;
 
   constructor(
     private dialogRef: MatDialogRef<CreateGameComponent>,
@@ -23,6 +28,18 @@ export class CreateGameComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.titleControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
+    this.descriptionControl = new FormControl('', [Validators.maxLength(1000)]);
+    this.hostUrlControl = new FormControl('', [Validators.maxLength(2000)]);
+    this.createGameGroup = new FormGroup({
+      title: this.titleControl,
+      description: this.descriptionControl,
+      hostUrl: this.hostUrlControl
+    });
+  }
+
+  formIsValid(): boolean {
+    return this.createGameGroup.touched && this.createGameGroup.valid;
   }
 
   closeDialog() {
@@ -30,13 +47,23 @@ export class CreateGameComponent implements OnInit {
   }
 
   createGame() {
-    this.gameService.create(this.data.user.userId, this.game)
+    const newGame = new NewGame();
+    newGame.title = this.titleControl.value;
+    if (this.descriptionControl.value.length > 0) {
+      newGame.description = this.descriptionControl.value;
+    }
+    if (this.hostUrlControl.value.length > 0) {
+      newGame.hostUrl = this.hostUrlControl.value;
+    }
+    this.gameService.create(this.data.user.userId, newGame)
       .then(() => {
         this.dialogRef.close(true);
       })
-      .catch(error => {
+      .catch((error: HttpErrorResponse) => {
         if (error.status === 400) {
-          this.gameCreateMessages.showError(error.error.errorMessages[0]);
+          const modelError = error.error;
+          this.createGameGroup.markAsUntouched();
+          this.gameCreateMessages.showError(modelError.errorMessages[0]);
         } else {
           this.gameCreateMessages.showError('There was a problem creating your game.');
         }

@@ -96,16 +96,20 @@ export class UserProfileManagementComponent implements OnInit {
 
   uploadProfileImage(image: File) {
     this.profileImageUploader.isProcessing = true;
-    this.userService.updateImage(this.user.userId, image)
-      .then(() => {
-        this.profileUpdateMessages.showSuccess('The image has been updated.');
+    this.userService.updateImage(this.user.userId, image).then(() => {
+      this.profileUpdateMessages.showSuccess('The image has been updated.');
+      this.profileImageUploader.isProcessing = false;
+      this.profileImage.reload();
+    }).catch((error: HttpErrorResponse) => {
+      if (error.status === 400) {
+        const modelError = error.error;
+        this.profileUpdateMessages.showError(modelError.errorMessages[0]);
         this.profileImageUploader.isProcessing = false;
-        this.profileImage.reload();
-      })
-      .catch(error => {
+      } else {
         this.profileUpdateMessages.showError('There was a problem updating the image.');
         this.profileImageUploader.isProcessing = false;
-      });
+      }
+    });
   }
 
   updateUserInfo() {

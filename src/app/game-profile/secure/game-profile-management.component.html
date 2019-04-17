@@ -1,27 +1,36 @@
 <div *ngIf="!errorOccurred && game">
   <br>
   <button class="btn btn-success" (click)="stopEditing()">Done</button>
-  <img class="thumbnail-container img-fluid d-block mx-auto" image-loader src="{{game.imageUrl}}" alt-url="assets/images/img-not-available.png">
+  <img class="thumbnail-container img-fluid d-block mx-auto" image-loader src="{{game.imageUrl}}"
+    alt-url="assets/images/img-not-available.png">
   <hr class="hr-primary">
   <ksu-gdc-info-messages #gameUpdateMessages></ksu-gdc-info-messages>
-  <ksu-gdc-file-upload btn-text="Upload Thumbnail Image" file-type="image/jpg" [show-upload]="false" (fileChange)="uploadGameImage($event)"></ksu-gdc-file-upload>
-  <form (ngSubmit)="updateGameInfo()" #infoForm="ngForm">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" id="firstName" name="firstName" [ngModel]="game.title | sanitizeInput"
-        (ngModelChange)="game.title=$event" />
-    </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea type="text" class="form-control" id="description" name="description" [ngModel]="game.description | sanitizeInput"
-        (ngModelChange)="game.description=$event"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="hostUrl">Url to More Info and/or Download</label>
-      <input type="text" class="form-control" id="hostUrl" name="hostUrl" [ngModel]="game.hostUrl | sanitizeInput"
-        (ngModelChange)="game.hostUrl=$event" />
-    </div>
-    <button type="submit" class="btn btn-success" [disabled]="infoForm.pristine || !infoForm.form.valid">Update</button>
+  <ksu-gdc-file-upload btn-text="Upload Thumbnail Image" [show-upload]="false"
+    (fileChange)="uploadGameImage($event)"></ksu-gdc-file-upload><br>
+  <form [formGroup]="gameInfoGroup" (ngSubmit)="updateGameInfo()">
+    <div>
+      <mat-form-field>
+        <input matInput type="text" [formControl]="titleControl" placeholder="Title" />
+        <mat-hint align="end">{{titleControl.value.length}} / 100</mat-hint>
+        <mat-error *ngIf="titleControl.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="titleControl.hasError('maxlength')">Max of 100 characters</mat-error>
+      </mat-form-field>
+    </div><br>
+    <div>
+      <mat-form-field>
+        <textarea matInput type="text" [formControl]="descriptionControl" placeholder="Description"></textarea>
+        <mat-hint align="end">{{descriptionControl.value.length}} / 1000</mat-hint>
+        <mat-error *ngIf="descriptionControl.hasError('maxlength')">Max of 1000 characters</mat-error>
+      </mat-form-field>
+    </div><br>
+    <div>
+      <mat-form-field>
+        <input matInput type="text" [formControl]="hostUrlControl" placeholder="Url to More Info and/or Download" />
+        <mat-hint align="end">{{hostUrlControl.value.length}} / 2000</mat-hint>
+        <mat-error *ngIf="hostUrlControl.hasError('maxlength')">Max of 2000 characters</mat-error>
+      </mat-form-field>
+    </div><br>
+    <button type="submit" class="btn btn-success" [disabled]="!formIsValid()">Update</button>
   </form>
   <br>
   <div class="users-container">
@@ -35,8 +44,8 @@
         found</div>
       <div class="row">
         <div class="col" *ngFor="let user of categories.users.list">
-          <ksu-gdc-member-item [user]="user" [showX]="categories.users.list.length > 1" (clicked)="navigateToMemberProfile($event)"
-            (clickedX)="removeCollaborator($event)"></ksu-gdc-member-item>
+          <ksu-gdc-member-item [user]="user" [showX]="categories.users.list.length > 1"
+            (clicked)="navigateToMemberProfile($event)" (clickedX)="removeCollaborator($event)"></ksu-gdc-member-item>
         </div>
       </div>
       <ksu-gdc-pagination-bar [itemsLoaded]="categories.users.loaded" [totalItemCount]="categories.users.totalItemCount"

@@ -1,6 +1,19 @@
+@import "src/styles.scss";
+
 .thumbnail-container {
-  border: solid 3px;
-  border-color: white;
+  border: solid 3px $ksu-gdc-blue;
   max-width: 350px;
   max-height: 250px;
+}
+
+mat-form-field.mat-form-field {
+  width: 100%;
+
+  input {
+    font-size: 18px;
+  }
+
+  textarea {
+    font-size: 18px;
+  }
 }
