@@ -23,10 +23,13 @@ export class Game extends PortfolioItem {
     this.title = game['title'];
     this.description = game['description'];
     this.hostUrl = game['hostUrl'];
-    this.imageUrl = `${API_URLS.games}/${this.gameId}/thumbnail-image`;
   }
 
   get id(): number {
     return this.gameId;
+  }
+
+  get imageUrl(): string {
+    return `${API_URLS.games}/${this.gameId}/thumbnail-image`;
   }
 }

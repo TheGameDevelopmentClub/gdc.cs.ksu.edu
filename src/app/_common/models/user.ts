@@ -23,11 +23,11 @@ export class User {
     return this.firstName + ' ' + this.lastName;
   }
 
-  get imageUrl() {
+  get imageUrl(): string {
     return `${API_URLS.users}/${this.userId}/profile-image`;
   }
 
-  get email() {
+  get email(): string {
     return this.username + '@ksu.edu';
   }
 
