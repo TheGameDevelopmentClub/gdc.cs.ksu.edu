@@ -163,6 +163,14 @@ export class GameService {
     });
   }
 
+  patch(gameId: number, gameUpdate: Array<object>): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.http.patch<void>(`${API_URLS.games}/${gameId}`, gameUpdate).subscribe(
+        () => resolve(),
+        error => reject(error));
+    });
+  }
+
   getImage(gameId: number): Promise<File> {
     return new Promise<File>((resolve, reject) => {
       this.http.get<File>(`${API_URLS.games}/${gameId}/thumbnail-image`)
